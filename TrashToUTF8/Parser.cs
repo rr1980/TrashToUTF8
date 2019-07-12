@@ -37,7 +37,11 @@ namespace TrashToUTF8
 
         public Parser(Encoding sourceEncoding, Encoding targetEncoding, string sourcePath, string targetPath)
         {
-            logger = new Logger(@"D:\Projekte\TrashToUTF8\TrashToUTF8\Log.txt");
+
+            var dir = Path.GetDirectoryName(targetPath);
+            Directory.CreateDirectory(dir);
+
+            logger = new Logger(@"D:\TrashToUTF8Results\Log.txt");
 
             SourceEncoding = sourceEncoding;
             TargetEncoding = targetEncoding;
