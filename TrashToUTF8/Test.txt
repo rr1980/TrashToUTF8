@@ -1,0 +1,51 @@
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `basewords`
+--
+
+DROP TABLE IF EXISTS `basewords`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `basewords` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `langid` int(11) NOT NULL,
+  `typeid` int(11) NOT NULL,
+  `value` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `abbreviationid` int(11) DEFAULT NULL,
+  `word` varchar(100) NOT NULL,
+  `reference_number` int(10) unsigned NOT NULL DEFAULT '1',
+  `comment` text,
+  `islocked` bit(1) DEFAULT NULL,
+  `mp3_file_url` varchar(120) DEFAULT NULL,
+  `flv_file_url` varchar(120) DEFAULT NULL,
+  `has_audio_file` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ix_basicword_word` (`word`),
+  KEY `fk_abbreviation` (`abbreviationid`),
+  KEY `ref_languages` (`langid`),
+  KEY `ref_types` (`typeid`),
+  CONSTRAINT `fk_abbreviation` FOREIGN KEY (`abbreviationid`) REFERENCES `abbreviations` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `ref_languages` FOREIGN KEY (`langid`) REFERENCES `languages` (`id`),
+  CONSTRAINT `ref_types` FOREIGN KEY (`typeid`) REFERENCES `types` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=281904 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `basewords`
+--
+
+LOCK TABLES `basewords` WRITE;
+/*!40000 ALTER TABLE `basewords` DISABLE KEYS */;
+INSERT INTO `basewords` VALUES (2,2,15,0,NULL,NULL,'gÅ‚os',1,NULL,'\0',NULL,NULL,0),(3,1,16,0,NULL,NULL,'abbauen',1,NULL,'\0',NULL,NULL,0),(4,2,16,0,NULL,NULL,'obniÅ¼aÄ‡',1,NULL,'\0',NULL,NULL,0),(5,2,16,0,NULL,NULL,'urabiaÄ‡',1,NULL,'\0',NULL,NULL,0),(6,2,16,0,NULL,NULL,'zmniejszaÄ‡',1,NULL,'\0',NULL,NULL,0),(7,2,16,0,NULL,NULL,'demontowaÄ‡',1,NULL,'\0',NULL,NULL,0),(8,2,16,0,NULL,NULL,'eksploatowaÄ‡',1,NULL,'\0',NULL,NULL,0),(9,2,16,0,NULL,NULL,'redukowaÄ‡',1,NULL,'\0',NULL,NULL,0),(10,2,16,0,NULL,NULL,'zredukowaÄ‡',1,NULL,'\0',NULL,NULL,0),(11,2,16,0,NULL,NULL,'wydobywaÄ‡',1,NULL,'\0',NULL,NULL,0),(12,2,16,0,NULL,NULL,'obniÅ¼yÄ‡',1,NULL,'\0',NULL,NULL,0),(13,2,16,0,NULL,NULL,'zburzyÄ‡',1,NULL,'\0',NULL,NULL,0),(14,1,16,0,NULL,NULL,'wachsen',1,NULL,'\0',NULL,NULL,0),(17,1,16,0,NULL,NULL,'aasen',1,NULL,'\0',NULL,NULL,0),(18,1,16,0,NULL,NULL,'abamputieren',1,NULL,'\0',NULL,NULL,0),(19,1,16,0,NULL,NULL,'abÃ¤ndern',1,NULL,'\0',NULL,NULL,0),(20,1,16,0,NULL,NULL,'abandonnieren',1,NULL,'\0',NULL,NULL,0),(21,1,16,0,NULL,NULL,'abarbeiten',1,NULL,'\0',NULL,NULL,0),(22,1,16,0,NULL,NULL,'abarten',1,NULL,'\0',NULL,NULL,0),(23,1,16,0,NULL,NULL,'abbaken',1,NULL,'\0',NULL,NULL,0),(24,1,16,0,NULL,NULL,'abbalgen',1,NULL,'\0',NULL,NULL,0),(25,1,16,0,NULL,NULL,'abbegehren',1,NULL,'\0',NULL,NULL,0),(26,1,16,0,NULL,NULL,'abbeiÃŸen',1,NULL,'\0',NULL,NULL,0),(27,1,16,0,NULL,NULL,'abbekommen',1,NULL,'\0',NULL,NULL,0),(28,1,16,0,NULL,NULL,'abbersten',1,NULL,'\0',NULL,NULL,0),(29,1,16,0,NULL,NULL,'abberufen',1,NULL,'\0',NULL,NULL,0),(30,1,16,0,NULL,NULL,'abbestellen',1,NULL,'\0',NULL,NULL,0),(31,1,16,0,NULL,NULL,'abbetteln',1,NULL,'\0',NULL,NULL,0),(32,1,16,0,NULL,NULL,'abbezahlen',1,NULL,'\0',NULL,NULL,0),(33,1,16,0,NULL,NULL,'abbiegen',1,NULL,'\0',NULL,NULL,0),(34,1,16,0,NULL,NULL,'abbilden',1,NULL,'\0',NULL,NULL,0),(35,1,16,0,NULL,NULL,'abbinden',1,NULL,'\0',NULL,NULL,0),(36,1,16,0,NULL,NULL,'abbitten',1,NULL,'\0',NULL,NULL,0),(37,1,16,0,NULL,NULL,'abblasen',1,NULL,'\0',NULL,NULL,0),(38,1,16,0,NULL,NULL,'abblassen',1,NULL,'\0',NULL,NULL,0),(39,1,16,0,NULL,NULL,'abbleichen',1,NULL,'\0',NULL,NULL,0),(40,1,16,0,NULL,NULL,'abblenden',1,NULL,'\0',NULL,NULL,0),(41,1,16,0,NULL,NULL,'abblitzen',1,NULL,'\0',NULL,NULL,0),(42,1,16,0,NULL,NULL,'abblÃ¼hen',1,NULL,'\0',NULL,NULL,0),(43,1,16,0,NULL,NULL,'abbohren',1,NULL,'\0',NULL,NULL,0),(44,1,16,0,NULL,NULL,'abborgen',1,NULL,'\0',NULL,NULL,0),(45,1,16,0,NULL,NULL,'abbrassen',1,NULL,'\0',NULL,NULL,0),(46,1,16,0,NULL,NULL,'abbrauchen',1,NULL,'\0',NULL,NULL,0),(47,1,16,0,NULL,NULL,'abbrausen',1,NULL,'\0',NULL,NULL,0),(48,1,16,0,NULL,NULL,'abbrechen',1,NULL,'\0',NULL,NULL,0),(49,1,16,0,NULL,NULL,'abbrennen',1,NULL,'\0',NULL,NULL,0),(50,1,16,0,NULL,NULL,'abbringen',1,NULL,'\0',NULL,NULL,0),(51,1,16,0,NULL,NULL,'abbrÃ¶ckeln',1,NULL,'\0',NULL,NULL,0),(52,1,16,0,NULL,NULL,'abbrÃ¼hen',1,NULL,'\0',NULL,NULL,0),(53,1,16,0,NULL,NULL,'abbuchen',1,NULL,'\0',NULL,NULL,0),(54,1,16,0,NULL,NULL,'abbÃ¼rsten',1,NULL,'\0',NULL,NULL,0),(55,1,16,0,NULL,NULL,'abbÃ¼ÃŸen',1,NULL,'\0',NULL,NULL,0),(56,1,16,0,NULL,NULL,'abchecken',1,NULL,'\0',NULL,NULL,0),(57,1,16,0,NULL,NULL,'abdÃ¤mmen',1,NULL,'\0',NULL,NULL,0),(58,1,16,0,NULL,NULL,'abdampfen',1,NULL,'\0',NULL,NULL,0),(59,1,16,0,NULL,NULL,'abdanken',1,NULL,'\0',NULL,NULL,0),(60,1,16,0,NULL,NULL,'abdecken',1,NULL,'\0',NULL,NULL,0),(61,1,16,0,NULL,NULL,'abdestillieren',1,NULL,'\0',NULL,NULL,0),(62,1,16,0,NULL,NULL,'abdichten',1,NULL,'\0',NULL,NULL,0),(63,1,16,0,NULL,NULL,'abdicken',1,NULL,'\0',NULL,NULL,0),(64,1,16,0,NULL,NULL,'abdienen',1,NULL,'\0',NULL,NULL,0),(65,1,16,0,NULL,NULL,'abdisponieren',1,NULL,'\0',NULL,NULL,0),(66,1,16,0,NULL,NULL,'abdizieren',1,NULL,'\0',NULL,NULL,0),(67,1,16,0,NULL,NULL,'abdorren'

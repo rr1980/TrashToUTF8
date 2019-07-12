@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace TrashToUTF8
 {
     public class Parser
     {
+        int DirtyRowCounter = 0;
+
         Encoding SourceEncoding;
         Encoding TargetEncoding;
         string SourcePath;
         string TargetPath;
 
-        StreamWriter targetWriter;
-
-        int AllRowsCount;
+        //StreamWriter targetWriter;
 
         Logger logger;
 
@@ -60,99 +61,81 @@ namespace TrashToUTF8
                 logger.Print("Delete: " + TargetPath);
             }
 
-            targetWriter = File.AppendText(TargetPath);
+            //targetWriter = File.AppendText(TargetPath);
         }
 
         public void Start()
         { 
-            var allRowArray = File.ReadAllLines(SourcePath);    //10221287
+            //var allRowArray = File.ReadAllLines(SourcePath);    //10221287
             //var allRowArray = new List<string> { "(1099649,'Ã°Â¿Ã°Â¾Ã°Â·Ã°Â°Ã°Â²Ã°Â¸Ã°Â´Ã°Â¾Ã°Â²Ã°Â°Ã±Â‚Ã±ÂŒ',1,4,1,1,1,'2014-04-30 11:14:45',0)," }.ToArray();
             //var allRowArray = new List<string> { "(1034097,'przyjï¿„ï¾™te',1,2,1,1,1,'2013-08-27 10:03:58',0)," }.ToArray();
 
-            AllRowsCount = allRowArray.Count();
+            //AllRowsCount = allRowArray.Count();
 
-            Parse(allRowArray);
+            Parse(SourcePath);
+
+            logger.Stop();
+        }
+        void Parse(string SourcePath)
+        {
+            var all = File.ReadAllText(SourcePath);
+
+            Regex regex = new Regex("'(.*?)'", RegexOptions.Multiline);
+            var v = regex.Replace(all, replace);
+
+            File.WriteAllText(TargetPath, v);
+
+            logger.LogPrint(Environment.NewLine + "Betroffene Zeilen: " + DirtyRowCounter);
         }
 
 
-        void Parse(string[] allRowArray)
+        private string replace(Match match)
         {
-            var rowCounter = 0;
-            var dirtyRowCounter = 0;
-            for (int i = 0; i < allRowArray.Length; i++)
+            var w = match.Groups[1];
+            if (CheckSearchChars(w.Value))
             {
-                rowCounter++;
+                DirtyRowCounter++;
+                return Clear(w.Value);
+            }
 
-                var row = allRowArray[i];
+            return w.Value;
+        }
 
-                var exit = false;
+        string Clear(string w)
+        {
+            var exit = false;
 
-                List<string> results = new List<string>();
-                results.Add(allRowArray[i]);
+            var oldW = w;
 
-                while (CheckSearchChars(row) && !exit)
+            logger.Log("0\t" + w);
+
+            var counter = 0;
+
+            while (CheckSearchChars(w) && !exit)
+            {
+                counter++;
+                var newW = Convert(w, SourceEncoding, TargetEncoding);
+
+                if (CheckBlckChars(newW))
                 {
-                    var newRow = Convert(row, SourceEncoding, TargetEncoding);
-
-                    if (CheckBlckChars(newRow))
-                    {
-                        exit = true;
-                        results = new List<string> { allRowArray[i] };
-                    }
-                    else
-                    {
-                        row = newRow;
-                        results.Add(newRow);
-                    }
-                }
-
-                if(results.Count() > 1)
-                {
-                    var counter = 0;
-                    dirtyRowCounter++;
-
-                    for (int u = 0; u < results.Count; u++)
-                    {
-                        if (u == results.Count-1)
-                        {
-                            logger.Log("==\t" + results[u]);
-                            logger.Log("-------------");
-                        }
-                        else
-                        {
-                            logger.Log(counter + "\t" + results[u]);
-                        }
-
-                        counter++;
-
-                    }
+                    return "'" + oldW + "'";
                 }
                 else
                 {
-                    var tmp = 0;
-                }
-
-
-                Write(results.Last());
-
-
-                if (rowCounter >= 100000)
-                {
-                    rowCounter = 0;
-                    logger.Print("rdy: " + i.ToString() + " / " + AllRowsCount);
+                    logger.Log(counter + "\t" + newW);
+                    w = newW;
                 }
             }
 
-            logger.LogPrint(Environment.NewLine + "Betroffene Zeilen: " + dirtyRowCounter + " / " + AllRowsCount);
-
-            targetWriter.Close();
-            logger.Stop();
+            logger.Log("==\t" + w);
+            logger.Log("-------------"+Environment.NewLine);
+            return "'" + w + "'";
         }
 
-        void Write(string row)
-        {
-            targetWriter.WriteLine(row);
-        }
+        //void Write(string row)
+        //{
+        //    targetWriter.WriteLine(row);
+        //}
 
         string Convert(string sourceText, Encoding s, Encoding t)
         {
@@ -188,3 +171,79 @@ namespace TrashToUTF8
         }
     }
 }
+
+
+
+//void Parse(string[] allRowArray)
+//{
+//    var rowCounter = 0;
+//    var dirtyRowCounter = 0;
+//    for (int i = 0; i < allRowArray.Length; i++)
+//    {
+//        rowCounter++;
+
+//        var row = allRowArray[i];
+
+//        var exit = false;
+
+//        List<string> results = new List<string>();
+//        results.Add(allRowArray[i]);
+
+//        while (CheckSearchChars(row) && !exit)
+//        {
+//            var newRow = Convert(row, SourceEncoding, TargetEncoding);
+
+//            if (CheckBlckChars(newRow))
+//            {
+//                exit = true;
+//                results = new List<string> { allRowArray[i] };
+//            }
+//            else
+//            {
+//                row = newRow;
+//                results.Add(newRow);
+//            }
+//        }
+
+//        if(results.Count() > 1)
+//        {
+//            var counter = 0;
+//            dirtyRowCounter++;
+
+//            for (int u = 0; u < results.Count; u++)
+//            {
+//                if (u == results.Count-1)
+//                {
+//                    logger.Log("==\t" + results[u]);
+//                    logger.Log("-------------");
+//                }
+//                else
+//                {
+//                    logger.Log(counter + "\t" + results[u]);
+//                }
+
+//                counter++;
+
+//            }
+//        }
+//        else
+//        {
+//            var tmp = 0;
+//        }
+
+
+//        Write(results.Last());
+
+
+//        if (rowCounter >= 100000)
+//        {
+//            rowCounter = 0;
+//            logger.Print("rdy: " + i.ToString() + " / " + AllRowsCount);
+//        }
+//    }
+
+//    logger.LogPrint(Environment.NewLine + "Betroffene Zeilen: " + dirtyRowCounter + " / " + AllRowsCount);
+
+//    targetWriter.Close();
+//    logger.Stop();
+//}

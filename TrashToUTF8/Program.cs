@@ -9,6 +9,10 @@ namespace TrashToUTF8
     {
         static Encoding SourceEncoding;
         static Encoding TargetEncoding = Encoding.UTF8;
+        //static string Source = @"D:\Projekte\TrashToUTF8\TrashToUTF8\Test.txt";
+        //static string Target = @"D:\Projekte\TrashToUTF8\TrashToUTF8\Test_Clear.txt";
+        
+        
         static string Source = @"D:\Rene_BaseWords_Words.sql";
         static string Target = @"D:\TrashToUTF8Results\ReneDump_clear.sql";
 
