@@ -32,6 +32,7 @@ namespace TrashToUTF8
 
         public void Log(string msg)
         {
+            //Console.WriteLine(msg);
             logWriter.WriteLine(msg);
         }
 

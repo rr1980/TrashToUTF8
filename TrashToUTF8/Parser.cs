@@ -22,18 +22,23 @@ namespace TrashToUTF8
 
         List<string> searchChars = new List<string> {
             "Å",
+            "º",
             "Ã",
             "‡",
             "™",
             "…",
             "Å",
+            "¾",
+            "†",
+            "»",
+            "°",
         };
 
         List<string> blackChars = new List<string> {
             "ￅ",
             "�",
             "¬",
-            "¾",
+            //"¾",
         };
 
         public Parser(Encoding sourceEncoding, Encoding targetEncoding, string sourcePath, string targetPath)
@@ -42,7 +47,7 @@ namespace TrashToUTF8
             var dir = Path.GetDirectoryName(targetPath);
             Directory.CreateDirectory(dir);
 
-            logger = new Logger(@"D:\TrashToUTF8Results\Log.txt");
+            logger = new Logger(@"D:\Projects\TrashToUTF8\TrashToUTF8\SB\Results\Log.txt");
 
             SourceEncoding = sourceEncoding;
             TargetEncoding = targetEncoding;
@@ -78,12 +83,13 @@ namespace TrashToUTF8
         }
         void Parse(string SourcePath)
         {
-            var all = File.ReadAllText(SourcePath);
+            var all = File.ReadAllText(SourcePath, Encoding.UTF8);
+            //var all = "ÃÂºÃÂ¾ÃÂ½Ã‘Å’ÃÂºÃÂ¾ÃÂ±ÃÂµÃÂ¶ÃÂ¸Ã‘â€ ÃÂ°";
 
             Regex regex = new Regex("'(.*?)'", RegexOptions.Multiline);
             var v = regex.Replace(all, replace);
 
-            File.WriteAllText(TargetPath, v);
+            File.WriteAllText(TargetPath, v, TargetEncoding);
 
             logger.LogPrint(Environment.NewLine + "Betroffene Zeilen: " + DirtyRowCounter);
         }
@@ -92,13 +98,13 @@ namespace TrashToUTF8
         private string replace(Match match)
         {
             var w = match.Groups[1];
-            if (CheckSearchChars(w.Value))
+            if (CheckSearchChars(w.Value).Found)
             {
                 DirtyRowCounter++;
                 return Clear(w.Value);
             }
 
-            return w.Value;
+            return "'" + w.Value + "'";
         }
 
         string Clear(string w)
@@ -107,11 +113,11 @@ namespace TrashToUTF8
 
             var oldW = w;
 
-            logger.Log("0\t" + w);
+            logger.Log("0\t" + w + "\t" + CheckSearchChars(w).FoundChar);
 
             var counter = 0;
 
-            while (CheckSearchChars(w) && !exit)
+            while (CheckSearchChars(w).Found && !exit)
             {
                 counter++;
                 var newW = Convert(w, SourceEncoding, TargetEncoding);
@@ -122,7 +128,7 @@ namespace TrashToUTF8
                 }
                 else
                 {
-                    logger.Log(counter + "\t" + newW);
+                    logger.Log(counter + "\t" + newW );
                     w = newW;
                 }
             }
@@ -141,20 +147,37 @@ namespace TrashToUTF8
         {
             byte[] asciiBytes = s.GetBytes(sourceText);
             char[] asciiChars = t.GetChars(asciiBytes);
-            return new string(asciiChars);
+
+            var result = new string(asciiChars);
+
+            //Console.WriteLine(sourceText + " -> " + result);
+
+            return result;
         }
 
-        bool CheckSearchChars(string row)
+        class CheckResult
+        {
+            public bool Found { get; set; }
+            public string FoundChar { get; set; }
+        }
+
+        CheckResult CheckSearchChars(string row)
         {
             foreach (var item in searchChars)
             {
                 if (row.Contains(item))
                 {
-                    return true;
+                    return new CheckResult {
+                        Found = true,
+                        FoundChar = item
+                    };
                 }
             }
 
-            return false;
+            return new CheckResult
+            {
+                Found = false,
+            };
         }
 
         private bool CheckBlckChars(string row)
