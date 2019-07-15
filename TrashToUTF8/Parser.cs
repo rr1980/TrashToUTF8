@@ -68,8 +68,6 @@ namespace TrashToUTF8
                 File.Delete(TargetPath);
                 logger.Print("Delete: " + TargetPath);
             }
-
-            //targetWriter = File.AppendText(TargetPath);
         }
 
         public void Start()
@@ -98,28 +96,22 @@ namespace TrashToUTF8
         private string replace(Match match)
         {
             var w = match.Groups[1];
-            if (CheckSearchChars(w.Value).Found)
+            CheckResult current = CheckSearchChars(w.Value);
+            if (current.Found)
             {
                 DirtyRowCounter++;
-                return Clear(w.Value);
+                return Clear(w.Value, current.FoundChar);
             }
 
             return "'" + w.Value + "'";
         }
 
-        string Clear(string w)
+        string Clear(string w, string foundChar)
         {
-            var exit = false;
-
             var oldW = w;
 
-            logger.Log("0\t" + w + "\t" + CheckSearchChars(w).FoundChar);
-
-            var counter = 0;
-
-            while (CheckSearchChars(w).Found && !exit)
+            while (CheckSearchChars(w).Found)
             {
-                counter++;
                 var newW = Convert(w, SourceEncoding, TargetEncoding);
 
                 if (CheckBlckChars(newW))
@@ -128,20 +120,15 @@ namespace TrashToUTF8
                 }
                 else
                 {
-                    logger.Log(counter + "\t" + newW );
                     w = newW;
                 }
             }
 
-            logger.Log("==\t" + w);
-            logger.Log("-------------"+Environment.NewLine);
+
+            logger.Log(foundChar + "\t" + oldW + Environment.NewLine + "=\t" + w + Environment.NewLine);
+
             return "'" + w + "'";
         }
-
-        //void Write(string row)
-        //{
-        //    targetWriter.WriteLine(row);
-        //}
 
         string Convert(string sourceText, Encoding s, Encoding t)
         {
