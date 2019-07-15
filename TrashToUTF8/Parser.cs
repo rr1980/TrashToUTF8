@@ -47,7 +47,7 @@ namespace TrashToUTF8
             var dir = Path.GetDirectoryName(targetPath);
             Directory.CreateDirectory(dir);
 
-            logger = new Logger(@"D:\Projects\TrashToUTF8\TrashToUTF8\SB\Results\Log.txt");
+            logger = new Logger(@"D:\Projekte\TrashToUTF8\TrashToUTF8\SB\Results\Log.txt");
 
             SourceEncoding = sourceEncoding;
             TargetEncoding = targetEncoding;
@@ -71,12 +71,6 @@ namespace TrashToUTF8
 
         public void Start()
         { 
-            //var allRowArray = File.ReadAllLines(SourcePath);    //10221287
-            //var allRowArray = new List<string> { "(1099649,'Ã°Â¿Ã°Â¾Ã°Â·Ã°Â°Ã°Â²Ã°Â¸Ã°Â´Ã°Â¾Ã°Â²Ã°Â°Ã±Â‚Ã±ÂŒ',1,4,1,1,1,'2014-04-30 11:14:45',0)," }.ToArray();
-            //var allRowArray = new List<string> { "(1034097,'przyjï¿„ï¾™te',1,2,1,1,1,'2013-08-27 10:03:58',0)," }.ToArray();
-
-            //AllRowsCount = allRowArray.Count();
-
             Parse(SourcePath);
 
             logger.Stop();
@@ -89,9 +83,11 @@ namespace TrashToUTF8
             Regex regex = new Regex("'(.*?)'", RegexOptions.Multiline);
             var v = regex.Replace(all, replace);
 
+            var allWords = regex.Matches(all).Count;
+
             File.WriteAllText(TargetPath, v, TargetEncoding);
 
-            logger.LogPrint(Environment.NewLine + "Betroffene Zeilen: " + DirtyRowCounter);
+            logger.LogPrint(Environment.NewLine + "Betroffene Zeilen: " + DirtyRowCounter + " / " + allWords);
         }
 
 
