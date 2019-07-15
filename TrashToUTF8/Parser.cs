@@ -4,157 +4,137 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace TrashToUTF8
 {
-    public class Parser
+    public partial class Parser
     {
-        int DirtyRowCounter = 0;
+        int DirtyWordsCounter = 0;
+        int DirtyFailWordsCounter = 0;
+        int AllWordsCounter = 0;
 
-        Encoding SourceEncoding;
-        Encoding TargetEncoding;
-        string SourcePath;
-        string TargetPath;
-
-        //StreamWriter targetWriter;
-
-        Logger logger;
-
-        List<string> searchChars = new List<string> {
-            "Å",
-            "Ã",
-            "©",
-            "º",
-            "Ã",
-            "‡",
-            "™",
-            "…",
-            "Å",
-            "¾",
-            "†",
-            "»",
-            "°",
-            "Ñ",
-        };
-
-        List<string> blackChars = new List<string> {
-            "ￅ",
-            "�",
-            "¬",
-            //"¾",
-        };
-
-        public Parser(Encoding sourceEncoding, Encoding targetEncoding, string sourcePath, string targetPath)
+        public Parser()
         {
-
-            var dir = Path.GetDirectoryName(targetPath);
-            Directory.CreateDirectory(dir);
-
-            logger = new Logger(@"D:\Projekte\TrashToUTF8\TrashToUTF8\SB\Results\Log.txt");
-
-            SourceEncoding = sourceEncoding;
-            TargetEncoding = targetEncoding;
-
-            SourcePath = sourcePath;
-            TargetPath = targetPath;
-
-            if (!File.Exists(SourcePath))
-            {
-                throw new FileNotFoundException("Datei nicht gefunden!", SourcePath);
-            }
-
-            if (File.Exists(TargetPath))
-            {
-                File.Delete(TargetPath);
-                logger.Print("Delete: " + TargetPath);
-            }
+            ClearOldFiles();
         }
 
         public void Start()
-        { 
-            Parse(SourcePath);
-
-            logger.Stop();
-        }
-        void Parse(string SourcePath)
         {
-            var all = File.ReadAllText(SourcePath, Encoding.UTF8);
-            //var all = "ÃÂºÃÂ¾ÃÂ½Ã‘Å’ÃÂºÃÂ¾ÃÂ±ÃÂµÃÂ¶ÃÂ¸Ã‘â€ ÃÂ°";
-
-            //Regex regex = new Regex("'(.*?)'", RegexOptions.Multiline);
-            Regex regex = new Regex("'([^0-9]+)'", RegexOptions.Multiline);
-            var v = regex.Replace(all, replace);
-
-            var allWords = regex.Matches(all).Count;
-
-            File.WriteAllText(TargetPath, v, TargetEncoding);
-
-            logger.LogPrint(Environment.NewLine + "Betroffene Wörter: " + DirtyRowCounter + " / " + allWords);
+            Parse();
+            Logger.Stop();
         }
 
-
-        private string replace(Match match)
+        private void ClearOldFiles()
         {
-            var w = match.Groups[1];
-            CheckResult current = CheckSearchChars(w.Value);
-            if (current.Found)
+            if (!File.Exists(Config.SourcePath))
             {
-                DirtyRowCounter++;
-                return Clear(w.Value, current.FoundChar);
+                throw new FileNotFoundException("Datei nicht gefunden!", Config.SourcePath);
             }
 
-            return "'" + w.Value + "'";
+            if (File.Exists(Config.TargetPath))
+            {
+                File.Delete(Config.TargetPath);
+                Logger.Print("Lösche alte Resultate: " + Config.TargetPath, ConsoleColor.Yellow);
+            }
+
+            var dir = Path.GetDirectoryName(Config.TargetPath);
+            Directory.CreateDirectory(dir);
         }
 
-        string Clear(string w, string foundChar)
+
+        private void Parse()
         {
-            var oldW = w;
+            string allTextFromSource = ReadSource();
 
-            while (CheckSearchChars(w).Found)
+            Logger.Print("Parsen gestartet...", ConsoleColor.Yellow);
+
+            AllWordsCounter = Config.Regex.Matches(allTextFromSource).Count;
+
+            var allTextForTarget = Config.Regex.Replace(allTextFromSource, ReplaceDelegate);
+
+            Task.Run(() => Logger.PrintCounter(DirtyWordsCounter, AllWordsCounter, true)).Wait();
+
+            Logger.Print("Parsen beendet...", ConsoleColor.Yellow);
+
+            WriteTarget(allTextForTarget);
+
+            Logger.Print("Fertig!", ConsoleColor.Green);
+            Logger.LogPrint("Betroffene Wörter: " + DirtyWordsCounter + " / " + AllWordsCounter, ConsoleColor.Green);
+            Logger.LogPrint("Ungelöste Wörter: " + DirtyFailWordsCounter, ConsoleColor.Red);
+        }
+
+        private static void WriteTarget(string allTextForTarget)
+        {
+            Logger.Print("Schreibe Resultat... " + Config.TargetPath, ConsoleColor.Blue);
+            File.WriteAllText(Config.TargetPath, allTextForTarget, Config.TargetEncoding);
+        }
+
+        private static string ReadSource()
+        {
+            Logger.Print("Lese Quelle... " + Config.SourcePath, ConsoleColor.Blue);
+            return File.ReadAllText(Config.SourcePath, Encoding.UTF8);
+        }
+
+        private string ReplaceDelegate(Match match)
+        {
+            var matchWord = match.Groups[1];
+
+            CheckResult current = CheckSearchChars(matchWord.Value);
+
+            if (current.Found)
             {
-                var newW = Convert(w, SourceEncoding, TargetEncoding);
+                DirtyWordsCounter++;
 
-                if (CheckBlckChars(newW))
+                Task.Run(() => Logger.PrintCounter(DirtyWordsCounter, AllWordsCounter));
+
+                return Clear(matchWord.Value, current.FoundChar);
+            }
+
+            return "'" + matchWord.Value + "'";
+        }
+
+        private string Clear(string dirtyWord, string foundChar)
+        {
+            var oldWord = dirtyWord;
+
+            while (CheckSearchChars(dirtyWord).Found)
+            {
+                var newWord = Convert(dirtyWord);
+
+                if (CheckBlackChars(newWord))
                 {
-                    return "'" + oldW + "'";
+                    DirtyFailWordsCounter++;
+                    Logger.LogFail(foundChar + "\t" + oldWord + Environment.NewLine + "=\t" + newWord + Environment.NewLine);
+                    return "'" + oldWord + "'";
                 }
                 else
                 {
-                    w = newW;
+                    dirtyWord = newWord;
                 }
             }
 
+            Logger.Log(foundChar + "\t" + oldWord + Environment.NewLine + "=\t" + dirtyWord + Environment.NewLine);
 
-            logger.Log(foundChar + "\t" + oldW + Environment.NewLine + "=\t" + w + Environment.NewLine);
-
-            return "'" + w + "'";
+            return "'" + dirtyWord + "'";
         }
 
-        string Convert(string sourceText, Encoding s, Encoding t)
+        private string Convert(string sourceText)
         {
-            byte[] asciiBytes = s.GetBytes(sourceText);
-            char[] asciiChars = t.GetChars(asciiBytes);
+            byte[] asciiBytes = Config.SourceEncoding.GetBytes(sourceText);
+            char[] asciiChars = Config.TargetEncoding.GetChars(asciiBytes);
 
-            var result = new string(asciiChars);
-
-            //Console.WriteLine(sourceText + " -> " + result);
-
-            return result;
+            return new string(asciiChars);
         }
 
-        class CheckResult
+        private CheckResult CheckSearchChars(string row)
         {
-            public bool Found { get; set; }
-            public string FoundChar { get; set; }
-        }
-
-        CheckResult CheckSearchChars(string row)
-        {
-            foreach (var item in searchChars)
+            foreach (var item in Config.SearchChars)
             {
                 if (row.Contains(item))
                 {
-                    return new CheckResult {
+                    return new CheckResult
+                    {
                         Found = true,
                         FoundChar = item
                     };
@@ -167,9 +147,9 @@ namespace TrashToUTF8
             };
         }
 
-        private bool CheckBlckChars(string row)
+        private bool CheckBlackChars(string row)
         {
-            foreach (var item in blackChars)
+            foreach (var item in Config.BlackChars)
             {
                 if (row.Contains(item))
                 {
@@ -181,79 +161,3 @@ namespace TrashToUTF8
         }
     }
 }
-
-
-
-//void Parse(string[] allRowArray)
-//{
-//    var rowCounter = 0;
-//    var dirtyRowCounter = 0;
-//    for (int i = 0; i < allRowArray.Length; i++)
-//    {
-//        rowCounter++;
-
-//        var row = allRowArray[i];
-
-//        var exit = false;
-
-//        List<string> results = new List<string>();
-//        results.Add(allRowArray[i]);
-
-//        while (CheckSearchChars(row) && !exit)
-//        {
-//            var newRow = Convert(row, SourceEncoding, TargetEncoding);
-
-//            if (CheckBlckChars(newRow))
-//            {
-//                exit = true;
-//                results = new List<string> { allRowArray[i] };
-//            }
-//            else
-//            {
-//                row = newRow;
-//                results.Add(newRow);
-//            }
-//        }
-
-//        if(results.Count() > 1)
-//        {
-//            var counter = 0;
-//            dirtyRowCounter++;
-
-//            for (int u = 0; u < results.Count; u++)
-//            {
-//                if (u == results.Count-1)
-//                {
-//                    logger.Log("==\t" + results[u]);
-//                    logger.Log("-------------");
-//                }
-//                else
-//                {
-//                    logger.Log(counter + "\t" + results[u]);
-//                }
-
-//                counter++;
-
-//            }
-//        }
-//        else
-//        {
-//            var tmp = 0;
-//        }
-
-
-//        Write(results.Last());
-
-
-//        if (rowCounter >= 100000)
-//        {
-//            rowCounter = 0;
-//            logger.Print("rdy: " + i.ToString() + " / " + AllRowsCount);
-//        }
-//    }
-
-//    logger.LogPrint(Environment.NewLine + "Betroffene Zeilen: " + dirtyRowCounter + " / " + AllRowsCount);
-
-//    targetWriter.Close();
-//    logger.Stop();
-//}
