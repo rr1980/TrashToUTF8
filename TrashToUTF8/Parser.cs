@@ -78,7 +78,7 @@ namespace TrashToUTF8
             WriteTarget(allTextForTarget);
 
             Logger.Print("Fertig!", ConsoleColor.Green);
-            Logger.LogPrint("Betroffene Wörter: " + DirtyWordsCounter.ToString("N0") + " / " + AllWordsCounter.ToString("N0"), ConsoleColor.Green);
+            Logger.LogPrint("Gelöste Wörter: " + DirtyWordsCounter.ToString("N0") + " / " + AllWordsCounter.ToString("N0"), ConsoleColor.Green);
             Logger.LogPrint("Ungelöste Wörter: " + DirtyFailWordsCounter.ToString("N0"), ConsoleColor.Red);
         }
 
