@@ -16,13 +16,26 @@ namespace TrashToUTF8
 
         public Parser()
         {
-            ClearOldFiles();
+
         }
 
         public void Start()
         {
+            if (Config.CanWrite)
+            {
+                ClearOldFiles();
+            }
+
             Parse();
             Logger.Stop();
+        }
+
+        public string Convert(string sourceText)
+        {
+            byte[] asciiBytes = Config.SourceEncoding.GetBytes(sourceText);
+            char[] asciiChars = Config.TargetEncoding.GetChars(asciiBytes);
+
+            return new string(asciiChars);
         }
 
         private void ClearOldFiles()
@@ -47,6 +60,8 @@ namespace TrashToUTF8
         {
             string allTextFromSource = ReadSource();
 
+            allTextFromSource = CustomReplace(allTextFromSource);
+
             Logger.Print("Parsen gestartet...", ConsoleColor.Yellow);
 
             AllWordsCounter = Config.Regex.Matches(allTextFromSource).Count;
@@ -64,10 +79,23 @@ namespace TrashToUTF8
             Logger.LogPrint("Ungelöste Wörter: " + DirtyFailWordsCounter, ConsoleColor.Red);
         }
 
+        private string CustomReplace(string allTextFromSource)
+        {
+            foreach (var item in Config.CustomReplace)
+            {
+                allTextFromSource = allTextFromSource.Replace(item.Key, item.Value);
+            }
+
+            return allTextFromSource;
+        }
+
         private static void WriteTarget(string allTextForTarget)
         {
-            Logger.Print("Schreibe Resultat... " + Config.TargetPath, ConsoleColor.Blue);
-            File.WriteAllText(Config.TargetPath, allTextForTarget, Config.TargetEncoding);
+            if (Config.CanWrite)
+            {
+                Logger.Print("Schreibe Resultat... " + Config.TargetPath, ConsoleColor.Blue);
+                File.WriteAllText(Config.TargetPath, allTextForTarget, Config.TargetEncoding);
+            }
         }
 
         private static string ReadSource()
@@ -117,14 +145,6 @@ namespace TrashToUTF8
             Logger.Log(foundChar + "\t" + oldWord + Environment.NewLine + "=\t" + dirtyWord + Environment.NewLine);
 
             return "'" + dirtyWord + "'";
-        }
-
-        private string Convert(string sourceText)
-        {
-            byte[] asciiBytes = Config.SourceEncoding.GetBytes(sourceText);
-            char[] asciiChars = Config.TargetEncoding.GetChars(asciiBytes);
-
-            return new string(asciiChars);
         }
 
         private CheckResult CheckSearchChars(string row)

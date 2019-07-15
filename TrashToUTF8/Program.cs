@@ -17,8 +17,9 @@ namespace TrashToUTF8
 
                 p.Start();
 
+                //var tmp1 = p.Convert("Ð²Ñ‹Ñ€Ð°ÑÑ‚Ð°ÑŽÑ‰Ðµï¿½");
+                //var tmp2 = p.Convert(tmp1);
 
-                //Console.ReadLine();
             }
             catch (Exception e)
             {

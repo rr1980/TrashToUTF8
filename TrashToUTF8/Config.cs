@@ -6,6 +6,9 @@ namespace TrashToUTF8
 {
     public static class Config
     {
+        public static bool CanWrite { get; set; } = true;
+
+
         public static string SourcePath { get; set; } = @"D:\Projekte\TrashToUTF8\TrashToUTF8\SB\Dirty.sql";
         public static string TargetPath { get; set; } = @"D:\Projekte\TrashToUTF8\TrashToUTF8\SB\Results\Clean.sql";
         public static string LogPath { get; set; } = @"D:\Projekte\TrashToUTF8\TrashToUTF8\SB\Results\Log.txt";
@@ -38,6 +41,10 @@ namespace TrashToUTF8
             "�",
             "¬",
             //"¾",
+        };
+
+        public static Dictionary<string, string> CustomReplace = new Dictionary<string, string> {
+            { "â€¦", "..." },
         };
     }
 }

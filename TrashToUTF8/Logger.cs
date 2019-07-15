@@ -19,19 +19,21 @@ namespace TrashToUTF8
 
         static Logger()
         {
-            if (File.Exists(Config.LogPath))
+            if (Config.CanWrite)
             {
-                File.Delete(Config.LogPath);
+                if (File.Exists(Config.LogPath))
+                {
+                    File.Delete(Config.LogPath);
+                }
+
+                if (File.Exists(Config.LogFailPath))
+                {
+                    File.Delete(Config.LogFailPath);
+                }
+
+                logWriter = File.AppendText(Config.LogPath);
+                logFailWriter = File.AppendText(Config.LogFailPath);
             }
-
-            if (File.Exists(Config.LogFailPath))
-            {
-                File.Delete(Config.LogFailPath);
-            }
-
-            logWriter = File.AppendText(Config.LogPath);
-            logFailWriter = File.AppendText(Config.LogFailPath);
-
             Console.WriteLine(Environment.NewLine);
         }
 
@@ -90,18 +92,27 @@ namespace TrashToUTF8
 
         public static void Log(string msg)
         {
-            logWriter.WriteLine(msg);
+            if (Config.CanWrite)
+            {
+                logWriter.WriteLine(msg);
+            }
         }
 
         public static void LogFail(string msg)
         {
-            logFailWriter.WriteLine(msg);
+            if (Config.CanWrite)
+            {
+                logFailWriter.WriteLine(msg);
+            }
         }
 
         internal static void Stop()
         {
-            logWriter.Close();
-            logFailWriter.Close();
+            if (Config.CanWrite)
+            {
+                logWriter.Close();
+                logFailWriter.Close();
+            }
         }
     }
 }
