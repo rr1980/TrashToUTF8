@@ -20,6 +20,7 @@ namespace TrashToUTF8
         public static Regex Regex { get; set; } = new Regex("'([^0-9]+)'", RegexOptions.Multiline);
 
         public static List<string> SearchChars = new List<string> {
+            "Ð",
             "Å",
             "Ã",
             "©",

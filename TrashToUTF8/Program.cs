@@ -18,6 +18,7 @@ namespace TrashToUTF8
                 //Test_Find();
                 //Test_Convert();
 
+                Console.ReadKey();
             }
             catch (Exception e)
             {
