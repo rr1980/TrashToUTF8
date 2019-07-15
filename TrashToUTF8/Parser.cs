@@ -22,6 +22,8 @@ namespace TrashToUTF8
 
         List<string> searchChars = new List<string> {
             "Å",
+            "Ã",
+            "©",
             "º",
             "Ã",
             "‡",
@@ -32,6 +34,7 @@ namespace TrashToUTF8
             "†",
             "»",
             "°",
+            "Ñ",
         };
 
         List<string> blackChars = new List<string> {
@@ -80,7 +83,8 @@ namespace TrashToUTF8
             var all = File.ReadAllText(SourcePath, Encoding.UTF8);
             //var all = "ÃÂºÃÂ¾ÃÂ½Ã‘Å’ÃÂºÃÂ¾ÃÂ±ÃÂµÃÂ¶ÃÂ¸Ã‘â€ ÃÂ°";
 
-            Regex regex = new Regex("'(.*?)'", RegexOptions.Multiline);
+            //Regex regex = new Regex("'(.*?)'", RegexOptions.Multiline);
+            Regex regex = new Regex("'([^0-9]+)'", RegexOptions.Multiline);
             var v = regex.Replace(all, replace);
 
             var allWords = regex.Matches(all).Count;

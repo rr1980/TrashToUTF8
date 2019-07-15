@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Text;
 
 namespace TrashToUTF8
@@ -13,7 +12,7 @@ namespace TrashToUTF8
         //static string Target = @"D:\Projekte\TrashToUTF8\TrashToUTF8\Test_Clear.txt";
 
 
-        static string Source = @"D:\Projekte\TrashToUTF8\TrashToUTF8\SB\Rene_BaseWords_Words.sql";
+        static string Source = @"D:\Projekte\TrashToUTF8\TrashToUTF8\SB\Dirty.sql";
         //static string Source = @"D:\Projects\TrashToUTF8\TrashToUTF8\SB\Test1.txt";
 
         static string Target = @"D:\Projekte\TrashToUTF8\TrashToUTF8\SB\Results\ReneDump_clear.sql";
