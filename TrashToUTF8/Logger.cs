@@ -80,7 +80,7 @@ namespace TrashToUTF8
 
                     Console.SetCursorPosition(Pos_X, Pos_Y);
 
-                    Console.WriteLine(current + " von möglichen: " + from);
+                    Console.WriteLine(current.ToString("N0") + " von möglichen: " + from.ToString("N0"));
 
                     if (last)
                     {

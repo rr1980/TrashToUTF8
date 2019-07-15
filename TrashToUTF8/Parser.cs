@@ -11,6 +11,9 @@ namespace TrashToUTF8
     public class Parser
     {
         int DirtyWordsCounter = 0;
+        int LastDirtyWordsCounterDelay = 10000;
+        int LastDirtyWordsCounter = 0;
+
         int DirtyFailWordsCounter = 0;
         int AllWordsCounter = 0;
 
@@ -75,8 +78,8 @@ namespace TrashToUTF8
             WriteTarget(allTextForTarget);
 
             Logger.Print("Fertig!", ConsoleColor.Green);
-            Logger.LogPrint("Betroffene Wörter: " + DirtyWordsCounter + " / " + AllWordsCounter, ConsoleColor.Green);
-            Logger.LogPrint("Ungelöste Wörter: " + DirtyFailWordsCounter, ConsoleColor.Red);
+            Logger.LogPrint("Betroffene Wörter: " + DirtyWordsCounter.ToString("N0") + " / " + AllWordsCounter.ToString("N0"), ConsoleColor.Green);
+            Logger.LogPrint("Ungelöste Wörter: " + DirtyFailWordsCounter.ToString("N0"), ConsoleColor.Red);
         }
 
         private string CustomReplace(string allTextFromSource)
@@ -114,7 +117,11 @@ namespace TrashToUTF8
             {
                 DirtyWordsCounter++;
 
-                Task.Run(() => Logger.PrintCounter(DirtyWordsCounter, AllWordsCounter));
+                if (DirtyWordsCounter >= LastDirtyWordsCounter + LastDirtyWordsCounterDelay)
+                {
+                    LastDirtyWordsCounter = DirtyWordsCounter;
+                    Task.Run(() => Logger.PrintCounter(DirtyWordsCounter, AllWordsCounter));
+                }
 
                 return Clear(matchWord.Value, current.FoundChar);
             }
