@@ -89,7 +89,7 @@ namespace TrashToUTF8
 
             File.WriteAllText(TargetPath, v, TargetEncoding);
 
-            logger.LogPrint(Environment.NewLine + "Betroffene Zeilen: " + DirtyRowCounter + " / " + allWords);
+            logger.LogPrint(Environment.NewLine + "Betroffene Wörter: " + DirtyRowCounter + " / " + allWords);
         }
 
 
