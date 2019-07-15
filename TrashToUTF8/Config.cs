@@ -41,7 +41,6 @@ namespace TrashToUTF8
             "ￅ",
             "�",
             "¬",
-            //"¾",
         };
 
         public static Dictionary<string, string> CustomReplace = new Dictionary<string, string> {
