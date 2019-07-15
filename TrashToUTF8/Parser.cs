@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TrashToUTF8
 {
-    public partial class Parser
+    public class Parser
     {
         int DirtyWordsCounter = 0;
         int DirtyFailWordsCounter = 0;
