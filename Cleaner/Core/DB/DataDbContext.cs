@@ -12,6 +12,7 @@ namespace Cleaner.Core.DB
         private readonly AppSettings _appSettings;
 
         public virtual DbSet<BaseWords> BaseWords { get; set; }
+        public virtual DbSet<Words> Words { get; set; }
 
         public DataDbContext(DbContextOptions<DataDbContext> options, IOptions<AppSettings> appSettings) : base(options)
         {
@@ -31,8 +32,12 @@ namespace Cleaner.Core.DB
             {
                 entity.ToTable("basewords");
                 entity.HasKey(x => x.Id);
+            });
 
-
+            modelBuilder.Entity<Words>(entity =>
+            {
+                entity.ToTable("words");
+                entity.HasKey(x => x.Id);
             });
         }
     }

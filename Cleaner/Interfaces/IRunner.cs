@@ -1,4 +1,6 @@
-﻿namespace Cleaner.Interfaces
+﻿using System.Threading.Tasks;
+
+namespace Cleaner.Interfaces
 {
     public interface IRunnerBase
     {
@@ -12,6 +14,7 @@
 
     public interface IAppTesterService : IRunnerBase
     {
-        void Test();
+        Task Test();
+        //void Test();
     }
 }
