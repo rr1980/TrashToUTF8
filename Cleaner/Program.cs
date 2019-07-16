@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Cleaner.Core;
 using Cleaner.Core.DB;
 using Cleaner.Interfaces;
+using Cleaner.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -55,10 +56,11 @@ namespace Cleaner
 
                     options.EnableDetailedErrors();
                     options.EnableSensitiveDataLogging();
-                    options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+                    options.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
                 });
 
-                serviceCollection.AddSingleton<IAppTesterService, AppTester1>();
+                serviceCollection.AddSingleton<IDbReplacerService, DbReplacerService>();
+                serviceCollection.AddSingleton<IDbInfoService, DbInfoService>();
 
             });
 

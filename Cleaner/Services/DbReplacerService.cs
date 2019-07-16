@@ -1,7 +1,6 @@
 ﻿using System.Text;
 using System.Text.RegularExpressions;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Cleaner.Core;
 using Cleaner.Core.DB;
@@ -9,11 +8,10 @@ using Cleaner.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using System;
 
-namespace Cleaner
+namespace Cleaner.Services
 {
-    public class AppTester1 : IAppTesterService
+    public class DbReplacerService : IDbReplacerService
     {
         public static string[] SearchStrings = new string[] {
             "+K433"
@@ -37,23 +35,23 @@ namespace Cleaner
             'Ñ',
         };
 
-        private readonly ILogger<AppTester1> _logger;
+        private readonly ILogger<DbReplacerService> _logger;
         private readonly AppSettings _appSettings;
         private readonly DataDbContext _dataDbContext;
 
-        public AppTester1(ILogger<AppTester1> logger, IOptions<AppSettings> appSettings, DataDbContext dataDbContext)
+        public DbReplacerService(ILogger<DbReplacerService> logger, IOptions<AppSettings> appSettings, DataDbContext dataDbContext)
         {
             _logger = logger;
             _appSettings = appSettings.Value;
             _dataDbContext = dataDbContext;
 
-            _logger.LogDebug("AppTester1 init...");
+            _logger.LogDebug("DbReplacerService init...");
         }
 
 
         public void Stop()
         {
-            _logger.LogDebug("AppTester1 stop...");
+            _logger.LogDebug("DbReplacerService stop...");
         }
 
         public async Task Replace_K433()

@@ -13,14 +13,19 @@ namespace Cleaner
         private readonly ILogger<AppRunner> _logger;
         private readonly AppSettings _appSettings;
         private readonly IServiceProvider _serviceProvider;
-        private readonly IAppTesterService _appTesterService;
+        private readonly IDbReplacerService _appTesterService;
+        private readonly IDbInfoService _dbInfoService;
 
-        public AppRunner(ILogger<AppRunner> logger, IOptions<AppSettings> appSettings, IServiceProvider serviceProvider, IAppTesterService appTesterService)
+        public AppRunner(ILogger<AppRunner> logger, IOptions<AppSettings> appSettings, IServiceProvider serviceProvider, 
+            IDbReplacerService appTesterService,
+            IDbInfoService dbInfoService
+            )
         {
             _logger = logger;
             _appSettings = appSettings.Value;
             _serviceProvider = serviceProvider;
             _appTesterService = appTesterService;
+            _dbInfoService = dbInfoService;
 
             _logger.LogDebug("AppRunner init...");
         }
@@ -32,7 +37,7 @@ namespace Cleaner
 
 
 
-            _appTesterService.Replace_K433();
+            _dbInfoService.Test();
 
             do
             {
@@ -45,7 +50,7 @@ namespace Cleaner
 
         public void Stop()
         {
-            foreach (var item in _serviceProvider.GetServices<IAppTesterService>())
+            foreach (var item in _serviceProvider.GetServices<IDbReplacerService>())
             {
                 item.Stop();
             }

@@ -12,9 +12,13 @@ namespace Cleaner.Interfaces
         void Execute();
     }
 
-    public interface IAppTesterService : IRunnerBase
+    public interface IDbReplacerService : IRunnerBase
     {
         Task Replace_K433();
-        //void Test();
+    }
+
+    public interface IDbInfoService : IRunnerBase
+    {
+        Task Test();
     }
 }
