@@ -56,21 +56,13 @@ namespace Cleaner
             _logger.LogDebug("AppTester1 stop...");
         }
 
-        public async Task Test()
+        public async Task Replace_K433()
         {
 
             _logger.LogInformation("AppTester1 Test...");
 
-            //var t1 = _dataDbContext.BaseWords.FirstOrDefault();
-            //  kÃ²lÃ¡yá»+K433
-            //var t2 = await _dataDbContext.Words.Where(w => w.Word.IndexOfAny(SearchChars) != -1).ToListAsync();
             var t2 = await _dataDbContext.Words.Where(w => w.Word.Contains(SearchStrings[0])).ToListAsync();
 
-            //var words = string.Join(Environment.NewLine, t2.Select(x => string.Format("{0,-60} = {1}", x.Word, Convert(x.Word))));
-
-            //_logger.LogInformation(words);
-
-            //Regex regex = new Regex(SearchStrings[0]);
             Regex regex = new Regex("(.+)(\\+K433)");
 
             foreach (var item in t2)
@@ -79,14 +71,13 @@ namespace Cleaner
 
                 var newWord = regex.Replace(converted, ReplaceDelegate);
 
-                //var newWord = converted.Replace(SearchStrings[0], "a");
-
-
                 _logger.LogInformation(string.Format("{0,-30} = {1,-30} = {2}", item.Word, converted, newWord));
+
                 item.Word = newWord;
+                _dataDbContext.Update(item);
             }
 
-            //var t2 = await _dataDbContext.BaseWords.Where(w => w.Word.Contains('Ã')).ToListAsync();
+            await _dataDbContext.SaveChangesAsync();
         }
 
         private string ReplaceDelegate(Match match)

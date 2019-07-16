@@ -32,7 +32,7 @@ namespace Cleaner
 
 
 
-            _appTesterService.Test();
+            _appTesterService.Replace_K433();
 
             do
             {

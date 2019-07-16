@@ -14,7 +14,7 @@ namespace Cleaner.Interfaces
 
     public interface IAppTesterService : IRunnerBase
     {
-        Task Test();
+        Task Replace_K433();
         //void Test();
     }
 }
