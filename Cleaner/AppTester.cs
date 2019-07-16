@@ -4,6 +4,7 @@ using System.Linq;
 using Cleaner.Core;
 using Cleaner.Core.DB;
 using Cleaner.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
@@ -48,13 +49,14 @@ namespace Cleaner
             _logger.LogDebug("AppTester1 stop...");
         }
 
-        public void Test()
+        public async void Test()
         {
             _logger.LogInformation("AppTester1 Test...");
 
             //var t1 = _dataDbContext.BaseWords.FirstOrDefault();
 
-            var t2 = _dataDbContext.BaseWords.Where(w => SearchChars.Contains(w.Word)).ToList();
+            //var t2 = _dataDbContext.BaseWords.Where(w => SearchChars.Contains(w.Word)).ToList();
+            var t2 = await _dataDbContext.BaseWords.Where(w => w.Word.Contains('Ã')).ToListAsync();
         }
     }
 }

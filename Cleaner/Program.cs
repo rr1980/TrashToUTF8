@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 using Cleaner.Core;
 using Cleaner.Core.DB;
@@ -9,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace Cleaner
 {
@@ -17,6 +19,8 @@ namespace Cleaner
     {
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.UTF8;
+
             Console.Title = "TrashToUTF8";
 
             var configurationBuilder = new ConfigurationBuilder();
@@ -45,10 +49,13 @@ namespace Cleaner
 
                 serviceCollection.AddDbContext<DataDbContext>(options =>
                 {
-                    options.UseMySQL(configuration.GetConnectionString("DefaultConnection"));
+                    options.UseMySql(configuration.GetConnectionString("DefaultConnection"), b=> {
+                        b.UnicodeCharSet(CharSet.Utf8mb4);
+                    });
+
                     options.EnableDetailedErrors();
                     options.EnableSensitiveDataLogging();
-                    options.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
+                    options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
                 });
 
                 serviceCollection.AddSingleton<IAppTesterService, AppTester1>();

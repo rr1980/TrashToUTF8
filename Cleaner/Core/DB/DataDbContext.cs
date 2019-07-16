@@ -22,7 +22,7 @@ namespace Cleaner.Core.DB
         {
 
             //var c = configuration.GetConnectionString("DefaultConnection");
-            optionsBuilder.UseMySQL(_appSettings.ConnectionStrings.DefaultConnection);
+            //optionsBuilder.UseMySql(_appSettings.ConnectionStrings.DefaultConnection);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
