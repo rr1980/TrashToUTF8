@@ -13,12 +13,14 @@ namespace Cleaner
         private readonly ILogger<AppRunner> _logger;
         private readonly AppSettings _appSettings;
         private readonly IServiceProvider _serviceProvider;
+        private readonly IAppTesterService _appTesterService;
 
-        public AppRunner(ILogger<AppRunner> logger, IOptions<AppSettings> appSettings, IServiceProvider serviceProvider)
+        public AppRunner(ILogger<AppRunner> logger, IOptions<AppSettings> appSettings, IServiceProvider serviceProvider, IAppTesterService appTesterService)
         {
             _logger = logger;
             _appSettings = appSettings.Value;
             _serviceProvider = serviceProvider;
+            _appTesterService = appTesterService;
 
             _logger.LogDebug("AppRunner init...");
         }
@@ -26,6 +28,11 @@ namespace Cleaner
         public void Execute()
         {
             _logger.LogDebug("AppRunner execute...");
+            _logger.LogInformation("Start...");
+
+
+
+            _appTesterService.Test();
 
             do
             {
@@ -38,7 +45,7 @@ namespace Cleaner
 
         public void Stop()
         {
-            foreach (var item in _serviceProvider.GetServices<IRunnerService>())
+            foreach (var item in _serviceProvider.GetServices<IAppTesterService>())
             {
                 item.Stop();
             }

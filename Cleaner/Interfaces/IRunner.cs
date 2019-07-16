@@ -1,13 +1,17 @@
 ﻿namespace Cleaner.Interfaces
 {
-    public interface IRunner
+    public interface IRunnerBase
     {
-        void Execute();
         void Stop();
     }
 
-    public interface IRunnerService : IRunner
+    public interface IRunner : IRunnerBase
     {
+        void Execute();
+    }
 
+    public interface IAppTesterService : IRunnerBase
+    {
+        void Test();
     }
 }

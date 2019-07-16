@@ -3,6 +3,7 @@
     public class AppSettings
     {
         public AppSettings_Logging Logging { get; set; }
+        public AppSettings_ConnectionStrings ConnectionStrings { get; set; }
     }
 
     public class AppSettings_Logging
@@ -21,5 +22,10 @@
     public class AppSettings_Logging_Console
     {
         public bool IncludeScopes { get; set; }
+    }
+
+    public class AppSettings_ConnectionStrings
+    {
+        public string DefaultConnection { get; set; }
     }
 }
