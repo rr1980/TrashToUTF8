@@ -35,7 +35,8 @@ namespace Cleaner.Services
             _logger.LogDebug("DbInfoService stop...");
         }
 
-        public async Task Test()
+
+        public async Task DbInfo()
         {
             var dbCon = _dataDbContext.Database.GetDbConnection();
 

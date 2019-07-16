@@ -14,11 +14,12 @@ namespace Cleaner.Interfaces
 
     public interface IDbReplacerService : IRunnerBase
     {
+        Task Test();
         Task Replace_K433();
     }
 
     public interface IDbInfoService : IRunnerBase
     {
-        Task Test();
+        Task DbInfo();
     }
 }

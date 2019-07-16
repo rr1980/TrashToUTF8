@@ -8,13 +8,16 @@ using Cleaner.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System;
+using System.Diagnostics;
 
 namespace Cleaner.Services
 {
     public class DbReplacerService : IDbReplacerService
     {
         public static string[] SearchStrings = new string[] {
-            "+K433"
+            "ini",
+            //"od",
         };
 
         public static char[] SearchChars = new char[] {
@@ -54,6 +57,38 @@ namespace Cleaner.Services
             _logger.LogDebug("DbReplacerService stop...");
         }
 
+        public async Task Test()
+        {
+            Regex regex = new Regex("(.+)(ini)(.+)");
+
+            var timer = new Stopwatch();
+            timer.Start();
+
+            var words = _dataDbContext.Words.AsNoTracking();
+            foreach (var item in SearchStrings)
+            {
+                words = words.Where(x => x.Word.Contains(item));
+            }
+
+            var t3 = await words.ToListAsync();
+
+            var count = t3.Count();
+
+            timer.Stop();
+            var ms = timer.ElapsedMilliseconds;
+
+            _logger.LogCritical("Time: {0} / Count: {1}", ms, count);
+
+            //foreach (var item in t3)
+            //{
+            //    Console.WriteLine(item.Word);
+            //}
+
+
+            await Task.CompletedTask;
+        }
+
+        #region Replace
         public async Task Replace_K433()
         {
 
@@ -90,5 +125,6 @@ namespace Cleaner.Services
 
             return new string(asciiChars);
         }
+        #endregion
     }
 }

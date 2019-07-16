@@ -13,18 +13,18 @@ namespace Cleaner
         private readonly ILogger<AppRunner> _logger;
         private readonly AppSettings _appSettings;
         private readonly IServiceProvider _serviceProvider;
-        private readonly IDbReplacerService _appTesterService;
+        private readonly IDbReplacerService _dbReplacerService;
         private readonly IDbInfoService _dbInfoService;
 
         public AppRunner(ILogger<AppRunner> logger, IOptions<AppSettings> appSettings, IServiceProvider serviceProvider, 
-            IDbReplacerService appTesterService,
+            IDbReplacerService dbReplacerService,
             IDbInfoService dbInfoService
             )
         {
             _logger = logger;
             _appSettings = appSettings.Value;
             _serviceProvider = serviceProvider;
-            _appTesterService = appTesterService;
+            _dbReplacerService = dbReplacerService;
             _dbInfoService = dbInfoService;
 
             _logger.LogDebug("AppRunner init...");
@@ -37,7 +37,7 @@ namespace Cleaner
 
 
 
-            _dbInfoService.Test();
+            _dbReplacerService.Test();
 
             do
             {

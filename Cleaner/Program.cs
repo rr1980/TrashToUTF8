@@ -38,7 +38,7 @@ namespace Cleaner
 
                 serviceCollection.AddLogging(loggingBuilder =>
                 {
-                    //loggingBuilder.ClearProviders();
+                    loggingBuilder.ClearProviders();
 
                     loggingBuilder.SetMinimumLevel(LogLevel.Trace);
 
@@ -56,7 +56,7 @@ namespace Cleaner
 
                     options.EnableDetailedErrors();
                     options.EnableSensitiveDataLogging();
-                    options.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
+                    options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
                 });
 
                 serviceCollection.AddSingleton<IDbReplacerService, DbReplacerService>();
