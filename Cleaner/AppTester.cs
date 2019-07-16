@@ -12,22 +12,22 @@ namespace Cleaner
 {
     public class AppTester1 : IAppTesterService
     {
-        public static List<string> SearchChars = new List<string> {
-            "Ð",
-            "Å",
-            "Ã",
-            "©",
-            "º",
-            "Ã",
-            "‡",
-            "™",
-            "…",
-            "Å",
-            "¾",
-            "†",
-            "»",
-            "°",
-            "Ñ",
+        public static char[] SearchChars = new char[] {
+            'Ð',
+            'Å',
+            'Ã',
+            '©',
+            'º',
+            'Ã',
+            '‡',
+            '™',
+            '…',
+            'Å',
+            '¾',
+            '†',
+            '»',
+            '°',
+            'Ñ',
         };
 
         private readonly ILogger<AppRunner> _logger;
@@ -55,8 +55,8 @@ namespace Cleaner
 
             //var t1 = _dataDbContext.BaseWords.FirstOrDefault();
 
-            //var t2 = _dataDbContext.BaseWords.Where(w => SearchChars.Contains(w.Word)).ToList();
-            var t2 = await _dataDbContext.BaseWords.Where(w => w.Word.Contains('Ã')).ToListAsync();
+            var t2 = _dataDbContext.BaseWords.Where(w => w.Word.IndexOfAny(SearchChars) != -1).ToList();
+            //var t2 = await _dataDbContext.BaseWords.Where(w => w.Word.Contains('Ã')).ToListAsync();
         }
     }
 }
