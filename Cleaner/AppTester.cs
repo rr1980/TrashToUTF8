@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Cleaner.Core;
 using Cleaner.Core.DB;
@@ -10,6 +11,24 @@ namespace Cleaner
 {
     public class AppTester1 : IAppTesterService
     {
+        public static List<string> SearchChars = new List<string> {
+            "Ð",
+            "Å",
+            "Ã",
+            "©",
+            "º",
+            "Ã",
+            "‡",
+            "™",
+            "…",
+            "Å",
+            "¾",
+            "†",
+            "»",
+            "°",
+            "Ñ",
+        };
+
         private readonly ILogger<AppRunner> _logger;
         private readonly AppSettings _appSettings;
         private readonly DataDbContext _dataDbContext;
@@ -32,7 +51,10 @@ namespace Cleaner
         public void Test()
         {
             _logger.LogInformation("AppTester1 Test...");
-            var t = _dataDbContext.BaseWords.FirstOrDefault();
+
+            //var t1 = _dataDbContext.BaseWords.FirstOrDefault();
+
+            var t2 = _dataDbContext.BaseWords.Where(w => SearchChars.Contains(w.Word)).ToList();
         }
     }
 }
