@@ -50,13 +50,14 @@ namespace Cleaner
 
                 serviceCollection.AddDbContext<DataDbContext>(options =>
                 {
+                    options.UseLazyLoadingProxies();
                     options.UseMySql(configuration.GetConnectionString("DefaultConnection"), b=> {
                         b.UnicodeCharSet(CharSet.Utf8mb4);
                     });
 
                     options.EnableDetailedErrors();
                     options.EnableSensitiveDataLogging();
-                    options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+                    options.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
                 });
 
                 serviceCollection.AddSingleton<IDbReplacerService, DbReplacerService>();

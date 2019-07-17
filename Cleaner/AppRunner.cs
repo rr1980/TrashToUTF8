@@ -37,7 +37,7 @@ namespace Cleaner
 
 
 
-            _dbReplacerService.Test();
+            _dbReplacerService.Test_Words();
 
             do
             {

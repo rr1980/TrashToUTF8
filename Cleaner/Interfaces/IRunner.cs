@@ -14,7 +14,8 @@ namespace Cleaner.Interfaces
 
     public interface IDbReplacerService : IRunnerBase
     {
-        Task Test();
+        Task Test_BaseWords();
+        Task Test_Words();
         Task Replace_K433();
     }
 

@@ -10,9 +10,23 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
 using System.Diagnostics;
+using System.Collections.Generic;
+using Cleaner.Core.DB.Entities;
 
 namespace Cleaner.Services
 {
+    class ClearResult
+    {
+        public bool Ok { get; set; }
+        public string Text { get; set; }
+    }
+
+    class CheckResult
+    {
+        public bool Found { get; set; }
+        public char FoundChar { get; set; }
+    }
+
     public class DbReplacerService : IDbReplacerService
     {
         public static string[] SearchStrings = new string[] {
@@ -21,12 +35,15 @@ namespace Cleaner.Services
         };
 
         public static char[] SearchChars = new char[] {
+            '«',
+            '‘',
+            '¹',
+            '“',
+            'Ã',
             'Ð',
             'Å',
-            'Ã',
             '©',
             'º',
-            'Ã',
             '‡',
             '™',
             '…',
@@ -35,7 +52,13 @@ namespace Cleaner.Services
             '†',
             '»',
             '°',
-            'Ñ',
+            //'Ñ',
+        };
+
+        public static char[] BlackChars = new char[] {
+            'ￅ',
+            '�',
+            '¬',
         };
 
         private readonly ILogger<DbReplacerService> _logger;
@@ -57,35 +80,153 @@ namespace Cleaner.Services
             _logger.LogDebug("DbReplacerService stop...");
         }
 
-        public async Task Test()
+        public async Task Test_Words()
         {
             Regex regex = new Regex("(.+)(ini)(.+)");
 
-            var timer = new Stopwatch();
-            timer.Start();
 
-            var words = _dataDbContext.Words.AsNoTracking();
-            foreach (var item in SearchStrings)
+            var entities = await _dataDbContext.Words
+                //.Where(x=>x.Language.Id == 9)
+                .ToListAsync(); ;
+
+
+
+            List<Words> results = new List<Words>();
+            foreach (var item in SearchChars)
             {
-                words = words.Where(x => x.Word.Contains(item));
+                results.AddRange(entities.Where(x => x.Word.Contains(item)));
             }
 
-            var t3 = await words.ToListAsync();
 
-            var count = t3.Count();
+            var count = results.Count();
 
-            timer.Stop();
-            var ms = timer.ElapsedMilliseconds;
 
-            _logger.LogCritical("Time: {0} / Count: {1}", ms, count);
+            try
+            {
+                foreach (var item in results)
+                {
+                    var result = Clear(item.Id, item.Word, item.BaseWordLinks.FirstOrDefault()?.BaseWord?.Language?.EnglishName);
+                    if (result.Ok)
+                    {
+                        item.Word = result.Text;
+                        //_dataDbContext.Update(item);
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
 
-            //foreach (var item in t3)
-            //{
-            //    Console.WriteLine(item.Word);
-            //}
+            }
+            //_dataDbContext.SaveChanges();
 
+            Console.WriteLine("FERTIG!");
 
             await Task.CompletedTask;
+        }
+
+        public async Task Test_BaseWords()
+        {
+            Regex regex = new Regex("(.+)(ini)(.+)");
+
+
+            var entities = await _dataDbContext.BaseWords
+                .Include(x=>x.Language)
+                //.Where(x=>x.Language.Id == 9)
+                .ToListAsync(); ;
+
+
+
+            List<BaseWords> results = new List<BaseWords>();
+            foreach (var item in SearchChars)
+            {
+                results.AddRange(entities.Where(x => x.Word.Contains(item)));
+            }
+
+
+            var count = results.Count();
+
+
+
+            foreach (var item in results)
+            {
+                var result = Clear(item.Id, item.Word, item.Language.EnglishName);
+                if (result.Ok)
+                {
+                    item.Word = result.Text;
+                    //_dataDbContext.Update(item);
+                }
+            }
+
+            //_dataDbContext.SaveChanges();
+
+            Console.WriteLine("FERTIG!");
+
+            await Task.CompletedTask;
+        }
+
+        private ClearResult Clear(long id, string dirtyWord, string language = null)
+        {
+            var oldWord = dirtyWord;
+
+            while (CheckSearchChars(dirtyWord).Found)
+            {
+                var newWord = Convert(dirtyWord);
+
+                if (CheckBlackChars(newWord))
+                {
+                    Console.WriteLine(string.Format("NO  {0,-10} {1,50} = {2,-30} {3,-20}",id, oldWord, newWord, language));
+                    return new ClearResult
+                    {
+                        Text = "'" + oldWord + "'",
+                        Ok = false
+                    };
+                }
+                else
+                {
+                    dirtyWord = newWord;
+                }
+            }
+
+            Console.WriteLine(string.Format("NO  {0,-10} {1,50} = {2, -30} {3,-20} FIXED", id, oldWord, dirtyWord, language));
+
+            return new ClearResult
+            {
+                Text = "'" + dirtyWord + "'",
+                Ok = true
+            };
+        }
+
+        private CheckResult CheckSearchChars(string row)
+        {
+            foreach (var item in SearchChars)
+            {
+                if (row.Contains(item))
+                {
+                    return new CheckResult
+                    {
+                        Found = true,
+                        FoundChar = item
+                    };
+                }
+            }
+
+            return new CheckResult
+            {
+                Found = false,
+            };
+        }
+
+        private bool CheckBlackChars(string row)
+        {
+            foreach (var item in BlackChars)
+            {
+                if (row.Contains(item))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         #region Replace

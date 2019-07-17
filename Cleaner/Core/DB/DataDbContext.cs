@@ -15,6 +15,9 @@ namespace Cleaner.Core.DB
         private readonly ILogger<DataDbContext> _logger;
         private readonly AppSettings _appSettings;
 
+        public virtual DbSet<Connections> Connections { get; set; }
+        public virtual DbSet<Languages> Languages { get; set; }
+        public virtual DbSet<Characters> Characters { get; set; }
         public virtual DbSet<BaseWords> BaseWords { get; set; }
         public virtual DbSet<Words> Words { get; set; }
 
@@ -28,8 +31,6 @@ namespace Cleaner.Core.DB
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //var c = configuration.GetConnectionString("DefaultConnection");
-            //optionsBuilder.UseMySql(_appSettings.ConnectionStrings.DefaultConnection);
         }
 
         private void OnStateChanged(object sender, EntityStateChangedEventArgs e)
@@ -42,10 +43,37 @@ namespace Cleaner.Core.DB
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Connections>(entity =>
+            {
+                entity.ToTable("connections");
+                entity.HasKey(x => x.Id);
+
+                entity.HasOne(x => x.BaseWord).WithMany(x => x.WordLinks).HasForeignKey(x => x.BaseWordId);
+                entity.HasOne(x => x.Word).WithMany(x => x.BaseWordLinks).HasForeignKey(x => x.WordId);
+
+            });
+
+            modelBuilder.Entity<Languages>(entity =>
+            {
+                entity.ToTable("languages");
+                entity.HasKey(x => x.Id);
+            });
+
+            modelBuilder.Entity<Characters>(entity =>
+            {
+                entity.ToTable("characters");
+                entity.HasKey(x => x.Id);
+
+                entity.HasOne(x => x.Language).WithMany(x => x.Characters).HasForeignKey(x => x.LangId);
+                
+            });
+
             modelBuilder.Entity<BaseWords>(entity =>
             {
                 entity.ToTable("basewords");
                 entity.HasKey(x => x.Id);
+
+                entity.HasOne(x => x.Language).WithMany(x => x.BaseWords).HasForeignKey(x => x.LangId);
             });
 
             modelBuilder.Entity<Words>(entity =>
