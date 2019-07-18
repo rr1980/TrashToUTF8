@@ -35,6 +35,7 @@ namespace Cleaner.Services
         };
 
         public static char[] SearchChars = new char[] {
+            'Â',
             '«',
             '‘',
             '¹',
@@ -80,6 +81,55 @@ namespace Cleaner.Services
             _logger.LogDebug("DbReplacerService stop...");
         }
 
+        public async Task Test()
+        {
+            Regex regex = new Regex("(.+)(ini)(.+)");
+
+
+            var entities = await _dataDbContext.Abbreviations
+                //.Where(x=>x.Language.Id == 9)
+                .ToListAsync();
+
+
+
+            List<Abbreviations> results = new List<Abbreviations>();
+            foreach (var item in SearchChars)
+            {
+                var r = entities.Where(x => !string.IsNullOrEmpty(x.Explanation.Trim()) && x.Explanation.Trim().Contains(item));
+                if(r != null && r.Any())
+                {
+                    results.AddRange(r);
+                }
+            }
+
+
+            var count = results.Count();
+
+
+            try
+            {
+                foreach (var item in results)
+                {
+                    var result = Clear(item.Id, item.Explanation.Trim());
+                    if (result.Ok)
+                    {
+                        item.Explanation = result.Text.Trim();
+                        _dataDbContext.Update(item);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            _dataDbContext.SaveChanges();
+
+            Console.WriteLine("FERTIG!");
+
+            await Task.CompletedTask;
+        }
+
         public async Task Test_Words()
         {
             Regex regex = new Regex("(.+)(ini)(.+)");
@@ -87,7 +137,7 @@ namespace Cleaner.Services
 
             var entities = await _dataDbContext.Words
                 //.Where(x=>x.Language.Id == 9)
-                .ToListAsync(); ;
+                .ToListAsync();
 
 
 
@@ -132,7 +182,7 @@ namespace Cleaner.Services
             var entities = await _dataDbContext.BaseWords
                 .Include(x=>x.Language)
                 //.Where(x=>x.Language.Id == 9)
-                .ToListAsync(); ;
+                .ToListAsync();
 
 
 
@@ -166,13 +216,13 @@ namespace Cleaner.Services
 
         private ClearResult Clear(long id, string dirtyWord, string language = null)
         {
-            var oldWord = dirtyWord;
+            var oldWord = dirtyWord.Trim();
 
-            while (CheckSearchChars(dirtyWord).Found)
+            while (CheckSearchChars(dirtyWord.Trim()).Found)
             {
-                var newWord = Convert(dirtyWord);
+                var newWord = Convert(dirtyWord.Trim()).Trim();
 
-                if (CheckBlackChars(newWord))
+                if (CheckBlackChars(newWord.Trim()))
                 {
                     Console.WriteLine(string.Format("NO  {0,-10} {1,50} = {2,-30} {3,-20}",id, oldWord, newWord, language));
                     return new ClearResult
@@ -187,7 +237,7 @@ namespace Cleaner.Services
                 }
             }
 
-            Console.WriteLine(string.Format("NO  {0,-10} {1,50} = {2, -30} {3,-20} FIXED", id, oldWord, dirtyWord, language));
+            Console.WriteLine(string.Format("YES {0,-10} {1,50} = {2, -30} {3,-20} FIXED", id, oldWord, dirtyWord, language));
 
             return new ClearResult
             {

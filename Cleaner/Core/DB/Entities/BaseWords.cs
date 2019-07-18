@@ -5,6 +5,45 @@ using System.Text;
 
 namespace Cleaner.Core.DB.Entities
 {
+    public class Abbreviations
+    {
+        public long Id { get; set; }
+
+        public string Abbreviation { get; set; }
+        public string Explanation { get; set; }
+    }
+
+    public class Basewordexamples
+    {
+        public long Id { get; set; }
+
+        public string Text { get; set; }
+    }
+
+    public class Feedback
+    {
+        public long Id { get; set; }
+
+        public string Text { get; set; }
+        public string Comment { get; set; }
+    }
+
+    public class Functions
+    {
+        public long Id { get; set; }
+
+        [Column("function")]
+        public string Function { get; set; }
+    }
+
+    public class Grammar
+    {
+        public long Id { get; set; }
+
+        public string Title { get; set; }
+        public string Text { get; set; }
+    }
+
     public class Connections
     {
         public long Id { get; set; }

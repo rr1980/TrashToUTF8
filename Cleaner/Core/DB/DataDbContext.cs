@@ -15,6 +15,11 @@ namespace Cleaner.Core.DB
         private readonly ILogger<DataDbContext> _logger;
         private readonly AppSettings _appSettings;
 
+        public virtual DbSet<Abbreviations> Abbreviations { get; set; }
+        public virtual DbSet<Basewordexamples> Basewordexamples { get; set; }
+        public virtual DbSet<Feedback> Feedbacks { get; set; }
+        public virtual DbSet<Functions> Functions { get; set; }
+        public virtual DbSet<Grammar> Grammars { get; set; }
         public virtual DbSet<Connections> Connections { get; set; }
         public virtual DbSet<Languages> Languages { get; set; }
         public virtual DbSet<Characters> Characters { get; set; }
@@ -43,6 +48,36 @@ namespace Cleaner.Core.DB
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Abbreviations>(entity =>
+            {
+                entity.ToTable("abbreviations");
+                entity.HasKey(x => x.Id);
+            });
+
+            modelBuilder.Entity<Basewordexamples>(entity =>
+            {
+                entity.ToTable("basewordexamples");
+                entity.HasKey(x => x.Id);
+            });
+
+            modelBuilder.Entity<Feedback>(entity =>
+            {
+                entity.ToTable("feedback");
+                entity.HasKey(x => x.Id);
+            });
+
+            modelBuilder.Entity<Functions>(entity =>
+            {
+                entity.ToTable("functions");
+                entity.HasKey(x => x.Id);
+            });
+
+            modelBuilder.Entity<Grammar>(entity =>
+            {
+                entity.ToTable("grammar");
+                entity.HasKey(x => x.Id);
+            });
+
             modelBuilder.Entity<Connections>(entity =>
             {
                 entity.ToTable("connections");
