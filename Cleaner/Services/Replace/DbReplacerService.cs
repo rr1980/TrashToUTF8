@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using Cleaner.Core.DB.Entities;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.IO;
 
 namespace Cleaner.Services.Replace
 {
@@ -38,7 +39,8 @@ namespace Cleaner.Services.Replace
             _logger.LogDebug("DbReplacerService stop...");
         }
 
-        public async Task FindHugos<T>(Expression<Func<T, long>> idSelector, Expression<Func<T, string>> valueSelector, Expression<Func<T, string>> langSelector, char[] searchChars, Expression<Func<T, bool>> searchParameter = null) where T : class
+        //public async Task FindHugos<T>(Expression<Func<T, long>> idSelector, Expression<Func<T, string>> valueSelector, Expression<Func<T, string>> langSelector, char[] searchChars, Expression<Func<T, object>>[] includes, Expression<Func<T, bool>> searchParameter = null, string name = null) where T : class
+        public async Task FindHugos<T>(Expression<Func<T, long>> idSelector, Expression<Func<T, string>> valueSelector, Expression<Func<T, string>> langSelector, char[] searchChars, string[] includes, Expression<Func<T, bool>> searchParameter = null, string name = null) where T : class
         {
             Func<T, long> idGetter;
             Func<T, string> valueGetter;
@@ -48,14 +50,31 @@ namespace Cleaner.Services.Replace
             CreateGetter(idSelector, out idGetter);
             CreateGetter(langSelector, out langGetter);
 
+            var _name = string.IsNullOrEmpty(name) ? typeof(T).Name : name;
+
+            _dataDbContext.Database.OpenConnection();
             List<T> entities = null;
             if (searchParameter != null)
             {
                 entities = await _dataDbContext.Set<T>().Where(searchParameter).ToListAsync();
+
+                //foreach (var item in includes)
+                //{
+                //    _entities.Include(item);
+                //}
+
+                //entities = await _entities.Where(searchParameter).ToListAsync();
             }
             else
             {
                 entities = await _dataDbContext.Set<T>().ToListAsync();
+
+                //foreach (var item in includes)
+                //{
+                //    _entities.Include(item);
+                //}
+
+                //entities = await _entities.ToListAsync();
             }
 
             if (entities == null)
@@ -63,25 +82,73 @@ namespace Cleaner.Services.Replace
                 return;
             }
 
-            Console.WriteLine("Suche in: "+ typeof(T).Name);
+            var path = Path.Combine(@"D:\Projekte\TrashToUTF8\Cleaner\Results", "Bad_" + _name + ".txt");
+
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+
+            Console.WriteLine("Suche in: " + _name);
 
             List<T> results = new List<T>();
-            foreach (var item in searchChars)
+
+
+            foreach (var entity in entities)
             {
-                var r = entities.Where(x => valueGetter(x) != null && !string.IsNullOrEmpty(valueGetter(x).Trim()) && valueGetter(x).Trim().Contains(item));
-                if (r != null && r.Any())
+                string value = null;
+                try
                 {
-                    results.AddRange(r);
+                    value = valueGetter(entity);
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+
+                foreach (var item in searchChars)
+                {
+                    if (value != null && !string.IsNullOrEmpty(value) && value.Contains(item))
+                    {
+                        results.Add(entity);
+                    }
                 }
             }
 
+            //foreach (var item in searchChars)
+            //{
+            //foreach (var entity in entities)
+            //{
+            //    var value = valueGetter(entity);
+            //    if(value != null && !string.IsNullOrEmpty(value) && value.Contains(item))
+            //    {
+            //        results.Add(entity);
+            //    }
+            //}
+
+            //var r = entities.Where(x => valueGetter(x) != null && !string.IsNullOrEmpty(valueGetter(x).Trim()) && valueGetter(x).Trim().Contains(item));
+            //if (r != null && r.Any())
+            //{
+            //    results.AddRange(r);
+            //}
+            //}
+
             var count = results.Count();
 
-            foreach (var item in results)
+            Console.WriteLine();
+
+            using (StreamWriter outputFile = new StreamWriter(path))
             {
-                Console.WriteLine(string.Format("{0,-10} {1,-10} {2,-50}", idGetter(item), langGetter(item), valueGetter(item)));
+                foreach (var item in results)
+                {
+                    outputFile.WriteLine(string.Format("{0,-10} {1,-10} {2,-50}", idGetter(item), langGetter(item), valueGetter(item)));
+                }
+
+                outputFile.WriteLine(Environment.NewLine + "Gefunden: " + count.ToString("N0"));
             }
 
+
+            _dataDbContext.Database.CloseConnection();
 
             Console.WriteLine("FERTIG!");
 
@@ -367,7 +434,7 @@ namespace Cleaner.Services.Replace
             var paramT = Expression.Parameter(typeof(T));
             var paramV = Expression.Parameter(typeof(V));
 
-            
+
             return true;
         }
         #endregion

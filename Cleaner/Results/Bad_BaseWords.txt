@@ -1,0 +1,331 @@
+163637     Russian    выраж�ть                                          
+166832     Russian    равн�ть                                           
+200490     Yoruba     fomid�                                            
+200491     Yoruba     gbàdúr�                                           
+200492     Yoruba     jẹníy�                                            
+200513     Yoruba     lẹw�                                              
+200671     German     was f�r �                                         
+200866     Yoruba     kàk�                                              
+200875     Yoruba     l�t텅.?�                                           
+200955     Yoruba     k�se�.b?n�                                        
+200959     Yoruba     l�ti�..?�                                         
+201016     Yoruba     Alàfia ni mow�                                    
+201093     Yoruba     Pẹlẹ báwó lose w�                                 
+201111     Yoruba     à-n-t�                                            
+201136     Yoruba     ọg�                                               
+201143     Yoruba     ọy�                                               
+201148     Yoruba     àdàb�                                             
+201161     Yoruba     ẹg�                                               
+201189     Yoruba     àkàb�                                             
+201279     Yoruba     oláy�                                             
+201298     Yoruba     ìgb�                                              
+201332     Yoruba     dàgb�                                             
+201345     Yoruba     jìnn�                                             
+201351     Yoruba     ni áy�                                            
+201384     Yoruba     àtùp�                                             
+201385     Yoruba     báb�                                              
+201386     Yoruba     bábà-àgb�                                         
+201394     Yoruba     ẹnu-ọ̀n�                                          
+201408     Yoruba     ìyá-àgb�                                          
+201426     Yoruba     yàr�                                              
+201429     Yoruba     Bawo ni o se le s? �.. ni Yor�b�                  
+201502     Yoruba     Oruk? mi ni �                                     
+201555     Yoruba     gbàl�                                             
+201576     Yoruba     k�                                                
+201599     Yoruba     n�                                                
+201602     Yoruba     pad�                                              
+201610     Yoruba     r�                                                
+201615     Yoruba     ràpad�                                            
+201621     Yoruba     rò or tẹ̀ [to stir yam flour- rò àmàl�            
+201641     Yoruba     t�                                                
+201658     Yoruba     wọ̀ bàt�                                          
+201753     Yoruba     ẹf�                                               
+201757     Yoruba     ẹw�                                               
+201790     Yoruba     ẹdẹgbẹf�                                          
+201837     Yoruba     lẹhìn ná�                                         
+201881     Yoruba     jíjìn�                                            
+201882     Yoruba     jìn�                                              
+201929     Yoruba     lẹsẹkanná�                                        
+201943     Yoruba     laíṣetàr�                                         
+201956     Yoruba     kàk�                                              
+201959     Yoruba     lọnàkọn�                                          
+201963     Yoruba     nígbàkúùgb�                                       
+201980     Yoruba     nísìsìyí-ná�                                      
+201999     Yoruba     nítílàn�                                          
+202050     Yoruba     tálák�                                            
+202070     Yoruba     wàràwàr�                                          
+202094     Yoruba     ṣìn�                                              
+202095     Yoruba     kúròlọn�                                          
+202102     Yoruba     nítoríná�                                         
+202129     Yoruba     tààr�                                             
+202136     Yoruba     jìnn�                                             
+202144     Yoruba     nígbàná�                                          
+202147     Yoruba     nípaèyí ná�                                       
+202192     Yoruba     nígbàkúgb�                                        
+202230     Yoruba     ìdèn�                                             
+202231     Yoruba     ìsén�                                             
+202252     Yoruba     wàhál�                                            
+202256     Yoruba     ãl�                                               
+202259     Yoruba     títúb�                                            
+202261     Yoruba     afẹṣẹj�                                           
+202280     Yoruba     ọlọf�                                             
+202302     Yoruba     tálák�                                            
+202305     Yoruba     ọlọṣ�                                             
+202307     Yoruba     jàgùd�                                            
+202325     Yoruba     alápat�                                           
+202327     Yoruba     olùr�                                             
+202328     Yoruba     ọlọj�                                             
+202331     Yoruba     àkàl�                                             
+202344     Yoruba     kík�                                              
+202352     Yoruba     àbẹl�                                             
+202353     Yoruba     fìtíl�                                            
+202355     Yoruba     fìl�                                              
+202376     Yoruba     gbẹnàgbẹn�                                        
+202395     Yoruba     gbígb�                                            
+202401     Yoruba     ìyípad�                                           
+202402     Yoruba     ìparad�                                           
+202412     Yoruba     ày�                                               
+202417     Yoruba     olúọg�                                            
+202425     Yoruba     táb�                                              
+202427     Yoruba     ìṣànyík�                                          
+202432     Yoruba     àgb�                                              
+202433     Yoruba     àgbàlagb�                                         
+202435     Yoruba     ẹy�                                               
+202436     Yoruba     ìwà-pañṣág�                                       
+202445     Yoruba     ìf�                                               
+202451     Yoruba     adágb�                                            
+202465     Yoruba     aláwàd�                                           
+202497     Yoruba     ọkàn-ìf�                                          
+202504     Yoruba     ìjìy�                                             
+202511     Yoruba     ilẹ Áfrík�                                        
+202535     Yoruba     èpa àkàr�                                         
+202570     Yoruba     iyànjíj�                                          
+202571     Yoruba     rír�                                              
+202581     Yoruba     wíwá-ìj�                                          
+202587     Yoruba     olùwáj�                                           
+202619     Yoruba     ìyàkúrò lọn�                                      
+202620     Yoruba     ìṣìn�                                             
+202630     Yoruba     íjàmba ènì�                                       
+202631     Yoruba     èsú ọdàr�                                         
+202633     Yoruba     ìgbájúmọ àdúr�                                    
+202680     Yoruba     ọn�                                               
+202693     Yoruba     ìh�                                               
+202694     Yoruba     ítọs|n�                                           
+202698     Yoruba     àwón ọn�                                          
+202700     Yoruba     ìwé ìlàn�                                         
+202711     Yoruba     ìjáb�                                             
+202715     Yoruba     ojú sánm�                                         
+202752     Yoruba     àwòrán ìfọwáy�                                    
+202812     Yoruba     àpèpad�                                           
+202813     Yoruba     àpapọ oòrùn àti òṣùpá ní àwọsánm�                 
+202867     Yoruba     alégb�                                            
+202897     Yoruba     ìkùn�                                             
+202903     Yoruba     ọj�                                               
+202932     Yoruba     àb�                                               
+202949     Yoruba     ìfòy�                                             
+202957     Yoruba     oníj�                                             
+202987     Yoruba     àìsàn íb�                                         
+203010     Yoruba     ọkánjúw�                                          
+203011     Yoruba     ìtara fún ohun àtàt�                              
+203028     Yoruba     olùṣọgb�                                          
+203029     Yoruba     aṣọgb�                                            
+203063     Yoruba     bàbá agb�                                         
+203064     Yoruba     ìyá àgb�                                          
+203090     Yoruba     ìw�                                               
+203103     Yoruba     ọgb�                                              
+203115     Yoruba     ìdín�                                             
+203209     Yoruba     àwàd�                                             
+203263     Yoruba     alálùpàyíd�                                       
+203268     Yoruba     òòf�                                              
+203274     Yoruba     lẹt�                                              
+203302     Yoruba     àbàt�                                             
+203398     Yoruba     ìjánkan gb�                                       
+203406     Yoruba     àràmàd�                                           
+203438     Yoruba     àìbìkít�                                          
+203439     Yoruba     ìfojúfòd�                                         
+203459     Yoruba     sál�                                              
+203477     Yoruba     ohun ìdín�                                        
+203479     Yoruba     àyèọn�                                            
+203483     Yoruba     ataniláy�                                         
+203485     Yoruba     àyè ọn�                                           
+203489     Yoruba     adèn�                                             
+203511     Yoruba     ìj�                                               
+203516     Yoruba     ìṣọn�                                             
+203527     Yoruba     atọf�                                             
+203528     Yoruba     tafàtaf�                                          
+203547     Yoruba     akọd�                                             
+203553     Yoruba     akunlọd�                                          
+203556     Yoruba     ìfàwọdár�                                         
+203565     Yoruba     ìpàày�                                            
+203573     Yoruba     ílẹ ẹw�                                           
+203577     Yoruba     ààrún ẹgb�                                        
+203580     Yoruba     onírãr�                                           
+203590     Yoruba     ìl�                                               
+203597     Yoruba     ìwé ìyọnd�                                        
+203604     Yoruba     iyàn-jíj�                                         
+203620     Yoruba     ípa-ọn�                                           
+203629     Yoruba     ọnà ọlọd�                                         
+203639     Yoruba     àlàáfí�                                           
+203684     Yoruba     ìpaléròd�                                         
+203730     Yoruba     ikòkò táb�                                        
+203812     Yoruba     asọn�                                             
+203813     Yoruba     olùdèn�                                           
+203822     Yoruba     àwòrán nlá ìpolówó ọj�                            
+203830     Yoruba     ìṣ�                                               
+203845     Yoruba     àdúr�                                             
+203919     Yoruba     ìlàn�                                             
+203957     Yoruba     òṣùwọn ọgbọgb�                                    
+203960     Yoruba     ìdáláb�                                           
+203961     Yoruba     àfojúsọn�                                         
+203964     Yoruba     àláfí�                                            
+203966     Yoruba     panṣág�                                           
+203970     Yoruba     olùgbèj�                                          
+203985     Yoruba     atẹwét�                                           
+203989     Yoruba     ìṣèlẹt�                                           
+203990     Yoruba     ìtẹlẹt�                                           
+203993     Yoruba     Éṣí�                                              
+203994     Yoruba     ílẹ Ésí�                                          
+203997     Yoruba     ìjẹníy�                                           
+204036     Yoruba     ìdíyelé ọj�                                       
+204046     Yoruba     amẹy�                                             
+204058     Yoruba     ìràpad�                                           
+204092     Yoruba     aṣọ ìgúnw�                                        
+204098     Yoruba     owó ọy�                                           
+204100     Yoruba     ọlọọj�                                            
+204106     Yoruba     bàt�                                              
+204107     Yoruba     sálúbàt�                                          
+204131     Yoruba     olùt�                                             
+204144     Yoruba     ágbèj�                                            
+204155     Yoruba     ìjáíy�                                            
+204171     Yoruba     ìwọn lãrin-il�                                    
+204192     Yoruba     lọy�                                              
+204200     Yoruba     ẹrọ átáọj�                                        
+204270     Yoruba     ìfarájìy�                                         
+204285     Yoruba     ilé ìsìn ọlọrun tàbí òrìṣ�                        
+204302     Yoruba     ígbapò kann�                                      
+204314     Yoruba     adínkàr�                                          
+204319     Yoruba     ilésàkàr�                                         
+204328     Yoruba     atàgb�                                            
+204348     Yoruba     wàlá�                                             
+204394     Yoruba     ojuju tí n r�                                     
+204397     Yoruba     alọnilọwọgb�                                      
+204417     Yoruba     ìgboy�                                            
+204426     Yoruba     ìwà ip�                                           
+204432     Yoruba     ìṣìpàya�                                          
+204486     Yoruba     ìdùná-dùr�                                        
+204497     Yoruba     ìwúkàr�                                           
+204530     Yoruba     ẹw�                                               
+204532     Yoruba     ìjúb�                                             
+204533     Yoruba     ìmọn�                                             
+204534     Yoruba     mímọn�                                            
+204536     Yoruba     ẹranko ènì�                                       
+204539     Yoruba     nìn�                                              
+204552     Yoruba     oní-bár�                                          
+204559     Yoruba     ìgbàj�                                            
+204571     Yoruba     olórí àlùfá�                                      
+204626     Yoruba     ṣegbígb�                                          
+204651     Yoruba     gb�                                               
+204674     Yoruba     nílàj�                                            
+204690     Yoruba     kùnfún túb�                                       
+204721     Yoruba     tí a lè rì gb�                                    
+204752     Yoruba     farad�                                            
+204753     Yoruba     dáralẹw�                                          
+204783     Yoruba     níyang�                                           
+204793     Yoruba     láy�                                              
+204824     Yoruba     lọyày�                                            
+204841     Yoruba     láwàd�                                            
+204844     Yoruba     bákanná�                                          
+204882     Yoruba     bíbàjẹrír�                                        
+204894     Yoruba     níkà�                                             
+204896     Yoruba     gẹgẹbí àṣ�                                        
+204936     Yoruba     ní tálák�                                         
+204942     Yoruba     fọwọ sọy�                                         
+205001     Yoruba     ẹlẹw�                                             
+205026     Yoruba     rékọjá àl�                                        
+205047     Yoruba     jìn�                                              
+205105     Yoruba     tiwúr�                                            
+205184     Yoruba     kòtọn�                                            
+205217     Yoruba     ìyá àgb�                                          
+205263     Yoruba     kòṣẽgb�                                           
+205299     Yoruba     ník�                                              
+205322     Yoruba     ṣíṣìlọn�                                          
+205323     Yoruba     ṣìlọn�                                            
+205372     Yoruba     gẹgẹbí ìlàn�                                      
+205393     Yoruba     gbígb�                                            
+205394     Yoruba     rírí gb�                                          
+205396     Yoruba     ṣẽ gb�                                            
+205472     Yoruba     lèyípad�                                          
+205488     Yoruba     tálák�                                            
+205570     Yoruba     oníj�                                             
+205585     Yoruba     ósẽk�                                             
+205604     Yoruba     àràbár�                                           
+205627     Yoruba     dìbàjẹr�                                          
+205633     Yoruba     típẹt�                                            
+205634     Yoruba     ẹníìk�                                            
+205672     Yoruba     nìgbàkanná�                                       
+205673     Yoruba     ṣòótọníw�                                         
+205676     Yoruba     ẹkẹf�                                             
+205694     Yoruba     tiyanulár�                                        
+205696     Yoruba     tóládùn-èròj�                                     
+205743     Yoruba     gàgàr�                                            
+205770     Yoruba     fífarad�                                          
+205786     Yoruba     burẹw�                                            
+205802     Yoruba     kòlègb�                                           
+205831     Yoruba     kòsènì�                                           
+205838     Yoruba     kọja-àb�                                          
+205848     Yoruba     ìk�                                               
+205857     Yoruba     kòtúraká sènì�                                    
+205869     Yoruba     nígbòy�                                           
+205880     Yoruba     alágbáraìk�                                       
+205899     Yoruba     nìwàìk�                                           
+205901     Yoruba     ẹhànn�                                            
+206042     Yoruba     fọwọ-sọy�                                         
+206054     Yoruba     yàn�                                              
+206056     Yoruba     ṣìn�                                              
+206070     Yoruba     bomil�                                            
+206071     Yoruba     bù-l�                                             
+206077     Yoruba     tọ sọn�                                           
+206079     Yoruba     ṣe amọn�                                          
+206089     Yoruba     f�                                                
+206100     Yoruba     rí-gb�                                            
+206102     Yoruba     tún ìwé kíkọ ṣe fún tít�                          
+206153     Yoruba     kùn�                                              
+206165     Yoruba     yípad�                                            
+206176     Yoruba     rí gb�                                            
+206205     Yoruba     dẹrùb�                                            
+206213     Yoruba     tẹ́wọgb�                                          
+206215     Yoruba     jènìyànt�                                         
+206216     Yoruba     jít�                                              
+206230     Yoruba     kòlọn�                                            
+206262     Yoruba     dílọn�                                            
+206274     Yoruba     ṣe ìdèn�                                          
+206275     Yoruba     tì láy�                                           
+206326     Yoruba     yílọkàn pad�                                      
+206328     Yoruba     pa níyè d�                                        
+206359     Yoruba     làn�                                              
+206368     Yoruba     dí lọn�                                           
+206392     Yoruba     dá láb�                                           
+206398     Yoruba     gbèj�                                             
+206408     Yoruba     fìtín�                                            
+206467     Yoruba     kọy�                                              
+206469     Yoruba     yí-pad�                                           
+207359     Yoruba     dén�                                              
+207360     Yoruba     dín�                                              
+207366     Yoruba     paláy�                                            
+207368     Yoruba     pa àpat�                                          
+207382     Yoruba     dagb�                                             
+207472     Yoruba     ṣe àìbìkít�                                       
+207476     Yoruba     fẹnúr�                                            
+207477     Yoruba     fẹnúráj�                                          
+207526     Yoruba     hùw�                                              
+207574     Yoruba     kọl�                                              
+213005     Luganda    okubál�                                           
+213677     Luganda    okuggy�                                           
+218961     Luganda    okwal�                                            
+236396     German     Ich m�chte �                                      
+261875     French     grâce �                                           
+261878     French     contrairement �                                   
+261881     French     par rapport �                                     
+262069     Italian    in profondit�                                     
+
+Gefunden: 329
