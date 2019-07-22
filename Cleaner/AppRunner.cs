@@ -67,15 +67,12 @@ namespace Cleaner
             _logger.LogDebug("AppRunner execute...");
             _logger.LogInformation("Start...");
 
-
+            
             //_dbInfoService.SearchWordsWithotConnection();
-            _dbReplacerService.Replace<Characters>(x => x.Id, x => x.Name, SearchChars, BlackChars
-                //x=>x.Id == 1930
-                , null
-                , 
-                //true
-                false
-                ).Wait();
+            
+            //_dbReplacerService.Replace<Characters>(x => x.Id, x => x.Name, SearchChars, BlackChars, null, false).Wait();
+
+            _dbReplacerService.FindHugos<BaseWords>(x => x.Id, x => x.Word, x => x.Language.EnglishName, new char[] { '�' }, null).Wait();
 
             do
             {
@@ -84,6 +81,11 @@ namespace Cleaner
             } while (!string.IsNullOrEmpty(Console.ReadLine()));
 
             Stop();
+        }
+
+        public void FindHugos()
+        {
+            
         }
 
         public void Stop()

@@ -38,6 +38,57 @@ namespace Cleaner.Services.Replace
             _logger.LogDebug("DbReplacerService stop...");
         }
 
+        public async Task FindHugos<T>(Expression<Func<T, long>> idSelector, Expression<Func<T, string>> valueSelector, Expression<Func<T, string>> langSelector, char[] searchChars, Expression<Func<T, bool>> searchParameter = null) where T : class
+        {
+            Func<T, long> idGetter;
+            Func<T, string> valueGetter;
+            Func<T, string> langGetter;
+
+            CreateGetter(valueSelector, out valueGetter);
+            CreateGetter(idSelector, out idGetter);
+            CreateGetter(langSelector, out langGetter);
+
+            List<T> entities = null;
+            if (searchParameter != null)
+            {
+                entities = await _dataDbContext.Set<T>().Where(searchParameter).ToListAsync();
+            }
+            else
+            {
+                entities = await _dataDbContext.Set<T>().ToListAsync();
+            }
+
+            if (entities == null)
+            {
+                return;
+            }
+
+            Console.WriteLine("Suche in: "+ typeof(T).Name);
+
+            List<T> results = new List<T>();
+            foreach (var item in searchChars)
+            {
+                var r = entities.Where(x => valueGetter(x) != null && !string.IsNullOrEmpty(valueGetter(x).Trim()) && valueGetter(x).Trim().Contains(item));
+                if (r != null && r.Any())
+                {
+                    results.AddRange(r);
+                }
+            }
+
+            var count = results.Count();
+
+            foreach (var item in results)
+            {
+                Console.WriteLine(string.Format("{0,-10} {1,-10} {2,-50}", idGetter(item), langGetter(item), valueGetter(item)));
+            }
+
+
+            Console.WriteLine("FERTIG!");
+
+            await Task.CompletedTask;
+
+        }
+
         public async Task Replace<T>(Expression<Func<T, long>> idSelector, Expression<Func<T, string>> valueSelector, char[] searchChars, char[] blackChars, Expression<Func<T, bool>> searchParameter = null, bool save = false) where T : class
         {
             Func<T, long> idGetter;
@@ -47,8 +98,6 @@ namespace Cleaner.Services.Replace
 
             CreateGetterSetter(valueSelector, out valueGetter, out valueSetter);
             CreateGetterSetter(idSelector, out idGetter, out idSetter);
-
-            Regex regex = new Regex("(.+)(ini)(.+)");
 
             List<T> entities = null;
             if (searchParameter != null)
@@ -299,6 +348,26 @@ namespace Cleaner.Services.Replace
                 setter = (t, v) => Debug.Write("Setter invoked for invalid expression");
                 return false;
             }
+            return true;
+        }
+
+        private bool CreateGetter<T, V>(Expression<Func<T, V>> getterExpression, out Func<T, V> getter)
+        {
+            if (getterExpression == null)
+                throw new ArgumentNullException("getterExpression");
+
+            var memberExpression = getterExpression.Body as MemberExpression;
+            if (memberExpression == null || memberExpression.NodeType != ExpressionType.MemberAccess || memberExpression.Member == null)
+                throw new ArgumentException("The expression must get a member (property or field).", "getterExpression");
+
+            // The expression passed in is the getter, so just compile it.
+            getter = getterExpression.Compile();
+
+            // The setter function takes two parameters as input.
+            var paramT = Expression.Parameter(typeof(T));
+            var paramV = Expression.Parameter(typeof(V));
+
+            
             return true;
         }
         #endregion
