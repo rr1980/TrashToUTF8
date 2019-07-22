@@ -66,8 +66,8 @@ namespace Cleaner
             _logger.LogInformation("Start...");
 
 
-            _dbInfoService.SearchWordsWithotConnection();
-            //_dbReplacerService.Replace<Words>(x => x.Id, x => x.Word, SearchChars, BlackChars);
+            //_dbInfoService.SearchWordsWithotConnection();
+            _dbReplacerService.Replace<Words>(x => x.Id, x => x.Word, SearchChars, BlackChars);
 
             do
             {

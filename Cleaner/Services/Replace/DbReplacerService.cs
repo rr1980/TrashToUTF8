@@ -45,8 +45,8 @@ namespace Cleaner.Services.Replace
             Func<T, string> valueGetter;
             Action<T, string> valueSetter;
 
-            CreateGetterSetter<T, string>(valueSelector, out valueGetter, out valueSetter);
-            CreateGetterSetter<T, long>(idSelector, out idGetter, out idSetter);
+            CreateGetterSetter(valueSelector, out valueGetter, out valueSetter);
+            CreateGetterSetter(idSelector, out idGetter, out idSetter);
 
             Regex regex = new Regex("(.+)(ini)(.+)");
 

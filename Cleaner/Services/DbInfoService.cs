@@ -38,8 +38,15 @@ namespace Cleaner.Services
 
         public async Task SearchWordsWithotConnection()
         {
-            var entities = await _dataDbContext.Set<Words>().Where(x => x.BaseWordLinks == null || !x.BaseWordLinks.Any()).ToListAsync();
+            var entities = await _dataDbContext.Set<Words>().Where(x => string.IsNullOrEmpty(x.Word.Trim()))
+                //.Take(100)
+                .ToListAsync();
+            //var entities = await _dataDbContext.Set<Words>().Where(x => x.BaseWordLinks.Any()).Take(100).ToListAsync();
 
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    Console.WriteLine(entities[i].Id + "\t" + entities[i].Word);
+            //}
             var count = entities.Count();
 
         }
