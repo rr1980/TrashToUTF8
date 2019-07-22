@@ -1,8 +1,15 @@
 ﻿namespace Cleaner.Services.Replace
 {
+    enum ClearResultType
+    {
+        Fixed,
+        Impossible,
+        Unnecessary
+    }
+
     class ClearResult
     {
-        public bool Ok { get; set; }
+        public ClearResultType Type { get; set; }
         public string Text { get; set; }
     }
 }

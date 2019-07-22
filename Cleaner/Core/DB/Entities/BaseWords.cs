@@ -28,6 +28,28 @@ namespace Cleaner.Core.DB.Entities
         public string Comment { get; set; }
     }
 
+    public class Universal
+    {
+        public long Id { get; set; }
+
+        public string Word { get; set; }
+    }
+
+    public class Ui_Translations
+    {
+        public long Id { get; set; }
+
+        public string Key { get; set; }
+        public string Text { get; set; }
+    }
+
+    public class Statistic
+    {
+        public long Id { get; set; }
+
+        public string Keyword { get; set; }
+    }
+
     public class Functions
     {
         public long Id { get; set; }
@@ -55,6 +77,22 @@ namespace Cleaner.Core.DB.Entities
         [Column("wordid")]
         public long WordId { get; set; }
         public virtual Words Word { get; set; }
+    }
+
+    public class LanguageTranslations
+    {
+        public LanguageTranslations()
+        {
+        }
+
+        public long Id { get; set; }
+        public string Language { get; set; }
+        public string Name { get; set; }
+        public string Fromlanguage { get; set; }
+        public string Tolanguage { get; set; }
+        public string Fromurl { get; set; }
+        public string Tourl { get; set; }
+
     }
 
     public class Languages

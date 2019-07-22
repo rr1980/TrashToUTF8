@@ -38,7 +38,7 @@ namespace Cleaner.Services.Replace
             _logger.LogDebug("DbReplacerService stop...");
         }
 
-        public async Task Replace<T>(Expression<Func<T, long>> idSelector, Expression<Func<T, string>> valueSelector, char[] searchChars, char[] blackChars, bool save = false) where T : class
+        public async Task Replace<T>(Expression<Func<T, long>> idSelector, Expression<Func<T, string>> valueSelector, char[] searchChars, char[] blackChars, Expression<Func<T, bool>> searchParameter = null, bool save = false) where T : class
         {
             Func<T, long> idGetter;
             Action<T, long> idSetter;
@@ -50,12 +50,25 @@ namespace Cleaner.Services.Replace
 
             Regex regex = new Regex("(.+)(ini)(.+)");
 
-            var entities = await _dataDbContext.Set<T>().ToListAsync();
+            List<T> entities = null;
+            if (searchParameter != null)
+            {
+                entities = await _dataDbContext.Set<T>().Where(searchParameter).ToListAsync();
+            }
+            else
+            {
+                entities = await _dataDbContext.Set<T>().ToListAsync();
+            }
+
+            if (entities == null)
+            {
+                return;
+            }
 
             List<T> results = new List<T>();
             foreach (var item in searchChars)
             {
-                var r = entities.Where(x => !string.IsNullOrEmpty(valueGetter(x).Trim()) && valueGetter(x).Trim().Contains(item));
+                var r = entities.Where(x => valueGetter(x) != null && !string.IsNullOrEmpty(valueGetter(x).Trim()) && valueGetter(x).Trim().Contains(item));
                 if (r != null && r.Any())
                 {
                     results.AddRange(r);
@@ -64,30 +77,56 @@ namespace Cleaner.Services.Replace
 
             var count = results.Count();
 
-            try
+            int clearCounter = 0;
+            int impossibleCounter = 0;
+
+            //try
+            //{
+            foreach (var item in results)
             {
-                foreach (var item in results)
+                try
                 {
                     var result = Clear(idGetter(item), valueGetter(item).Trim(), searchChars, blackChars);
-                    if (result.Ok)
+                    if (result.Type == ClearResultType.Fixed)
                     {
-                        valueSetter(item, result.Text.Trim());
+                        clearCounter++;
 
                         if (save)
                         {
+                            valueSetter(item, result.Text.Trim());
+                            _dataDbContext.Update(item);
+                        }
+                    }
+                    else if (result.Type == ClearResultType.Impossible)
+                    {
+                        impossibleCounter++;
+
+                        if (save)
+                        {
+                            valueSetter(item, result.Text.Trim());
                             _dataDbContext.Update(item);
                         }
                     }
                 }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
-            catch (Exception)
-            {
-                throw;
-            }
+
+            Console.WriteLine("Cleared: " + clearCounter);
+            Console.WriteLine("Impossible: " + impossibleCounter);
 
             if (save)
             {
-                _dataDbContext.SaveChanges();
+                try
+                {
+                    await _dataDbContext.SaveChangesAsync();
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
             }
 
             Console.WriteLine("FERTIG!");
@@ -105,13 +144,14 @@ namespace Cleaner.Services.Replace
             {
                 var newWord = Convert(dirtyWord.Trim()).Trim();
 
-                if (CheckBlackChars(blackChars, newWord.Trim()))
+                var cbc = CheckBlackChars(blackChars, newWord.Trim());
+                if (cbc.Found)
                 {
-                    Console.WriteLine(string.Format("NO  {0,-10} {1,50} = {2}", id, oldWord, newWord));
+                    Console.WriteLine(string.Format("NO  {0,-10} {1,50} = {2, -50} {3}", id, oldWord, newWord, cbc.FoundChar));
                     return new ClearResult
                     {
-                        Text = "'" + oldWord + "'",
-                        Ok = false
+                        Text = newWord,
+                        Type = ClearResultType.Impossible
                     };
                 }
                 else
@@ -120,13 +160,22 @@ namespace Cleaner.Services.Replace
                 }
             }
 
-            Console.WriteLine(string.Format("YES {0,-10} {1,50} = {2}", id, oldWord, dirtyWord));
+            if (oldWord.Trim() != dirtyWord.Trim())
+            {
+                Console.WriteLine(string.Format("YES {0,-10} {1,50} = {2,-50} {3}", id, oldWord, dirtyWord, CheckSearchChars(searchChars, oldWord.Trim()).FoundChar));
+                return new ClearResult
+                {
+                    Text = dirtyWord,
+                    Type = ClearResultType.Fixed
+                };
+            }
 
             return new ClearResult
             {
-                Text = "'" + dirtyWord + "'",
-                Ok = true
+                Text = dirtyWord,
+                Type = ClearResultType.Unnecessary
             };
+
         }
 
         private CheckResult CheckSearchChars(char[] searchChars, string row)
@@ -149,17 +198,24 @@ namespace Cleaner.Services.Replace
             };
         }
 
-        private bool CheckBlackChars(char[] blackChars, string row)
+        private CheckResult CheckBlackChars(char[] blackChars, string row)
         {
             foreach (var item in blackChars)
             {
                 if (row.Contains(item))
                 {
-                    return true;
+                    return new CheckResult
+                    {
+                        Found = true,
+                        FoundChar = item
+                    };
                 }
             }
 
-            return false;
+            return new CheckResult
+            {
+                Found = false,
+            };
         }
 
         public string Convert(string sourceText)

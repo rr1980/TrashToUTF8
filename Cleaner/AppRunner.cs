@@ -13,6 +13,7 @@ namespace Cleaner
     {
         public static char[] SearchChars = new char[] {
             'Â',
+            'Ã',
             '«',
             '‘',
             '¹',
@@ -30,7 +31,8 @@ namespace Cleaner
             '†',
             '»',
             '°',
-            //'Ñ',
+            'Ñ',
+            //'â',
         };
 
         public static char[] BlackChars = new char[] {
@@ -67,7 +69,13 @@ namespace Cleaner
 
 
             //_dbInfoService.SearchWordsWithotConnection();
-            _dbReplacerService.Replace<Words>(x => x.Id, x => x.Word, SearchChars, BlackChars);
+            _dbReplacerService.Replace<Characters>(x => x.Id, x => x.Name, SearchChars, BlackChars
+                //x=>x.Id == 1930
+                , null
+                , 
+                //true
+                false
+                ).Wait();
 
             do
             {

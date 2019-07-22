@@ -68,9 +68,32 @@ namespace Cleaner
 
             var runner = serviceProvider.GetRequiredService<IRunner>();
 
-            Task.Run(() => runner.Execute()).Wait();
+            try
+            {
+                Run(runner).Wait();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
 
             Console.ReadKey();
+        }
+
+        static async Task Run(IRunner runner)
+        {
+            try
+            {
+                await Task.Run(() => runner.Execute()).ContinueWith((t) =>
+                {
+                    if (t.IsFaulted) throw t.Exception;
+                });
+            }
+
+            catch (Exception e)
+            {
+                throw;
+            }
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using Cleaner.Core.DB.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
@@ -12,15 +13,20 @@ namespace Cleaner.Core.DB
 {
     public class DataDbContext : DbContext
     {
+        //private readonly ValueConverter _nullableStringConverter = new ValueConverter<string, string>(v => v == null ? "" : v, v => v);
         private readonly ILogger<DataDbContext> _logger;
         private readonly AppSettings _appSettings;
 
+        public virtual DbSet<Universal> Universals { get; set; }
+        public virtual DbSet<Ui_Translations> Ui_Translations { get; set; }
+        public virtual DbSet<Statistic> Statistics { get; set; }
         public virtual DbSet<Abbreviations> Abbreviations { get; set; }
         public virtual DbSet<Basewordexamples> Basewordexamples { get; set; }
         public virtual DbSet<Feedback> Feedbacks { get; set; }
         public virtual DbSet<Functions> Functions { get; set; }
         public virtual DbSet<Grammar> Grammars { get; set; }
         public virtual DbSet<Connections> Connections { get; set; }
+        public virtual DbSet<LanguageTranslations> LanguageTranslations { get; set; }
         public virtual DbSet<Languages> Languages { get; set; }
         public virtual DbSet<Characters> Characters { get; set; }
         public virtual DbSet<BaseWords> BaseWords { get; set; }
@@ -31,7 +37,7 @@ namespace Cleaner.Core.DB
             _logger = logger;
             _appSettings = appSettings.Value;
 
-            ChangeTracker.StateChanged += OnStateChanged;
+            //ChangeTracker.StateChanged += OnStateChanged;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -48,6 +54,19 @@ namespace Cleaner.Core.DB
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<Universal>(entity =>
+            {
+                entity.ToTable("universal");
+                entity.HasKey(x => x.Id);
+            });
+
+            modelBuilder.Entity<Ui_Translations>(entity =>
+            {
+                entity.ToTable("ui_translations");
+                entity.HasKey(x => x.Id);
+            });
+
             modelBuilder.Entity<Abbreviations>(entity =>
             {
                 entity.ToTable("abbreviations");
@@ -63,12 +82,17 @@ namespace Cleaner.Core.DB
             modelBuilder.Entity<Feedback>(entity =>
             {
                 entity.ToTable("feedback");
-                entity.HasKey(x => x.Id);
             });
 
             modelBuilder.Entity<Functions>(entity =>
             {
                 entity.ToTable("functions");
+                entity.HasKey(x => x.Id);
+            });
+
+            modelBuilder.Entity<Statistic>(entity =>
+            {
+                entity.ToTable("statistic");
                 entity.HasKey(x => x.Id);
             });
 
@@ -91,6 +115,12 @@ namespace Cleaner.Core.DB
             modelBuilder.Entity<Languages>(entity =>
             {
                 entity.ToTable("languages");
+                entity.HasKey(x => x.Id);
+            });
+
+            modelBuilder.Entity<LanguageTranslations>(entity =>
+            {
+                entity.ToTable("languageTranslations");
                 entity.HasKey(x => x.Id);
             });
 

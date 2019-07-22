@@ -16,7 +16,7 @@ namespace Cleaner.Interfaces
 
     public interface IDbReplacerService : IRunnerBase
     {
-        Task Replace<T>(Expression<Func<T, long>> idSelector, Expression<Func<T, string>> valueSelector, char[] searchChars, char[] blackChars, bool save = false) where T : class;
+        Task Replace<T>(Expression<Func<T, long>> idSelector, Expression<Func<T, string>> valueSelector, char[] searchChars, char[] blackChars, Expression<Func<T, bool>> searchParameter = null, bool save = false) where T : class;
     }
 
     public interface IDbInfoService : IRunnerBase
