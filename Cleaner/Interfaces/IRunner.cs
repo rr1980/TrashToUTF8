@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace Cleaner.Interfaces
 {
@@ -14,14 +16,12 @@ namespace Cleaner.Interfaces
 
     public interface IDbReplacerService : IRunnerBase
     {
-        Task Test();
-        Task Test_BaseWords();
-        Task Test_Words();
-        Task Replace_K433();
+        Task Replace<T>(Expression<Func<T, long>> idSelector, Expression<Func<T, string>> valueSelector, char[] searchChars, char[] blackChars, bool save = false) where T : class;
     }
 
     public interface IDbInfoService : IRunnerBase
     {
         Task DbInfo();
+        Task SearchWordsWithotConnection();
     }
 }

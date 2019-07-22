@@ -1,5 +1,6 @@
 ﻿using System;
 using Cleaner.Core;
+using Cleaner.Core.DB.Entities;
 using Cleaner.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -10,6 +11,35 @@ namespace Cleaner
 
     public class AppRunner : IRunner
     {
+        public static char[] SearchChars = new char[] {
+            'Â',
+            '«',
+            '‘',
+            '¹',
+            '“',
+            'Ã',
+            'Ð',
+            'Å',
+            '©',
+            'º',
+            '‡',
+            '™',
+            '…',
+            'Å',
+            '¾',
+            '†',
+            '»',
+            '°',
+            //'Ñ',
+        };
+
+        public static char[] BlackChars = new char[] {
+            'ￅ',
+            '�',
+            '¬',
+            '±',
+        };
+
         private readonly ILogger<AppRunner> _logger;
         private readonly AppSettings _appSettings;
         private readonly IServiceProvider _serviceProvider;
@@ -36,8 +66,8 @@ namespace Cleaner
             _logger.LogInformation("Start...");
 
 
-
-            _dbReplacerService.Test();
+            _dbInfoService.SearchWordsWithotConnection();
+            //_dbReplacerService.Replace<Words>(x => x.Id, x => x.Word, SearchChars, BlackChars);
 
             do
             {
