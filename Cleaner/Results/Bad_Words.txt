@@ -1,0 +1,17 @@
+2813003    Luganda    mwayal�                                           
+3051119    Luganda    temwayal�                                         
+3051118    Luganda    tetwayal�                                         
+3051116    Luganda    tewayal�                                          
+3051117    Luganda    teyayal�                                          
+2813002    Luganda    twayal�                                           
+3894797    Russian    буду совер�енствовать                             
+3908511    Russian    бу�у� собирать                                    
+3890971    Russian    вырастающе�                                       
+3902746    Russian    отч��дающая                                       
+3889103    Russian    подраз�мевавший                                   
+3904637    Russian    пораж�й                                           
+3906565    Russian    просматривающ�й                                   
+3904650    Russian    п�рывай                                           
+3907054    Russian    разо�рали                                         
+
+Gefunden: 15

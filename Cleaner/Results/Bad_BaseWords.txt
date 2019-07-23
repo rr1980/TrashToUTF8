@@ -1,10 +1,9 @@
 213005     Luganda    okubál�                                           
 213677     Luganda    okuggy�                                           
 218961     Luganda    okwal�                                            
-236396     German     Ich m�chte �                                      
 261875     French     grâce �                                           
 261878     French     contrairement �                                   
 261881     French     par rapport �                                     
 262069     Italian    in profondit�                                     
 
-Gefunden: 8
+Gefunden: 7

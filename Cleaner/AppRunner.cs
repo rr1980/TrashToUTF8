@@ -74,14 +74,14 @@ namespace Cleaner
 
             //_dbReplacerService.Replace<Characters>(x => x.Id, x => x.Name, SearchChars, BlackChars, null, false).Wait();
 
-            //_dbReplacerService.FindHugos<BaseWords>(x => x.Id, x => x.Word, x => x.Language.EnglishName, new char[] { '�' }, null).Wait();
+            _dbReplacerService.FindHugos<BaseWords>(x => x.Id, x => x.Word, x => x.Language.EnglishName, new char[] { '�' }, null).Wait();
 
-            _dbReplacerService.FindHugos<Words>(x => x.Id, x => x.Word, x => x.BaseWordLinks.First().BaseWord.Language.EnglishName, new char[] { '�' },
-                new string[] { "Word", "BaseWord.Language" },
-                //x => x.Id > 10 && x.Id < 1000, 
-                null,
-                "Words"
-                ).Wait();
+            //_dbReplacerService.FindHugos<Words>(x => x.Id, x => x.Word, x => x.BaseWordLinks.First().BaseWord.Language.EnglishName, new char[] { '�' },
+            //    new string[] { "Word", "BaseWord.Language" },
+            //    //x => x.Id > 10 && x.Id < 1000, 
+            //    null,
+            //    "Words"
+            //    ).Wait();
 
 
             //_dbReplacerService.ReplaceHugos<BaseWords>(x => x.Id, x => x.Word, x => x.Language.EnglishName, new char[] { '�' },
