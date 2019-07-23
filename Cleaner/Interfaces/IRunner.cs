@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Cleaner.Core.DB.Entities;
 
 namespace Cleaner.Interfaces
 {
@@ -19,6 +20,7 @@ namespace Cleaner.Interfaces
         //Task FindHugos<T>(Expression<Func<T, long>> idSelector, Expression<Func<T, string>> valueSelector, Expression<Func<T, string>> langSelector, char[] searchChars, string[] includes, Expression<Func<T, bool>> searchParameter = null, string name = null) where T : class;
         //Task FindHugos<T>(Expression<Func<T, long>> idSelector, Expression<Func<T, string>> valueSelector, Expression<Func<T, string>> langSelector, char[] searchChars, Expression<Func<T, object>>[] includes, Expression<Func<T, bool>> searchParameter = null, string name = null) where T : class;
         Task FindHugos<T>(Expression<Func<T, long>> idSelector, Expression<Func<T, string>> valueSelector, Expression<Func<T, string>> langSelector, char[] searchChars, string[] includes, Expression<Func<T, bool>> searchParameter = null, string name = null) where T : class;
+        Task ReplaceHugos<T>(Expression<Func<T, long>> idSelector, Expression<Func<T, string>> valueSelector, Expression<Func<T, string>> langSelector, char[] searchChars, string[] includes, Expression<Func<T, bool>> searchParameter = null, string name = null) where T : class, IEntity;
         Task Replace<T>(Expression<Func<T, long>> idSelector, Expression<Func<T, string>> valueSelector, char[] searchChars, char[] blackChars, Expression<Func<T, bool>> searchParameter = null, bool save = false) where T : class;
     }
 

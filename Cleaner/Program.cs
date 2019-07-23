@@ -61,6 +61,18 @@ namespace Cleaner
                     options.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
                 });
 
+                serviceCollection.AddDbContext<DataOldDbContext>(options =>
+                {
+                    options.UseLazyLoadingProxies();
+                    options.UseMySql(configuration.GetConnectionString("OldConnection"), b => {
+                        b.UnicodeCharSet(CharSet.Utf8mb4);
+                    });
+
+                    options.EnableDetailedErrors();
+                    options.EnableSensitiveDataLogging();
+                    options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+                });
+
                 serviceCollection.AddSingleton<IDbReplacerService, DbReplacerService>();
                 serviceCollection.AddSingleton<IDbInfoService, DbInfoService>();
 

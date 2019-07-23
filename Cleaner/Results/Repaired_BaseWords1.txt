@@ -1,0 +1,321 @@
+163637     Russian                                              выражать выражать                                           выражать%
+166832     Russian                                               равнять равнять                                            равнять%
+200490     Yoruba                                                 fomidà fomidà                                             fomidà%
+200491     Yoruba                                                gbàdúrà gbàdúrà                                            gbàdúrà%
+200492     Yoruba                                                 jẹníyà jẹníyà                                             jẹníyà%
+200513     Yoruba                                                   lẹwà lẹwà                                               lẹwà%
+200671     German                                              was für … was für …                                          was für …%
+200866     Yoruba                                                   kàkà kàkà                                               kàkà%
+200875     Yoruba                                              látí…….ḋé látí…….ḋé                                          látí…….ḋé%
+200955     Yoruba                                             kòse….bẹní kòse….bẹní                                         kòse….bẹní%
+200959     Yoruba                                              láti…..ṙí láti…..ṙí                                          láti…..ṙí%
+201016     Yoruba                                         Alàfia ni mowà Alàfia ni mowà                                     Alàfia ni mowà%
+201093     Yoruba                                      Pẹlẹ báwó lose wà Pẹlẹ báwó lose wà                                  Pẹlẹ báwó lose wà%
+201111     Yoruba                                                 à-n-tà à-n-tà                                             à-n-tà%
+201136     Yoruba                                                    ọgà ọgà                                                ọgà%
+201143     Yoruba                                                    ọyà ọyà                                                ọyà%
+201148     Yoruba                                                  àdàbà àdàbà                                              àdàbà%
+201161     Yoruba                                                    ẹgà ẹgà                                                ẹgà%
+201189     Yoruba                                                  àkàbà àkàbà                                              àkàbà%
+201279     Yoruba                                                  oláyà oláyà                                              oláyà%
+201298     Yoruba                                                   ìgbà ìgbà                                               ìgbà%
+201332     Yoruba                                                  dàgbà dàgbà                                              dàgbà%
+201345     Yoruba                                                  jìnnà jìnnà                                              jìnnà%
+201351     Yoruba                                                 ni áyà ni áyà                                             ni áyà%
+201384     Yoruba                                                  àtùpà àtùpà                                              àtùpà%
+201385     Yoruba                                                   bábà bábà                                               bábà%
+201386     Yoruba                                              bábà-àgbà bábà-àgbà                                          bábà-àgbà%
+201394     Yoruba                                               ẹnu-ọ̀nà ẹnu-ọ̀nà                                           ẹnu-ọ̀nà%
+201408     Yoruba                                               ìyá-àgbà ìyá-àgbà                                           ìyá-àgbà%
+201426     Yoruba                                                   yàrà yàrà                                               yàrà%
+201429     Yoruba                       Bawo ni o se le sọ ….. ni Yorùbá Bawo ni o se le sọ ….. ni Yorùbá                   Bawo ni o se le sọ ….. ni Yorùbá%
+201502     Yoruba                                          Orukọ mi ni … Orukọ mi ni …                                      Orukọ mi ni …%
+201555     Yoruba                                                  gbàlà gbàlà                                              gbàlà%
+201576     Yoruba                                                     kà kà                                                 kà%
+201599     Yoruba                                                     nà nà                                                 nà%
+201602     Yoruba                                                   padà padà                                               padà%
+201610     Yoruba                                                     rà rà                                                 rà%
+201615     Yoruba                                                 ràpadà ràpadà                                             ràpadà%
+201621     Yoruba                 rò or tẹ̀ [to stir yam flour- rò àmàlà rò or tẹ̀ [to stir yam flour- rò àmàlà             rò or tẹ̀ [to stir yam flour- rò àmàlà%
+201641     Yoruba                                                     tà tà                                                 tà%
+201658     Yoruba                                               wọ̀ bàtà wọ̀ bàtà                                           wọ̀ bàtà%
+201753     Yoruba                                                    ẹfà ẹfà                                                ẹfà%
+201757     Yoruba                                                    ẹwà ẹwà                                                ẹwà%
+201790     Yoruba                                               ẹdẹgbẹfà ẹdẹgbẹfà                                           ẹdẹgbẹfà%
+201837     Yoruba                                              lẹhìn náà lẹhìn náà                                          lẹhìn náà%
+201881     Yoruba                                                 jíjìnà jíjìnà                                             jíjìnà%
+201882     Yoruba                                                   jìnà jìnà                                               jìnà%
+201929     Yoruba                                             lẹsẹkannáà lẹsẹkannáà                                         lẹsẹkannáà%
+201943     Yoruba                                              laíṣetàrà laíṣetàrà                                          laíṣetàrà%
+201956     Yoruba                                                   kàkà kàkà                                               kàkà%
+201959     Yoruba                                               lọnàkọnà lọnàkọnà                                           lọnàkọnà%
+201963     Yoruba                                            nígbàkúùgbà nígbàkúùgbà                                        nígbàkúùgbà%
+201980     Yoruba                                           nísìsìyí-náà nísìsìyí-náà                                       nísìsìyí-náà%
+201999     Yoruba                                               nítílànà nítílànà                                           nítílànà%
+202050     Yoruba                                                 tálákà tálákà                                             tálákà%
+202070     Yoruba                                               wàràwàrà wàràwàrà                                           wàràwàrà%
+202094     Yoruba                                                   ṣìnà ṣìnà                                               ṣìnà%
+202095     Yoruba                                               kúròlọnà kúròlọnà                                           kúròlọnà%
+202102     Yoruba                                              nítorínáà nítorínáà                                          nítorínáà%
+202129     Yoruba                                                  tààrà tààrà                                              tààrà%
+202136     Yoruba                                                  jìnnà jìnnà                                              jìnnà%
+202144     Yoruba                                               nígbànáà nígbànáà                                           nígbànáà%
+202147     Yoruba                                            nípaèyí náà nípaèyí náà                                        nípaèyí náà%
+202192     Yoruba                                             nígbàkúgbà nígbàkúgbà                                         nígbàkúgbà%
+202230     Yoruba                                                  ìdènà ìdènà                                              ìdènà%
+202231     Yoruba                                                  ìsénà ìsénà                                              ìsénà%
+202252     Yoruba                                                 wàhálà wàhálà                                             wàhálà%
+202256     Yoruba                                                    ãlà ãlà                                                ãlà%
+202259     Yoruba                                                 títúbà títúbà                                             títúbà%
+202261     Yoruba                                                afẹṣẹjà afẹṣẹjà                                            afẹṣẹjà%
+202280     Yoruba                                                  ọlọfà ọlọfà                                              ọlọfà%
+202302     Yoruba                                                 tálákà tálákà                                             tálákà%
+202305     Yoruba                                                  ọlọṣà ọlọṣà                                              ọlọṣà%
+202307     Yoruba                                                 jàgùdà jàgùdà                                             jàgùdà%
+202325     Yoruba                                                alápatà alápatà                                            alápatà%
+202327     Yoruba                                                  olùrà olùrà                                              olùrà%
+202328     Yoruba                                                  ọlọjà ọlọjà                                              ọlọjà%
+202331     Yoruba                                                  àkàlà àkàlà                                              àkàlà%
+202344     Yoruba                                                   kíkà kíkà                                               kíkà%
+202352     Yoruba                                                  àbẹlà àbẹlà                                              àbẹlà%
+202353     Yoruba                                                 fìtílà fìtílà                                             fìtílà%
+202355     Yoruba                                                   fìlà fìlà                                               fìlà%
+202376     Yoruba                                             gbẹnàgbẹnà gbẹnàgbẹnà                                         gbẹnàgbẹnà%
+202395     Yoruba                                                 gbígbà gbígbà                                             gbígbà%
+202401     Yoruba                                                ìyípadà ìyípadà                                            ìyípadà%
+202402     Yoruba                                                ìparadà ìparadà                                            ìparadà%
+202412     Yoruba                                                    àyà àyà                                                àyà%
+202417     Yoruba                                                 olúọgà olúọgà                                             olúọgà%
+202425     Yoruba                                                   tábà tábà                                               tábà%
+202427     Yoruba                                               ìṣànyíkà ìṣànyíkà                                           ìṣànyíkà%
+202432     Yoruba                                                   àgbà àgbà                                               àgbà%
+202433     Yoruba                                              àgbàlagbà àgbàlagbà                                          àgbàlagbà%
+202435     Yoruba                                                    ẹyà ẹyà                                                ẹyà%
+202436     Yoruba                                            ìwà-pañṣágà ìwà-pañṣágà                                        ìwà-pañṣágà%
+202445     Yoruba                                                    ìfà ìfà                                                ìfà%
+202451     Yoruba                                                 adágbà adágbà                                             adágbà%
+202465     Yoruba                                                aláwàdà aláwàdà                                            aláwàdà%
+202497     Yoruba                                               ọkàn-ìfà ọkàn-ìfà                                           ọkàn-ìfà%
+202504     Yoruba                                                  ìjìyà ìjìyà                                              ìjìyà%
+202511     Yoruba                                             ilẹ Áfríkà ilẹ Áfríkà                                         ilẹ Áfríkà%
+202535     Yoruba                                              èpa àkàrà èpa àkàrà                                          èpa àkàrà%
+202570     Yoruba                                               iyànjíjà iyànjíjà                                           iyànjíjà%
+202571     Yoruba                                                   rírà rírà                                               rírà%
+202581     Yoruba                                               wíwá-ìjà wíwá-ìjà                                           wíwá-ìjà%
+202587     Yoruba                                                olùwájà olùwájà                                            olùwájà%
+202619     Yoruba                                           ìyàkúrò lọnà ìyàkúrò lọnà                                       ìyàkúrò lọnà%
+202620     Yoruba                                                  ìṣìnà ìṣìnà                                              ìṣìnà%
+202630     Yoruba                                            íjàmba ènìà íjàmba ènìà                                        íjàmba ènìà%
+202631     Yoruba                                              èsú ọdàrà èsú ọdàrà                                          èsú ọdàrà%
+202633     Yoruba                                         ìgbájúmọ àdúrà ìgbájúmọ àdúrà                                     ìgbájúmọ àdúrà%
+202680     Yoruba                                                    ọnà ọnà                                                ọnà%
+202693     Yoruba                                                    ìhà ìhà                                                ìhà%
+202694     Yoruba                                                ítọs|nà ítọs|nà                                            ítọs|nà%
+202698     Yoruba                                               àwón ọnà àwón ọnà                                           àwón ọnà%
+202700     Yoruba                                              ìwé ìlànà ìwé ìlànà                                          ìwé ìlànà%
+202711     Yoruba                                                  ìjábà ìjábà                                              ìjábà%
+202715     Yoruba                                              ojú sánmà ojú sánmà                                          ojú sánmà%
+202752     Yoruba                                         àwòrán ìfọwáyà àwòrán ìfọwáyà                                     àwòrán ìfọwáyà%
+202812     Yoruba                                                àpèpadà àpèpadà                                            àpèpadà%
+202813     Yoruba                      àpapọ oòrùn àti òṣùpá ní àwọsánmà àpapọ oòrùn àti òṣùpá ní àwọsánmà                  àpapọ oòrùn àti òṣùpá ní àwọsánmà%
+202867     Yoruba                                                 alégbà alégbà                                             alégbà%
+202897     Yoruba                                                  ìkùnà ìkùnà                                              ìkùnà%
+202903     Yoruba                                                    ọjà ọjà                                                ọjà%
+202932     Yoruba                                                    àbà àbà                                                àbà%
+202949     Yoruba                                                  ìfòyà ìfòyà                                              ìfòyà%
+202957     Yoruba                                                  oníjà oníjà                                              oníjà%
+202987     Yoruba                                              àìsàn íbà àìsàn íbà                                          àìsàn íbà%
+203010     Yoruba                                               ọkánjúwà ọkánjúwà                                           ọkánjúwà%
+203011     Yoruba                                   ìtara fún ohun àtàtà ìtara fún ohun àtàtà                               ìtara fún ohun àtàtà%
+203028     Yoruba                                               olùṣọgbà olùṣọgbà                                           olùṣọgbà%
+203029     Yoruba                                                 aṣọgbà aṣọgbà                                             aṣọgbà%
+203063     Yoruba                                              bàbá agbà bàbá agbà                                          bàbá agbà%
+203064     Yoruba                                               ìyá àgbà ìyá àgbà                                           ìyá àgbà%
+203090     Yoruba                                                    ìwà ìwà                                                ìwà%
+203103     Yoruba                                                   ọgbà ọgbà                                               ọgbà%
+203115     Yoruba                                                  ìdínà ìdínà                                              ìdínà%
+203209     Yoruba                                                  àwàdà àwàdà                                              àwàdà%
+203263     Yoruba                                            alálùpàyídà alálùpàyídà                                        alálùpàyídà%
+203268     Yoruba                                                   òòfà òòfà                                               òòfà%
+203274     Yoruba                                                   lẹtà lẹtà                                               lẹtà%
+203302     Yoruba                                                  àbàtà àbàtà                                              àbàtà%
+203398     Yoruba                                            ìjánkan gbà ìjánkan gbà                                        ìjánkan gbà%
+203406     Yoruba                                                àràmàdà àràmàdà                                            àràmàdà%
+203438     Yoruba                                               àìbìkítà àìbìkítà                                           àìbìkítà%
+203439     Yoruba                                              ìfojúfòdà ìfojúfòdà                                          ìfojúfòdà%
+203459     Yoruba                                                   sálà sálà                                               sálà%
+203477     Yoruba                                             ohun ìdínà ohun ìdínà                                         ohun ìdínà%
+203479     Yoruba                                                 àyèọnà àyèọnà                                             àyèọnà%
+203483     Yoruba                                              ataniláyà ataniláyà                                          ataniláyà%
+203485     Yoruba                                                àyè ọnà àyè ọnà                                            àyè ọnà%
+203489     Yoruba                                                  adènà adènà                                              adènà%
+203511     Yoruba                                                    ìjà ìjà                                                ìjà%
+203516     Yoruba                                                  ìṣọnà ìṣọnà                                              ìṣọnà%
+203527     Yoruba                                                  atọfà atọfà                                              atọfà%
+203528     Yoruba                                               tafàtafà tafàtafà                                           tafàtafà%
+203547     Yoruba                                                  akọdà akọdà                                              akọdà%
+203553     Yoruba                                               akunlọdà akunlọdà                                           akunlọdà%
+203556     Yoruba                                              ìfàwọdárà ìfàwọdárà                                          ìfàwọdárà%
+203565     Yoruba                                                 ìpààyà ìpààyà                                             ìpààyà%
+203573     Yoruba                                                ílẹ ẹwà ílẹ ẹwà                                            ílẹ ẹwà%
+203577     Yoruba                                             ààrún ẹgbà ààrún ẹgbà                                         ààrún ẹgbà%
+203580     Yoruba                                                onírãrà onírãrà                                            onírãrà%
+203590     Yoruba                                                    ìlà ìlà                                                ìlà%
+203597     Yoruba                                             ìwé ìyọndà ìwé ìyọndà                                         ìwé ìyọndà%
+203604     Yoruba                                              iyàn-jíjà iyàn-jíjà                                          iyàn-jíjà%
+203620     Yoruba                                                ípa-ọnà ípa-ọnà                                            ípa-ọnà%
+203629     Yoruba                                              ọnà ọlọdà ọnà ọlọdà                                          ọnà ọlọdà%
+203639     Yoruba                                                àlàáfíà àlàáfíà                                            àlàáfíà%
+203684     Yoruba                                              ìpaléròdà ìpaléròdà                                          ìpaléròdà%
+203730     Yoruba                                             ikòkò tábà ikòkò tábà                                         ikòkò tábà%
+203812     Yoruba                                                  asọnà asọnà                                              asọnà%
+203813     Yoruba                                                olùdènà olùdènà                                            olùdènà%
+203822     Yoruba                                 àwòrán nlá ìpolówó ọjà àwòrán nlá ìpolówó ọjà                             àwòrán nlá ìpolówó ọjà%
+203830     Yoruba                                                    ìṣà ìṣà                                                ìṣà%
+203845     Yoruba                                                  àdúrà àdúrà                                              àdúrà%
+203919     Yoruba                                                  ìlànà ìlànà                                              ìlànà%
+203957     Yoruba                                         òṣùwọn ọgbọgbà òṣùwọn ọgbọgbà                                     òṣùwọn ọgbọgbà%
+203960     Yoruba                                                ìdálábà ìdálábà                                            ìdálábà%
+203961     Yoruba                                              àfojúsọnà àfojúsọnà                                          àfojúsọnà%
+203964     Yoruba                                                 àláfíà àláfíà                                             àláfíà%
+203966     Yoruba                                                panṣágà panṣágà                                            panṣágà%
+203970     Yoruba                                               olùgbèjà olùgbèjà                                           olùgbèjà%
+203985     Yoruba                                                atẹwétà atẹwétà                                            atẹwétà%
+203989     Yoruba                                                ìṣèlẹtà ìṣèlẹtà                                            ìṣèlẹtà%
+203990     Yoruba                                                ìtẹlẹtà ìtẹlẹtà                                            ìtẹlẹtà%
+203993     Yoruba                                                   Éṣíà Éṣíà                                               Éṣíà%
+203994     Yoruba                                               ílẹ Ésíà ílẹ Ésíà                                           ílẹ Ésíà%
+203997     Yoruba                                                ìjẹníyà ìjẹníyà                                            ìjẹníyà%
+204036     Yoruba                                            ìdíyelé ọjà ìdíyelé ọjà                                        ìdíyelé ọjà%
+204046     Yoruba                                                  amẹyà amẹyà                                              amẹyà%
+204058     Yoruba                                                ìràpadà ìràpadà                                            ìràpadà%
+204092     Yoruba                                             aṣọ ìgúnwà aṣọ ìgúnwà                                         aṣọ ìgúnwà%
+204098     Yoruba                                                owó ọyà owó ọyà                                            owó ọyà%
+204100     Yoruba                                                 ọlọọjà ọlọọjà                                             ọlọọjà%
+204106     Yoruba                                                   bàtà bàtà                                               bàtà%
+204107     Yoruba                                               sálúbàtà sálúbàtà                                           sálúbàtà%
+204131     Yoruba                                                  olùtà olùtà                                              olùtà%
+204144     Yoruba                                                 ágbèjà ágbèjà                                             ágbèjà%
+204155     Yoruba                                                 ìjáíyà ìjáíyà                                             ìjáíyà%
+204171     Yoruba                                         ìwọn lãrin-ilà ìwọn lãrin-ilà                                     ìwọn lãrin-ilà%
+204192     Yoruba                                                   lọyà lọyà                                               lọyà%
+204200     Yoruba                                             ẹrọ átáọjà ẹrọ átáọjà                                         ẹrọ átáọjà%
+204270     Yoruba                                              ìfarájìyà ìfarájìyà                                          ìfarájìyà%
+204285     Yoruba                             ilé ìsìn ọlọrun tàbí òrìṣà ilé ìsìn ọlọrun tàbí òrìṣà                         ilé ìsìn ọlọrun tàbí òrìṣà%
+204302     Yoruba                                           ígbapò kannà ígbapò kannà                                       ígbapò kannà%
+204314     Yoruba                                               adínkàrà adínkàrà                                           adínkàrà%
+204319     Yoruba                                              ilésàkàrà ilésàkàrà                                          ilésàkàrà%
+204328     Yoruba                                                 atàgbà atàgbà                                             atàgbà%
+204348     Yoruba                                                  wàláà wàláà                                              wàláà%
+204394     Yoruba                                          ojuju tí n rà ojuju tí n rà                                      ojuju tí n rà%
+204397     Yoruba                                           alọnilọwọgbà alọnilọwọgbà                                       alọnilọwọgbà%
+204417     Yoruba                                                 ìgboyà ìgboyà                                             ìgboyà%
+204426     Yoruba                                                ìwà ipà ìwà ipà                                            ìwà ipà%
+204432     Yoruba                                               ìṣìpàyaà ìṣìpàyaà                                           ìṣìpàyaà%
+204486     Yoruba                                             ìdùná-dùrà ìdùná-dùrà                                         ìdùná-dùrà%
+204497     Yoruba                                                ìwúkàrà ìwúkàrà                                            ìwúkàrà%
+204530     Yoruba                                                    ẹwà ẹwà                                                ẹwà%
+204532     Yoruba                                                  ìjúbà ìjúbà                                              ìjúbà%
+204533     Yoruba                                                  ìmọnà ìmọnà                                              ìmọnà%
+204534     Yoruba                                                 mímọnà mímọnà                                             mímọnà%
+204536     Yoruba                                            ẹranko ènìà ẹranko ènìà                                        ẹranko ènìà%
+204539     Yoruba                                                   nìnà nìnà                                               nìnà%
+204552     Yoruba                                               oní-bárà oní-bárà                                           oní-bárà%
+204559     Yoruba                                                 ìgbàjà ìgbàjà                                             ìgbàjà%
+204571     Yoruba                                           olórí àlùfáà olórí àlùfáà                                       olórí àlùfáà%
+204626     Yoruba                                               ṣegbígbà ṣegbígbà                                           ṣegbígbà%
+204651     Yoruba                                                    gbà gbà                                                gbà%
+204674     Yoruba                                                 nílàjà nílàjà                                             nílàjà%
+204690     Yoruba                                            kùnfún túbà kùnfún túbà                                        kùnfún túbà%
+204721     Yoruba                                         tí a lè rì gbà tí a lè rì gbà                                     tí a lè rì gbà%
+204752     Yoruba                                                 faradà faradà                                             faradà%
+204753     Yoruba                                               dáralẹwà dáralẹwà                                           dáralẹwà%
+204783     Yoruba                                                níyangà níyangà                                            níyangà%
+204793     Yoruba                                                   láyà láyà                                               láyà%
+204824     Yoruba                                                 lọyàyà lọyàyà                                             lọyàyà%
+204841     Yoruba                                                 láwàdà láwàdà                                             láwàdà%
+204844     Yoruba                                               bákannáà bákannáà                                           bákannáà%
+204882     Yoruba                                             bíbàjẹrírà bíbàjẹrírà                                         bíbàjẹrírà%
+204894     Yoruba                                                  níkàà níkàà                                              níkàà%
+204896     Yoruba                                             gẹgẹbí àṣà gẹgẹbí àṣà                                         gẹgẹbí àṣà%
+204936     Yoruba                                              ní tálákà ní tálákà                                          ní tálákà%
+204942     Yoruba                                              fọwọ sọyà fọwọ sọyà                                          fọwọ sọyà%
+205001     Yoruba                                                  ẹlẹwà ẹlẹwà                                              ẹlẹwà%
+205026     Yoruba                                             rékọjá àlà rékọjá àlà                                         rékọjá àlà%
+205047     Yoruba                                                   jìnà jìnà                                               jìnà%
+205105     Yoruba                                                 tiwúrà tiwúrà                                             tiwúrà%
+205184     Yoruba                                                 kòtọnà kòtọnà                                             kòtọnà%
+205217     Yoruba                                               ìyá àgbà ìyá àgbà                                           ìyá àgbà%
+205263     Yoruba                                                kòṣẽgbà kòṣẽgbà                                            kòṣẽgbà%
+205299     Yoruba                                                   níkà níkà                                               níkà%
+205322     Yoruba                                               ṣíṣìlọnà ṣíṣìlọnà                                           ṣíṣìlọnà%
+205323     Yoruba                                                 ṣìlọnà ṣìlọnà                                             ṣìlọnà%
+205372     Yoruba                                           gẹgẹbí ìlànà gẹgẹbí ìlànà                                       gẹgẹbí ìlànà%
+205393     Yoruba                                                 gbígbà gbígbà                                             gbígbà%
+205394     Yoruba                                               rírí gbà rírí gbà                                           rírí gbà%
+205396     Yoruba                                                 ṣẽ gbà ṣẽ gbà                                             ṣẽ gbà%
+205472     Yoruba                                               lèyípadà lèyípadà                                           lèyípadà%
+205488     Yoruba                                                 tálákà tálákà                                             tálákà%
+205570     Yoruba                                                  oníjà oníjà                                              oníjà%
+205585     Yoruba                                                  ósẽkà ósẽkà                                              ósẽkà%
+205604     Yoruba                                                àràbárà àràbárà                                            àràbárà%
+205627     Yoruba                                               dìbàjẹrà dìbàjẹrà                                           dìbàjẹrà%
+205633     Yoruba                                                 típẹtà típẹtà                                             típẹtà%
+205634     Yoruba                                                 ẹníìkà ẹníìkà                                             ẹníìkà%
+205672     Yoruba                                            nìgbàkannáà nìgbàkannáà                                        nìgbàkannáà%
+205673     Yoruba                                              ṣòótọníwà ṣòótọníwà                                          ṣòótọníwà%
+205676     Yoruba                                                  ẹkẹfà ẹkẹfà                                              ẹkẹfà%
+205694     Yoruba                                             tiyanulárà tiyanulárà                                         tiyanulárà%
+205696     Yoruba                                          tóládùn-èròjà tóládùn-èròjà                                      tóládùn-èròjà%
+205743     Yoruba                                                 gàgàrà gàgàrà                                             gàgàrà%
+205770     Yoruba                                               fífaradà fífaradà                                           fífaradà%
+205786     Yoruba                                                 burẹwà burẹwà                                             burẹwà%
+205802     Yoruba                                                kòlègbà kòlègbà                                            kòlègbà%
+205831     Yoruba                                                kòsènìà kòsènìà                                            kòsènìà%
+205838     Yoruba                                               kọja-àbà kọja-àbà                                           kọja-àbà%
+205848     Yoruba                                                    ìkà ìkà                                                ìkà%
+205857     Yoruba                                         kòtúraká sènìà kòtúraká sènìà                                     kòtúraká sènìà%
+205869     Yoruba                                                nígbòyà nígbòyà                                            nígbòyà%
+205880     Yoruba                                            alágbáraìkà alágbáraìkà                                        alágbáraìkà%
+205899     Yoruba                                                nìwàìkà nìwàìkà                                            nìwàìkà%
+205901     Yoruba                                                 ẹhànnà ẹhànnà                                             ẹhànnà%
+206042     Yoruba                                              fọwọ-sọyà fọwọ-sọyà                                          fọwọ-sọyà%
+206054     Yoruba                                                   yànà yànà                                               yànà%
+206056     Yoruba                                                   ṣìnà ṣìnà                                               ṣìnà%
+206070     Yoruba                                                 bomilà bomilà                                             bomilà%
+206071     Yoruba                                                  bù-là bù-là                                              bù-là%
+206077     Yoruba                                                tọ sọnà tọ sọnà                                            tọ sọnà%
+206079     Yoruba                                               ṣe amọnà ṣe amọnà                                           ṣe amọnà%
+206089     Yoruba                                                     fà fà                                                 fà%
+206100     Yoruba                                                 rí-gbà rí-gbà                                             rí-gbà%
+206102     Yoruba                               tún ìwé kíkọ ṣe fún títà tún ìwé kíkọ ṣe fún títà                           tún ìwé kíkọ ṣe fún títà%
+206153     Yoruba                                                   kùnà kùnà                                               kùnà%
+206165     Yoruba                                                 yípadà yípadà                                             yípadà%
+206176     Yoruba                                                 rí gbà rí gbà                                             rí gbà%
+206205     Yoruba                                                 dẹrùbà dẹrùbà                                             dẹrùbà%
+206213     Yoruba                                               tẹ́wọgbà tẹ́wọgbà                                           tẹ́wọgbà%
+206215     Yoruba                                              jènìyàntà jènìyàntà                                          jènìyàntà%
+206216     Yoruba                                                   jítà jítà                                               jítà%
+206230     Yoruba                                                 kòlọnà kòlọnà                                             kòlọnà%
+206262     Yoruba                                                 dílọnà dílọnà                                             dílọnà%
+206274     Yoruba                                               ṣe ìdènà ṣe ìdènà                                           ṣe ìdènà%
+206275     Yoruba                                                tì láyà tì láyà                                            tì láyà%
+206326     Yoruba                                           yílọkàn padà yílọkàn padà                                       yílọkàn padà%
+206328     Yoruba                                             pa níyè dà pa níyè dà                                         pa níyè dà%
+206359     Yoruba                                                   lànà lànà                                               lànà%
+206368     Yoruba                                                dí lọnà dí lọnà                                            dí lọnà%
+206392     Yoruba                                                dá lábà dá lábà                                            dá lábà%
+206398     Yoruba                                                  gbèjà gbèjà                                              gbèjà%
+206408     Yoruba                                                 fìtínà fìtínà                                             fìtínà%
+206467     Yoruba                                                   kọyà kọyà                                               kọyà%
+206469     Yoruba                                                yí-padà yí-padà                                            yí-padà%
+207359     Yoruba                                                   dénà dénà                                               dénà%
+207360     Yoruba                                                   dínà dínà                                               dínà%
+207366     Yoruba                                                 paláyà paláyà                                             paláyà%
+207368     Yoruba                                               pa àpatà pa àpatà                                           pa àpatà%
+207382     Yoruba                                                  dagbà dagbà                                              dagbà%
+207472     Yoruba                                            ṣe àìbìkítà ṣe àìbìkítà                                        ṣe àìbìkítà%
+207476     Yoruba                                                 fẹnúrà fẹnúrà                                             fẹnúrà%
+207477     Yoruba                                               fẹnúrájà fẹnúrájà                                           fẹnúrájà%
+207526     Yoruba                                                   hùwà hùwà                                               hùwà%
+207574     Yoruba                                                   kọlà kọlà                                               kọlà%

@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using Cleaner.Core.DB.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace Cleaner.Core.DB
 {
-
-    public class DataDbContext : DbContext
+    public class DataOldDbContext : DbContext
     {
         //private readonly ValueConverter _nullableStringConverter = new ValueConverter<string, string>(v => v == null ? "" : v, v => v);
-        private readonly ILogger<DataDbContext> _logger;
+        private readonly ILogger<DataOldDbContext> _logger;
         private readonly AppSettings _appSettings;
 
         public virtual DbSet<Universal> Universals { get; set; }
@@ -33,7 +28,7 @@ namespace Cleaner.Core.DB
         public virtual DbSet<BaseWords> BaseWords { get; set; }
         public virtual DbSet<Words> Words { get; set; }
 
-        public DataDbContext(DbContextOptions<DataDbContext> options, ILogger<DataDbContext> logger, IOptions<AppSettings> appSettings) : base(options)
+        public DataOldDbContext(DbContextOptions<DataOldDbContext> options, ILogger<DataOldDbContext> logger, IOptions<AppSettings> appSettings) : base(options)
         {
             _logger = logger;
             _appSettings = appSettings.Value;
@@ -47,7 +42,7 @@ namespace Cleaner.Core.DB
 
         private void OnStateChanged(object sender, EntityStateChangedEventArgs e)
         {
-            foreach (var entry in e.Entry.Properties.Where(x=>x.IsModified))
+            foreach (var entry in e.Entry.Properties.Where(x => x.IsModified))
             {
                 _logger.LogInformation(string.Format("{0,-10} : {1,10} => {2}", entry.Metadata.Name.Trim(), "\"" + entry.OriginalValue.ToString().Trim() + "\"", "\"" + entry.CurrentValue.ToString().Trim() + "\""));
             }
@@ -131,7 +126,7 @@ namespace Cleaner.Core.DB
                 entity.HasKey(x => x.Id);
 
                 entity.HasOne(x => x.Language).WithMany(x => x.Characters).HasForeignKey(x => x.LangId);
-                
+
             });
 
             modelBuilder.Entity<BaseWords>(entity =>

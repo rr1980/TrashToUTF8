@@ -23,12 +23,14 @@ namespace Cleaner.Services.Replace
         private readonly ILogger<DbReplacerService> _logger;
         private readonly AppSettings _appSettings;
         private readonly DataDbContext _dataDbContext;
+        private readonly DataOldDbContext _dataOldDbContext;
 
-        public DbReplacerService(ILogger<DbReplacerService> logger, IOptions<AppSettings> appSettings, DataDbContext dataDbContext)
+        public DbReplacerService(ILogger<DbReplacerService> logger, IOptions<AppSettings> appSettings, DataDbContext dataDbContext, DataOldDbContext dataOldDbContext)
         {
             _logger = logger;
             _appSettings = appSettings.Value;
             _dataDbContext = dataDbContext;
+            _dataOldDbContext = dataOldDbContext;
 
             _logger.LogDebug("DbReplacerService init...");
         }
@@ -37,6 +39,192 @@ namespace Cleaner.Services.Replace
         public void Stop()
         {
             _logger.LogDebug("DbReplacerService stop...");
+        }
+
+        public async Task ReplaceHugos<T>(Expression<Func<T, long>> idSelector, Expression<Func<T, string>> valueSelector, Expression<Func<T, string>> langSelector, char[] searchChars, string[] includes, Expression<Func<T, bool>> searchParameter = null, string name = null) where T : class, IEntity
+        {
+            Func<T, long> idGetter;
+            Func<T, string> langGetter;
+
+
+            Func<T, string> valueGetter;
+            Action<T, string> valueSetter;
+
+            CreateGetterSetter(valueSelector, out valueGetter, out valueSetter);
+            CreateGetter(idSelector, out idGetter);
+            CreateGetter(langSelector, out langGetter);
+
+            var _name = string.IsNullOrEmpty(name) ? typeof(T).Name : name;
+
+            //_dataDbContext.Database.OpenConnection();
+            List<T> entities = null;
+            if (searchParameter != null)
+            {
+                entities = await _dataDbContext.Set<T>().Where(searchParameter).ToListAsync();
+            }
+            else
+            {
+                entities = await _dataDbContext.Set<T>().ToListAsync();
+            }
+
+            if (entities == null)
+            {
+                return;
+            }
+
+            var path = Path.Combine(@"D:\Projekte\TrashToUTF8\Cleaner\Results", "Repaired_" + _name + ".txt");
+
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+
+            Console.WriteLine("Suche in: " + _name);
+
+            List<T> results = new List<T>();
+
+
+            foreach (var entity in entities)
+            {
+                string value = null;
+                try
+                {
+                    value = valueGetter(entity);
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+
+                foreach (var item in searchChars)
+                {
+                    if (value != null && !string.IsNullOrEmpty(value) && value.Contains(item))
+                    {
+                        results.Add(entity);
+                    }
+                }
+            }
+
+            var count = results.Count();
+
+            var ids = results.Select(x => x.Id);
+
+            var olds = await _dataOldDbContext.Set<T>().Where(x => ids.Contains(idGetter(x))).ToListAsync();
+
+            using (StreamWriter outputFile = new StreamWriter(path))
+            {
+                var counter = 0;
+
+                foreach (var item in results)
+                {
+                    counter++;
+
+                    var old = olds.FirstOrDefault(x => idGetter(x) == idGetter(item));
+                    if(old == null)
+                    {
+                        continue;
+                    }
+
+                    var percent = CalculateSimilarity(valueGetter(item), valueGetter(old));
+                    Console.WriteLine(string.Format("{0}  {1,-10} {2,50} = {3, -50} {4}%", counter + "/" + results.Count(), idGetter(item), valueGetter(item), valueGetter(old), percent));
+
+                    if (percent < 50)
+                    {
+                        ConsoleKeyInfo keyInput;
+
+                        Console.WriteLine("LeftArrow for NO / RightArrow for YES");
+                        do
+                        {
+                            keyInput = Console.ReadKey();
+                        } while (keyInput.Key != ConsoleKey.RightArrow && keyInput.Key != ConsoleKey.LeftArrow);
+
+                        if (keyInput.Key == ConsoleKey.RightArrow)
+                        {
+                            outputFile.WriteLine(string.Format("{0,-10} {1,-10} {2,50} {3,-50} {4}%", idGetter(item), langGetter(item), valueGetter(item), valueGetter(old), percent));
+
+                            valueSetter(item, valueGetter(old));
+                            _dataDbContext.Update(item);
+
+
+                            Console.WriteLine("Übernehmen");
+                        }
+                        else if (keyInput.Key == ConsoleKey.LeftArrow)
+                        {
+                            Console.WriteLine("NOT");
+                        }
+                    }
+                    else
+                    {
+                        outputFile.WriteLine(string.Format("{0,-10} {1,-10} {2,50} {3,-50} {4}%", idGetter(item), langGetter(item), valueGetter(item), valueGetter(old), percent));
+
+                        valueSetter(item, valueGetter(old));
+                        _dataDbContext.Update(item);
+
+                        //outputFile.WriteLine(string.Format("{0,-10} {1,-10} {2,50} {2,-50}", idGetter(item), langGetter(item), valueGetter(item), valueGetter(old)));
+                    }
+
+                    //outputFile.WriteLine(string.Format("{0,-10} {1,-10} {2,-50}", idGetter(item), langGetter(item), valueGetter(item)));
+
+                }
+
+                await _dataDbContext.SaveChangesAsync();
+                //outputFile.WriteLine(Environment.NewLine + "Gefunden: " + count.ToString("N0"));
+            }
+
+
+            //_dataDbContext.Database.CloseConnection();
+
+            Console.WriteLine("FERTIG!");
+
+            await Task.CompletedTask;
+
+        }
+
+        double CalculateSimilarity(string source, string target)
+        {
+            if ((source == null) || (target == null)) return 0.0;
+            if ((source.Length == 0) || (target.Length == 0)) return 0.0;
+            if (source == target) return 100;
+
+            int stepsToSame = ComputeLevenshteinDistance(source, target);
+            return Math.Round((1.0 - ((double)stepsToSame / (double)Math.Max(source.Length, target.Length))) * 100);
+        }
+
+        int ComputeLevenshteinDistance(string source, string target)
+        {
+            if ((source == null) || (target == null)) return 0;
+            if ((source.Length == 0) || (target.Length == 0)) return 0;
+            if (source == target) return source.Length;
+
+            int sourceWordCount = source.Length;
+            int targetWordCount = target.Length;
+
+            // Step 1
+            if (sourceWordCount == 0)
+                return targetWordCount;
+
+            if (targetWordCount == 0)
+                return sourceWordCount;
+
+            int[,] distance = new int[sourceWordCount + 1, targetWordCount + 1];
+
+            // Step 2
+            for (int i = 0; i <= sourceWordCount; distance[i, 0] = i++) ;
+            for (int j = 0; j <= targetWordCount; distance[0, j] = j++) ;
+
+            for (int i = 1; i <= sourceWordCount; i++)
+            {
+                for (int j = 1; j <= targetWordCount; j++)
+                {
+                    // Step 3
+                    int cost = (target[j - 1] == source[i - 1]) ? 0 : 1;
+
+                    // Step 4
+                    distance[i, j] = Math.Min(Math.Min(distance[i - 1, j] + 1, distance[i, j - 1] + 1), distance[i - 1, j - 1] + cost);
+                }
+            }
+
+            return distance[sourceWordCount, targetWordCount];
         }
 
         //public async Task FindHugos<T>(Expression<Func<T, long>> idSelector, Expression<Func<T, string>> valueSelector, Expression<Func<T, string>> langSelector, char[] searchChars, Expression<Func<T, object>>[] includes, Expression<Func<T, bool>> searchParameter = null, string name = null) where T : class

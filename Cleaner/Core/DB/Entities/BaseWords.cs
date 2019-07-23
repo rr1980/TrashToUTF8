@@ -5,7 +5,12 @@ using System.Text;
 
 namespace Cleaner.Core.DB.Entities
 {
-    public class Abbreviations
+    public interface IEntity
+    {
+        long Id { get; set; }
+    }
+
+    public class Abbreviations : IEntity
     {
         public long Id { get; set; }
 
@@ -13,14 +18,14 @@ namespace Cleaner.Core.DB.Entities
         public string Explanation { get; set; }
     }
 
-    public class Basewordexamples
+    public class Basewordexamples : IEntity
     {
         public long Id { get; set; }
 
         public string Text { get; set; }
     }
 
-    public class Feedback
+    public class Feedback : IEntity
     {
         public long Id { get; set; }
 
@@ -28,14 +33,14 @@ namespace Cleaner.Core.DB.Entities
         public string Comment { get; set; }
     }
 
-    public class Universal
+    public class Universal : IEntity
     {
         public long Id { get; set; }
 
         public string Word { get; set; }
     }
 
-    public class Ui_Translations
+    public class Ui_Translations : IEntity
     {
         public long Id { get; set; }
 
@@ -43,14 +48,14 @@ namespace Cleaner.Core.DB.Entities
         public string Text { get; set; }
     }
 
-    public class Statistic
+    public class Statistic : IEntity
     {
         public long Id { get; set; }
 
         public string Keyword { get; set; }
     }
 
-    public class Functions
+    public class Functions : IEntity
     {
         public long Id { get; set; }
 
@@ -58,7 +63,7 @@ namespace Cleaner.Core.DB.Entities
         public string Function { get; set; }
     }
 
-    public class Grammar
+    public class Grammar : IEntity
     {
         public long Id { get; set; }
 
@@ -66,7 +71,7 @@ namespace Cleaner.Core.DB.Entities
         public string Text { get; set; }
     }
 
-    public class Connections
+    public class Connections : IEntity
     {
         public long Id { get; set; }
 
@@ -79,7 +84,7 @@ namespace Cleaner.Core.DB.Entities
         public virtual Words Word { get; set; }
     }
 
-    public class LanguageTranslations
+    public class LanguageTranslations : IEntity
     {
         public LanguageTranslations()
         {
@@ -95,7 +100,7 @@ namespace Cleaner.Core.DB.Entities
 
     }
 
-    public class Languages
+    public class Languages : IEntity
     {
         public Languages()
         {
@@ -114,7 +119,7 @@ namespace Cleaner.Core.DB.Entities
         public virtual ICollection<BaseWords> BaseWords { get; set; }
     }
 
-    public class Characters
+    public class Characters : IEntity
     {
         public long Id { get; set; }
         public string Name { get; set; }
@@ -124,7 +129,7 @@ namespace Cleaner.Core.DB.Entities
         public virtual Languages Language { get; set; }
     }
 
-    public class Words
+    public class Words : IEntity
     {
         public Words()
         {
@@ -137,7 +142,7 @@ namespace Cleaner.Core.DB.Entities
         public virtual ICollection<Connections> BaseWordLinks { get; set; }
     }
 
-    public class BaseWords
+    public class BaseWords : IEntity
     {
         public BaseWords()
         {
