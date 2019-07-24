@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrashToUTF8", "TrashToUTF8\TrashToUTF8.csproj", "{F5FF856A-2EC0-4218-AFDA-4FE397958F70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cleaner", "Cleaner\Cleaner.csproj", "{77C4AE07-1A6F-42B0-A741-9A0446E33DA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cleaner", "Cleaner\Cleaner.csproj", "{77C4AE07-1A6F-42B0-A741-9A0446E33DA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xLingua.Inspector", "xLingua.Inspector\xLingua.Inspector.csproj", "{088CD4F5-DF14-4390-98EA-BE69E995096B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{77C4AE07-1A6F-42B0-A741-9A0446E33DA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77C4AE07-1A6F-42B0-A741-9A0446E33DA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77C4AE07-1A6F-42B0-A741-9A0446E33DA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{088CD4F5-DF14-4390-98EA-BE69E995096B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{088CD4F5-DF14-4390-98EA-BE69E995096B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{088CD4F5-DF14-4390-98EA-BE69E995096B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{088CD4F5-DF14-4390-98EA-BE69E995096B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
