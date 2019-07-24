@@ -14,7 +14,9 @@ namespace xLingua.Inspector
     class Program
     {
         static char[] searchChars = new char[] {
+
                     '�',
+
                     'Â',
                     'Ã',
                     '«',
