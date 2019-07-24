@@ -1,0 +1,96 @@
+NOT FIXED ID: 942148
+Old           fukkéelu … ak benn
+Wrong         fukk�elu � ak benn
+
+NOT FIXED ID: 942168
+Old           fukkéelu … ak juróom
+Wrong         fukk�elu � ak jur�om
+
+NOT FIXED ID: 942173
+Old           fukkéelu … ak juróom-benn
+Wrong         fukk�elu � ak jur�om-benn
+
+NOT FIXED ID: 942178
+Old           fukkéelu … ak juróom-ñaar
+Wrong         fukk�elu � ak jur�om-�aar
+
+NOT FIXED ID: 942188
+Old           fukkéelu … ak juróom-ñeent
+Wrong         fukk�elu � ak jur�om-�eent
+
+NOT FIXED ID: 942183
+Old           fukkéelu … ak juróom-ñett
+Wrong         fukk�elu � ak jur�om-�ett
+
+NOT FIXED ID: 942153
+Old           fukkéelu … ak ñaar
+Wrong         fukk�elu � ak �aar
+
+NOT FIXED ID: 942163
+Old           fukkéelu … ak ñeent
+Wrong         fukk�elu � ak �eent
+
+NOT FIXED ID: 942158
+Old           fukkéelu … ak ñett
+Wrong         fukk�elu � ak �ett
+
+NOT FIXED ID: 2813003
+Old           mwayal�
+Wrong         mwayal?
+
+NOT FIXED ID: 3051119
+Old           temwayal�
+Wrong         temwayal?
+
+NOT FIXED ID: 3051118
+Old           tetwayal�
+Wrong         tetwayal?
+
+NOT FIXED ID: 3051116
+Old           tewayal�
+Wrong         tewayal?
+
+NOT FIXED ID: 3051117
+Old           teyayal�
+Wrong         teyayal?
+
+NOT FIXED ID: 2813002
+Old           twayal�
+Wrong         twayal?
+
+NOT FIXED ID: 3894797
+Old           буду совер�енствовать
+Wrong         ???? ????????????????
+
+NOT FIXED ID: 3908511
+Old           бу�у� собирать
+Wrong         ????? ????????
+
+NOT FIXED ID: 3890971
+Old           вырастающе�
+Wrong         ???????????
+
+NOT FIXED ID: 3902746
+Old           отч��дающая
+Wrong         ???????????
+
+NOT FIXED ID: 3889103
+Old           подраз�мевавший
+Wrong         ???????????????
+
+NOT FIXED ID: 3904637
+Old           пораж�й
+Wrong         ???????
+
+NOT FIXED ID: 3906565
+Old           просматривающ�й
+Wrong         ???????????????
+
+NOT FIXED ID: 3904650
+Old           п�рывай
+Wrong         ???????
+
+NOT FIXED ID: 3907054
+Old           разо�рали
+Wrong         ?????????
+

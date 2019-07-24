@@ -14,7 +14,7 @@ namespace xLingua.Inspector
     class Program
     {
         static char[] searchChars = new char[] {
-                    //'�',
+                    '�',
                     'Â',
                     'Ã',
                     '«',
@@ -65,7 +65,6 @@ namespace xLingua.Inspector
 
                 //Start<Universal>(x => x.Id, x => x.Word, rlySave);
 
-
                 Start<Statistic>(x => x.Id, x => x.Keyword, rlySave);
 
                 Start<Functions>(x => x.Id, x => x.Function, rlySave);
@@ -88,9 +87,9 @@ namespace xLingua.Inspector
                 //Start<Characters>(x => x.Id, x => x.Name, rlySave);
                 //Start<Characters>(x => x.Id, x => x.Tolerant, rlySave);
 
-                //Start<Words>(x => x.Id, x => x.Word, rlySave);
+                Start<Words>(x => x.Id, x => x.Word, rlySave);
 
-                //Start<BaseWords>(x => x.Id, x => x.Word, rlySave);
+                Start<BaseWords>(x => x.Id, x => x.Word, rlySave);
 
                 Console.WriteLine("Alles FERTIG!!!");
 

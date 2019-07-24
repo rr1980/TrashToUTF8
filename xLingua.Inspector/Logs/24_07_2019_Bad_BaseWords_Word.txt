@@ -1,0 +1,52 @@
+NOT FIXED ID: 200671
+Old           was für …
+Wrong         was f�r �
+
+NOT FIXED ID: 200875
+Old           látí…….ḋé
+Wrong         l�t텅.?�
+
+NOT FIXED ID: 200955
+Old           kòse….bẹní
+Wrong         k�se�.b?n�
+
+NOT FIXED ID: 200959
+Old           láti…..ṙí
+Wrong         l�ti�..?�
+
+NOT FIXED ID: 201429
+Old           Bawo ni o se le sọ ….. ni Yorùbá
+Wrong         Bawo ni o se le s? �.. ni Yor�b�
+
+NOT FIXED ID: 201502
+Old           Orukọ mi ni …
+Wrong         Oruk? mi ni �
+
+NOT FIXED ID: 213005
+Old           okubál�
+Wrong         okub�l?
+
+NOT FIXED ID: 213677
+Old           okuggy�
+Wrong         okuggy?
+
+NOT FIXED ID: 218961
+Old           okwal�
+Wrong         okwal?
+
+NOT FIXED ID: 261875
+Old           grâce �
+Wrong         gr�ce ?
+
+NOT FIXED ID: 261878
+Old           contrairement �
+Wrong         contrairement ?
+
+NOT FIXED ID: 261881
+Old           par rapport �
+Wrong         par rapport ?
+
+NOT FIXED ID: 262069
+Old           in profondit�
+Wrong         in profondit?
+
