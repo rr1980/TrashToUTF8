@@ -1,18 +1,14 @@
-﻿using System.Linq;
-using Cleaner.Core.DB.Entities;
+﻿using System;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
-namespace Cleaner.Core.DB
+namespace xLingua.Entities
 {
-
     public class DataDbContext : DbContext
     {
+        //string conn = "Server=192.168.254.202;port=3306;Database=xLingua;Uid=root;Pwd=gmbh123;CharSet=utf8;";
+        string conn = "server=172.20.20.21;port=3306;database=xLinguaCheck;uid=root;password=gmbh123!;CharSet=utf8;";
         //private readonly ValueConverter _nullableStringConverter = new ValueConverter<string, string>(v => v == null ? "" : v, v => v);
-        private readonly ILogger<DataDbContext> _logger;
-        private readonly AppSettings _appSettings;
 
         public virtual DbSet<Universal> Universals { get; set; }
         public virtual DbSet<Ui_Translations> Ui_Translations { get; set; }
@@ -29,24 +25,17 @@ namespace Cleaner.Core.DB
         public virtual DbSet<BaseWords> BaseWords { get; set; }
         public virtual DbSet<Words> Words { get; set; }
 
-        public DataDbContext(DbContextOptions<DataDbContext> options, ILogger<DataDbContext> logger, IOptions<AppSettings> appSettings) : base(options)
-        {
-            _logger = logger;
-            _appSettings = appSettings.Value;
-
-            //ChangeTracker.StateChanged += OnStateChanged;
-        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-        }
+            optionsBuilder.UseLazyLoadingProxies();
+            optionsBuilder.UseMySql(conn, b => {
+                b.UnicodeCharSet(CharSet.Utf8mb4);
+            });
 
-        private void OnStateChanged(object sender, EntityStateChangedEventArgs e)
-        {
-            foreach (var entry in e.Entry.Properties.Where(x=>x.IsModified))
-            {
-                _logger.LogInformation(string.Format("{0,-10} : {1,10} => {2}", entry.Metadata.Name.Trim(), "\"" + entry.OriginalValue.ToString().Trim() + "\"", "\"" + entry.CurrentValue.ToString().Trim() + "\""));
-            }
+            optionsBuilder.EnableDetailedErrors();
+            optionsBuilder.EnableSensitiveDataLogging();
+            optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -127,7 +116,7 @@ namespace Cleaner.Core.DB
                 entity.HasKey(x => x.Id);
 
                 entity.HasOne(x => x.Language).WithMany(x => x.Characters).HasForeignKey(x => x.LangId);
-                
+
             });
 
             modelBuilder.Entity<BaseWords>(entity =>

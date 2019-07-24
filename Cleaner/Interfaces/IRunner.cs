@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Cleaner.Core.DB.Entities;
+using xLingua.Entities;
 
 namespace Cleaner.Interfaces
 {

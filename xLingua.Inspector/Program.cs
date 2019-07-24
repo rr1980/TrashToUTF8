@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Newtonsoft.Json;
+using xLingua.Entities;
 
 namespace xLingua.Inspector
 {

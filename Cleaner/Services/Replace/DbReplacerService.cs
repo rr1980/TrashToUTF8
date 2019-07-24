@@ -3,7 +3,6 @@ using System.Text.RegularExpressions;
 using System.Linq;
 using System.Threading.Tasks;
 using Cleaner.Core;
-using Cleaner.Core.DB;
 using Cleaner.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -11,10 +10,10 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
-using Cleaner.Core.DB.Entities;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.IO;
+using xLingua.Entities;
 
 namespace Cleaner.Services.Replace
 {

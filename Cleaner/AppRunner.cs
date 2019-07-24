@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Linq;
-using System.Linq.Expressions;
 using Cleaner.Core;
-using Cleaner.Core.DB.Entities;
 using Cleaner.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using xLingua.Entities;
 
 namespace Cleaner
 {

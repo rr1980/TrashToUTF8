@@ -1,17 +1,15 @@
 ﻿using System.Linq;
-using Cleaner.Core.DB.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Cleaner.Core.DB
+namespace xLingua.Entities
 {
     public class DataOldDbContext : DbContext
     {
         //private readonly ValueConverter _nullableStringConverter = new ValueConverter<string, string>(v => v == null ? "" : v, v => v);
         private readonly ILogger<DataOldDbContext> _logger;
-        private readonly AppSettings _appSettings;
 
         public virtual DbSet<Universal> Universals { get; set; }
         public virtual DbSet<Ui_Translations> Ui_Translations { get; set; }
@@ -28,10 +26,9 @@ namespace Cleaner.Core.DB
         public virtual DbSet<BaseWords> BaseWords { get; set; }
         public virtual DbSet<Words> Words { get; set; }
 
-        public DataOldDbContext(DbContextOptions<DataOldDbContext> options, ILogger<DataOldDbContext> logger, IOptions<AppSettings> appSettings) : base(options)
+        public DataOldDbContext(DbContextOptions<DataOldDbContext> options, ILogger<DataOldDbContext> logger) : base(options)
         {
             _logger = logger;
-            _appSettings = appSettings.Value;
 
             //ChangeTracker.StateChanged += OnStateChanged;
         }
