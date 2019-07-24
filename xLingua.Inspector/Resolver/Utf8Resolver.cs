@@ -169,26 +169,6 @@ namespace xLingua.Inspector.Resolver
             return new string(asciiChars);
         }
 
-        bool disposed = false;
-        SafeHandle handle = new SafeFileHandle(IntPtr.Zero, true);
-        protected override void Dispose(bool disposing)
-        {
-            if (disposed)
-                return;
-
-            if (disposing)
-            {
-                handle.Dispose();
-                // Free any other managed objects here.
-                //
-            }
-
-            // Free any unmanaged objects here.
-            //
-
-            disposed = true;
-            // Call base class implementation.
-            base.Dispose(disposing);
-        }
+      
     }
 }

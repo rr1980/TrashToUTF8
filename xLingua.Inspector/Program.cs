@@ -63,7 +63,7 @@ namespace xLingua.Inspector
                 Start<Feedback>(x => x.Id, x => x.Text, rlySave);
                 Start<Feedback>(x => x.Id, x => x.Comment, rlySave);
 
-                Start<Universal>(x => x.Id, x => x.Word, rlySave);
+                //Start<Universal>(x => x.Id, x => x.Word, rlySave);
 
 
                 Start<Statistic>(x => x.Id, x => x.Keyword, rlySave);
@@ -85,12 +85,12 @@ namespace xLingua.Inspector
                 Start<Languages>(x => x.Id, x => x.EnglishName, rlySave);
                 Start<Languages>(x => x.Id, x => x.CultureName, rlySave);
 
-                Start<Characters>(x => x.Id, x => x.Name, rlySave);
-                Start<Characters>(x => x.Id, x => x.Tolerant, rlySave);
+                //Start<Characters>(x => x.Id, x => x.Name, rlySave);
+                //Start<Characters>(x => x.Id, x => x.Tolerant, rlySave);
 
-                Start<Words>(x => x.Id, x => x.Word, rlySave);
+                //Start<Words>(x => x.Id, x => x.Word, rlySave);
 
-                Start<BaseWords>(x => x.Id, x => x.Word, rlySave);
+                //Start<BaseWords>(x => x.Id, x => x.Word, rlySave);
 
                 Console.WriteLine("Alles FERTIG!!!");
 

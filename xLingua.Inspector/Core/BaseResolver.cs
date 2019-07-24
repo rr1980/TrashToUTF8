@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace xLingua.Inspector.Core
 {
-    public abstract class BaseResolver<T> : IDisposable where T : class
+    public abstract class BaseResolver<T> where T : class
     {
         private string _logPath_bad;
         private string _logPath_good;
@@ -14,10 +14,6 @@ namespace xLingua.Inspector.Core
         private StreamWriter _sw_good;
 
 
-        ~BaseResolver()
-        {
-            Dispose(false);
-        }
 
         public BaseResolver(string logPath, Expression<Func<T, string>> columnProp)
         {
@@ -62,6 +58,19 @@ namespace xLingua.Inspector.Core
                 }
 
                 _sw_bad.WriteLine(msg);
+            }
+        }
+
+        internal void Close()
+        {
+            if (_sw_bad != null)
+            {
+                _sw_bad.Close();
+            }
+
+            if (_sw_good != null)
+            {
+                _sw_good.Close();
             }
         }
 
@@ -190,37 +199,6 @@ namespace xLingua.Inspector.Core
 
 
             return true;
-        }
-
-        bool disposed = false;
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposed)
-                return;
-
-            if (disposing)
-            {
-                if (_sw_bad != null)
-                {
-                    _sw_bad.Close();
-                    _sw_bad.Dispose();
-                }
-
-                if (_sw_good != null)
-                {
-                    _sw_good.Close();
-                    _sw_good.Dispose();
-                }
-            }
-
-            disposed = true;
         }
     }
 }

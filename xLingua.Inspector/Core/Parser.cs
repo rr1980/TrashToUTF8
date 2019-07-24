@@ -57,7 +57,8 @@ namespace xLingua.Inspector.Core
                         }
                     }
 
-                    resolver.Dispose();
+                    resolver.Close();
+                    //resolver.Dispose();
                 }
 
                 if (save)
