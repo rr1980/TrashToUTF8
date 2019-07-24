@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq.Expressions;
 using System.Text;
 using Newtonsoft.Json;
@@ -16,27 +15,7 @@ namespace xLingua.Inspector
         static char[] searchChars = new char[] {
 
                     '�',
-
-                    'Â',
-                    'Ã',
-                    '«',
-                    '‘',
-                    '¹',
-                    '“',
-                    'Ã',
-                    'Ð',
-                    'Å',
-                    '©',
-                    'º',
-                    '‡',
-                    '™',
-                    '…',
-                    'Å',
-                    '¾',
-                    '†',
-                    '»',
-                    '°',
-                    'Ñ',
+                    'Â','Ã','«','‘','¹','“','Ã','Ð','Å','©','º','‡','™','…','Å','¾','†','»','°','Ñ',
                     //'â',
                 };
 
