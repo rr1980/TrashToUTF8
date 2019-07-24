@@ -426,7 +426,7 @@ namespace Cleaner.Services.Replace
                 {
                     await _dataDbContext.SaveChangesAsync();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     throw;
                 }
