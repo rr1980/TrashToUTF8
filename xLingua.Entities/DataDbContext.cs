@@ -7,8 +7,8 @@ namespace xLingua.Entities
     public class DataDbContext : DbContext
     {
         //string conn = "Server=192.168.254.202;port=3306;Database=xLingua;Uid=root;Pwd=gmbh123;CharSet=utf8;";
-        string conn = "server=172.20.20.21;port=3306;database=xLinguaCheck;uid=root;password=gmbh123!;CharSet=utf8;";
-        //private readonly ValueConverter _nullableStringConverter = new ValueConverter<string, string>(v => v == null ? "" : v, v => v);
+        //string conn = "server=172.20.20.21;port=3306;database=xLinguaCheck;uid=root;password=gmbh123!;CharSet=utf8;";
+        string conn = "server=172.20.20.21;port=3306;database=xLingua;uid=root;password=gmbh123!;CharSet=utf8;";
 
         public virtual DbSet<Universal> Universals { get; set; }
         public virtual DbSet<Ui_Translations> Ui_Translations { get; set; }

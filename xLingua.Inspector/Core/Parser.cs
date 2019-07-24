@@ -8,11 +8,28 @@ using xLingua.Entities;
 
 namespace xLingua.Inspector.Core
 {
-    public static class Parser
+    public class Parser<T> where T : class, IEntity
     {
-        public static List<T> Parse<T>(Expression<Func<T, long>> idProp, Expression<Func<T, string>> columnProp, char[] searchChars, BaseResolver resolver = null) where T : class
+        Expression<Func<T, long>> idProp;
+        Expression<Func<T, string>> columnProp;
+        char[] searchChars;
+        BaseResolver<T> resolver = null;
+        bool save = false;
+
+        public Parser(Expression<Func<T, long>> idProp, Expression<Func<T, string>> columnProp, char[] searchChars, BaseResolver<T> resolver = null, bool save = false)
+        {
+            this.idProp = idProp;
+            this.columnProp = columnProp;
+            this.searchChars = searchChars;
+            this.resolver = resolver;
+            this.save = save;
+        }
+
+        public List<T> Parse()
         {
             List<T> results = null;
+
+            Console.WriteLine("Start... " + typeof(T).Name + " - " + GetName(columnProp));
 
             using (var _context = new DataDbContext())
             {
@@ -24,21 +41,37 @@ namespace xLingua.Inspector.Core
 
                 var _command = $"SELECT * FROM {_tableName} WHERE {_where}";
 
+#pragma warning disable EF1000 // Possible SQL injection vulnerability.
                 results = _context.Set<T>().FromSql(_command).AsNoTracking().ToList();
+#pragma warning restore EF1000 // Possible SQL injection vulnerability.
 
                 if (resolver != null)
                 {
                     foreach (var entity in results)
                     {
-                       resolver.PreResolve<T>(entity, idProp, columnProp);
+                        resolver.PreResolve(entity, idProp, columnProp);
+
+                        if (save)
+                        {
+                            _context.Update(entity);
+                        }
                     }
+
+                    resolver.Dispose();
+                }
+
+                if (save)
+                {
+                    _context.SaveChanges();
                 }
             }
+
+            Console.WriteLine("Fertig... " + typeof(T).Name + " - " + GetName(columnProp));
 
             return results;
         }
 
-        private static string GetColumnName<T>(IEntityType entityType, Expression<Func<T, string>> column) where T : class
+        private string GetColumnName(IEntityType entityType, Expression<Func<T, string>> column)
         {
             List<string> results = new List<string>();
 
@@ -54,7 +87,7 @@ namespace xLingua.Inspector.Core
             return _column.Relational().ColumnName;
         }
 
-        private static string GetWhere(string column, char[] searchChars)
+        private string GetWhere(string column, char[] searchChars)
         {
             var result = "";
 
@@ -71,7 +104,7 @@ namespace xLingua.Inspector.Core
             return result;
         }
 
-        private static string GetName<TSource, TField>(Expression<Func<TSource, TField>> Field)
+        private string GetName<TSource, TField>(Expression<Func<TSource, TField>> Field)
         {
             return (Field.Body as MemberExpression ?? ((UnaryExpression)Field.Body).Operand as MemberExpression).Member.Name;
         }

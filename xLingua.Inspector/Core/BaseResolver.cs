@@ -1,13 +1,86 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Linq.Expressions;
 using System.Reflection;
 
 namespace xLingua.Inspector.Core
 {
-    public abstract class BaseResolver
+    public abstract class BaseResolver<T> : IDisposable where T : class
     {
-        public void PreResolve<T>(T entitiy, Expression<Func<T, long>> idProp, Expression<Func<T, string>> columnProp) where T : class
+        private string _logPath_bad;
+        private string _logPath_good;
+        private StreamWriter _sw_bad;
+        private StreamWriter _sw_good;
+
+
+        ~BaseResolver()
+        {
+            Dispose(false);
+        }
+
+        public BaseResolver(string logPath, Expression<Func<T, string>> columnProp)
+        {
+            if (!string.IsNullOrEmpty(logPath))
+            {
+                //this._logPath = Path.Combine(logPath, DateTime.Now.ToString().Replace(':', '_').Replace('.', '_').Replace(' ', '_') + string.Format("_Bad_{0}_{1}.txt", typeof(T).Name, GetName(columnProp)));
+                this._logPath_bad = Path.Combine(logPath, DateTime.Now.ToShortDateString().Replace('.', '_') + string.Format("_Bad_{0}_{1}.txt", typeof(T).Name, GetName(columnProp)));
+                this._logPath_good = Path.Combine(logPath, DateTime.Now.ToShortDateString().Replace('.', '_') + string.Format("_Good_{0}_{1}.txt", typeof(T).Name, GetName(columnProp)));
+
+                if (File.Exists(this._logPath_bad))
+                {
+                    File.Delete(this._logPath_bad);
+                }
+
+                if (File.Exists(this._logPath_good))
+                {
+                    File.Delete(this._logPath_good);
+                }
+
+            }
+        }
+
+        private string GetName<TSource, TField>(Expression<Func<TSource, TField>> Field)
+        {
+            return (Field.Body as MemberExpression ?? ((UnaryExpression)Field.Body).Operand as MemberExpression).Member.Name;
+        }
+
+        protected void Print(string msg = "")
+        {
+            Console.WriteLine(msg);
+        }
+
+        protected void LogBad(string msg = "")
+        {
+            Console.WriteLine(msg);
+
+            if (!string.IsNullOrEmpty(_logPath_bad))
+            {
+                if (_sw_bad == null)
+                {
+                    _sw_bad = new StreamWriter(_logPath_bad);
+                }
+
+                _sw_bad.WriteLine(msg);
+            }
+        }
+
+        protected void LogGood(string msg = "")
+        {
+            Console.WriteLine(msg);
+
+            if (!string.IsNullOrEmpty(_logPath_good))
+            {
+                if (_sw_good == null)
+                {
+                    _sw_good = new StreamWriter(_logPath_good);
+                }
+
+                _sw_good.WriteLine(msg);
+            }
+        }
+
+        public void PreResolve(T entitiy, Expression<Func<T, long>> idProp, Expression<Func<T, string>> columnProp)
         {
             Func<T, long> idGetter;
             Func<T, string> valueGetter;
@@ -23,7 +96,7 @@ namespace xLingua.Inspector.Core
 
         public abstract string Resolve(long id, string dirtyValue);
 
-        private static bool CreateGetterSetter<T, V>(Expression<Func<T, V>> getterExpression, out Func<T, V> getter, out Action<T, V> setter)
+        private static bool CreateGetterSetter<V>(Expression<Func<T, V>> getterExpression, out Func<T, V> getter, out Action<T, V> setter)
         {
             if (getterExpression == null)
                 throw new ArgumentNullException("getterExpression");
@@ -99,7 +172,7 @@ namespace xLingua.Inspector.Core
             return true;
         }
 
-        private static bool CreateGetter<T, V>(Expression<Func<T, V>> getterExpression, out Func<T, V> getter)
+        private static bool CreateGetter<V>(Expression<Func<T, V>> getterExpression, out Func<T, V> getter)
         {
             if (getterExpression == null)
                 throw new ArgumentNullException("getterExpression");
@@ -117,6 +190,37 @@ namespace xLingua.Inspector.Core
 
 
             return true;
+        }
+
+        bool disposed = false;
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+                return;
+
+            if (disposing)
+            {
+                if (_sw_bad != null)
+                {
+                    _sw_bad.Close();
+                    _sw_bad.Dispose();
+                }
+
+                if (_sw_good != null)
+                {
+                    _sw_good.Close();
+                    _sw_good.Dispose();
+                }
+            }
+
+            disposed = true;
         }
     }
 }

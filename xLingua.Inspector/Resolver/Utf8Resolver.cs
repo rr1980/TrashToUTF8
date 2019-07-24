@@ -1,40 +1,47 @@
 ﻿using System;
+using System.Linq.Expressions;
+using System.Runtime.InteropServices;
 using System.Text;
+using Microsoft.Win32.SafeHandles;
 using xLingua.Inspector.Core;
 
-namespace xLingua.Inspector
+namespace xLingua.Inspector.Resolver
 {
-    public class Resolver : BaseResolver
+    #region helper
+    enum ClearResultType
     {
-        enum ClearResultType
-        {
-            Fixed,
-            Impossible,
-            Unnecessary
-        }
+        Fixed,
+        Impossible,
+        Unnecessary
+    }
 
-        class ClearResult
-        {
-            public ClearResultType Type { get; set; }
-            public string Text { get; set; }
-        }
+    class ClearResult
+    {
+        public ClearResultType Type { get; set; }
+        public string Text { get; set; }
+    }
 
-        class CheckResult
-        {
-            public bool Found { get; set; }
-            public char FoundChar { get; set; }
-        }
+    class CheckResult
+    {
+        public bool Found { get; set; }
+        public char FoundChar { get; set; }
+    }
+    #endregion
 
+    public class Utf8Resolver<T> : BaseResolver<T> where T : class
+    {
 
-        private readonly char[] _searchChars;
-        private readonly char[] _blackChars;
+        private char[] _searchChars;
+        private char[] _blackChars;
+
         private readonly ConsoleColor defaultConsoleColor;
 
-        public Resolver(char[] searchChars, char[] blackChars)
+        public Utf8Resolver(Expression<Func<T, string>> columnProp, char[] searchChars, char[] blackChars, string logPath): base(logPath, columnProp)
         {
             defaultConsoleColor = Console.ForegroundColor;
             _searchChars = searchChars;
             _blackChars = blackChars;
+
         }
 
         public override string Resolve(long id, string dirtyValue)
@@ -48,24 +55,24 @@ namespace xLingua.Inspector
             else if (result.Type == ClearResultType.Fixed)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine(string.Format("FIXED     ID: {0}", id));
+                LogGood(string.Format("Fixed     ID: {0}", id));
                 Console.ForegroundColor = defaultConsoleColor;
 
-                Console.WriteLine(string.Format("Old           {0}", dirtyValue));
-                Console.WriteLine(string.Format("New           {0}", result.Text));
-                Console.WriteLine();
+                LogGood(string.Format("Old           {0}", dirtyValue));
+                LogGood(string.Format("New           {0}", result.Text));
+                LogGood();
 
                 return result.Text;
             }
             else if (result.Type == ClearResultType.Impossible)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(string.Format("NOT FIXED ID: {0}", id));
+                LogBad(string.Format("NOT FIXED ID: {0}", id));
                 Console.ForegroundColor = defaultConsoleColor;
 
-                Console.WriteLine(string.Format("Old           {0}", dirtyValue));
-                Console.WriteLine(string.Format("New           {0}", result.Text));
-                Console.WriteLine();
+                LogBad(string.Format("Old           {0}", dirtyValue));
+                LogBad(string.Format("Wrong         {0}", result.Text));
+                LogBad();
 
 
                 return result.Text;
@@ -160,6 +167,28 @@ namespace xLingua.Inspector
             char[] asciiChars = Encoding.UTF8.GetChars(asciiBytes);
 
             return new string(asciiChars);
+        }
+
+        bool disposed = false;
+        SafeHandle handle = new SafeFileHandle(IntPtr.Zero, true);
+        protected override void Dispose(bool disposing)
+        {
+            if (disposed)
+                return;
+
+            if (disposing)
+            {
+                handle.Dispose();
+                // Free any other managed objects here.
+                //
+            }
+
+            // Free any unmanaged objects here.
+            //
+
+            disposed = true;
+            // Call base class implementation.
+            base.Dispose(disposing);
         }
     }
 }
