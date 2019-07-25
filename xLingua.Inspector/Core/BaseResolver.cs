@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Text;
+using xLingua.Entities;
 
 namespace xLingua.Inspector.Core
 {
@@ -20,8 +23,8 @@ namespace xLingua.Inspector.Core
             if (!string.IsNullOrEmpty(logPath))
             {
                 //this._logPath = Path.Combine(logPath, DateTime.Now.ToString().Replace(':', '_').Replace('.', '_').Replace(' ', '_') + string.Format("_Bad_{0}_{1}.txt", typeof(T).Name, GetName(columnProp)));
-                this._logPath_bad = Path.Combine(logPath, DateTime.Now.ToShortDateString().Replace('.', '_') + string.Format("_Bad_{0}_{1}.txt", typeof(T).Name, GetName(columnProp)));
-                this._logPath_good = Path.Combine(logPath, DateTime.Now.ToShortDateString().Replace('.', '_') + string.Format("_Good_{0}_{1}.txt", typeof(T).Name, GetName(columnProp)));
+                this._logPath_bad = Path.Combine(logPath, DateTime.Now.ToShortDateString().Replace('.', '_') + string.Format("_Bad_{0}_{1}.csv", typeof(T).Name, GetName(columnProp)));
+                this._logPath_good = Path.Combine(logPath, DateTime.Now.ToShortDateString().Replace('.', '_') + string.Format("_Good_{0}_{1}.csv", typeof(T).Name, GetName(columnProp)));
 
                 if (File.Exists(this._logPath_bad))
                 {
@@ -54,7 +57,7 @@ namespace xLingua.Inspector.Core
             {
                 if (_sw_bad == null)
                 {
-                    _sw_bad = new StreamWriter(_logPath_bad);
+                    _sw_bad = new StreamWriter(_logPath_bad, true, Encoding.UTF8);
                 }
 
                 _sw_bad.WriteLine(msg);
@@ -82,7 +85,7 @@ namespace xLingua.Inspector.Core
             {
                 if (_sw_good == null)
                 {
-                    _sw_good = new StreamWriter(_logPath_good);
+                    _sw_good = new StreamWriter(_logPath_good, true, Encoding.UTF8);
                 }
 
                 _sw_good.WriteLine(msg);
@@ -91,12 +94,13 @@ namespace xLingua.Inspector.Core
 
         public void PreResolve(T entitiy, Expression<Func<T, long>> idProp, Expression<Func<T, string>> columnProp)
         {
-            Func<T, long> idGetter;
-            Func<T, string> valueGetter;
-            Action<T, string> valueSetter;
+            Func<T, long> idGetter = null;
+            Func<T, string> valueGetter = null;
+            Action<T, string> valueSetter = null;
 
             CreateGetter(idProp, out idGetter);
             CreateGetterSetter(columnProp, out valueGetter, out valueSetter);
+
 
             var result = Resolve(idGetter(entitiy), valueGetter(entitiy));
 
@@ -192,10 +196,6 @@ namespace xLingua.Inspector.Core
 
             // The expression passed in is the getter, so just compile it.
             getter = getterExpression.Compile();
-
-            // The setter function takes two parameters as input.
-            var paramT = Expression.Parameter(typeof(T));
-            var paramV = Expression.Parameter(typeof(V));
 
 
             return true;

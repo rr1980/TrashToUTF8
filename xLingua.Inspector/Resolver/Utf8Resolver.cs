@@ -67,12 +67,14 @@ namespace xLingua.Inspector.Resolver
             else if (result.Type == ClearResultType.Impossible)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                LogBad(string.Format("NOT FIXED ID: {0}", id));
+                Print(string.Format("NOT FIXED ID: {0}", id));
                 Console.ForegroundColor = defaultConsoleColor;
 
-                LogBad(string.Format("Old           {0}", dirtyValue));
-                LogBad(string.Format("Wrong         {0}", result.Text));
-                LogBad();
+                Print(string.Format("Old           {0}", dirtyValue));
+                Print(string.Format("Wrong         {0}", result.Text));
+                Print();
+
+                LogBad(string.Format("{0};{1};{2}", id, dirtyValue, result.Text));
 
 
                 return result.Text;

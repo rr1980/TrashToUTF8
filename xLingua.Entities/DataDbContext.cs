@@ -1,14 +1,15 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace xLingua.Entities
 {
     public class DataDbContext : DbContext
     {
-        //string conn = "Server=192.168.254.202;port=3306;Database=xLingua;Uid=root;Pwd=gmbh123;CharSet=utf8;";
+        string conn = "Server=192.168.254.202;port=3306;Database=xLingua;Uid=root;Pwd=gmbh123;CharSet=utf8;";
         //string conn = "server=172.20.20.21;port=3306;database=xLinguaCheck;uid=root;password=gmbh123!;CharSet=utf8;";
-        string conn = "server=172.20.20.21;port=3306;database=xLingua;uid=root;password=gmbh123!;CharSet=utf8;";
+        //string conn = "server=172.20.20.21;port=3306;database=xLingua;uid=root;password=gmbh123!;CharSet=utf8;";
 
         public virtual DbSet<Universal> Universals { get; set; }
         public virtual DbSet<Ui_Translations> Ui_Translations { get; set; }
@@ -25,17 +26,30 @@ namespace xLingua.Entities
         public virtual DbSet<BaseWords> BaseWords { get; set; }
         public virtual DbSet<Words> Words { get; set; }
 
+        public DataDbContext() 
+        {
+
+            //ChangeTracker.StateChanged += OnStateChanged;
+        }
+
+        public DataDbContext(DbContextOptions<DataDbContext> options) : base(options)
+        {
+
+            //ChangeTracker.StateChanged += OnStateChanged;
+        }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseLazyLoadingProxies();
-            optionsBuilder.UseMySql(conn, b => {
+            optionsBuilder.UseLazyLoadingProxies(); //.ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.DetachedLazyLoadingWarning));
+            optionsBuilder.UseMySql(conn, b =>
+            {
                 b.UnicodeCharSet(CharSet.Utf8mb4);
             });
-
+            
             optionsBuilder.EnableDetailedErrors();
             optionsBuilder.EnableSensitiveDataLogging();
-            optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+            optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

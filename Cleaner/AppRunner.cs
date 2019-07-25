@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Cleaner.Core;
 using Cleaner.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,6 +13,7 @@ namespace Cleaner
     public class AppRunner : IRunner
     {
         public static char[] SearchChars = new char[] {
+            '�',
             'Â',
             'Ã',
             '«',
@@ -72,7 +74,7 @@ namespace Cleaner
 
             //_dbReplacerService.Replace<Characters>(x => x.Id, x => x.Name, SearchChars, BlackChars, null, false).Wait();
 
-            _dbReplacerService.FindHugos<BaseWords>(x => x.Id, x => x.Word, x => x.Language.EnglishName, new char[] { '�' }, null).Wait();
+            //_dbReplacerService.FindHugos<BaseWords>(x => x.Id, x => x.Word, x => x.Language.EnglishName, new char[] { '�' }, null).Wait();
 
             //_dbReplacerService.FindHugos<Words>(x => x.Id, x => x.Word, x => x.BaseWordLinks.First().BaseWord.Language.EnglishName, new char[] { '�' },
             //    new string[] { "Word", "BaseWord.Language" },
@@ -82,13 +84,13 @@ namespace Cleaner
             //    ).Wait();
 
 
-            //_dbReplacerService.ReplaceHugos<BaseWords>(x => x.Id, x => x.Word, x => x.Language.EnglishName, new char[] { '�' },
+            _dbReplacerService.ReplaceHugos<BaseWords>(x => x.Id, x => x.Word, x => x.Language.EnglishName, new char[] { '�' },
             //_dbReplacerService.ReplaceHugos<Words>(x => x.Id, x => x.Word, x => x.BaseWordLinks.First().BaseWord.Language.EnglishName, new char[] { '�' },
-            //    new string[] { "Word", "BaseWord.Language" },
-            //    //x => x.Id > 100000 && x.Id < 1000000, 
-            //    null,
-            //    null
-            //    ).Wait();
+                new string[] { "Word", "BaseWord.Language" },
+                //x => x.Id > 100000 && x.Id < 1000000, 
+                null,
+                null
+                ).Wait();
 
             //_dbReplacerService.FindHugos<Connections>(x => x.Word.Id, x => x.Word.Word, x => x.BaseWord.Language.EnglishName, new char[] { '�' }, 
             //    new Expression<Func<Connections, object>>[] {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using Newtonsoft.Json;
@@ -15,7 +16,7 @@ namespace xLingua.Inspector
         static char[] searchChars = new char[] {
 
                     '�',
-                    'Â','Ã','«','‘','¹','“','Ã','Ð','Å','©','º','‡','™','…','Å','¾','†','»','°','Ñ',
+                    //'Â','Ã','«','‘','¹','“','Ã','Ð','Å','©','º','‡','™','…','Å','¾','†','»','°','Ñ',
                     //'â',
                 };
 
@@ -39,34 +40,34 @@ namespace xLingua.Inspector
             {
                 var rlySave = false;
 
-                Start<Basewordexamples>(x => x.Id, x => x.Text, rlySave);
+                //Start<Basewordexamples>(x => x.Id, x => x.Text, null, rlySave);
 
-                Start<Feedback>(x => x.Id, x => x.Text, rlySave);
-                Start<Feedback>(x => x.Id, x => x.Comment, rlySave);
+                //Start<Feedback>(x => x.Id, x => x.Text, null, rlySave);
+                //Start<Feedback>(x => x.Id, x => x.Comment, null, rlySave);
 
-                //Start<Universal>(x => x.Id, x => x.Word, rlySave);
+                ////Start<Universal>(x => x.Id, x => x.Word, null, rlySave);
 
-                Start<Statistic>(x => x.Id, x => x.Keyword, rlySave);
+                //Start<Statistic>(x => x.Id, x => x.Keyword, null, rlySave);
 
-                Start<Functions>(x => x.Id, x => x.Function, rlySave);
+                //Start<Functions>(x => x.Id, x => x.Function, null, rlySave);
 
-                Start<Grammar>(x => x.Id, x => x.Title, rlySave);
-                Start<Grammar>(x => x.Id, x => x.Text, rlySave);
+                //Start<Grammar>(x => x.Id, x => x.Title, null, rlySave);
+                //Start<Grammar>(x => x.Id, x => x.Text, null, rlySave);
 
-                Start<LanguageTranslations>(x => x.Id, x => x.Language, rlySave);
-                Start<LanguageTranslations>(x => x.Id, x => x.Name, rlySave);
-                Start<LanguageTranslations>(x => x.Id, x => x.Fromlanguage, rlySave);
-                Start<LanguageTranslations>(x => x.Id, x => x.Tolanguage, rlySave);
-                Start<LanguageTranslations>(x => x.Id, x => x.Fromurl, rlySave);
-                Start<LanguageTranslations>(x => x.Id, x => x.Tourl, rlySave);
+                //Start<LanguageTranslations>(x => x.Id, x => x.Language, null, rlySave);
+                //Start<LanguageTranslations>(x => x.Id, x => x.Name, null, rlySave);
+                //Start<LanguageTranslations>(x => x.Id, x => x.Fromlanguage, null, rlySave);
+                //Start<LanguageTranslations>(x => x.Id, x => x.Tolanguage, null, rlySave);
+                //Start<LanguageTranslations>(x => x.Id, x => x.Fromurl, null, rlySave);
+                //Start<LanguageTranslations>(x => x.Id, x => x.Tourl, null, rlySave);
 
-                Start<Languages>(x => x.Id, x => x.Code, rlySave);
-                Start<Languages>(x => x.Id, x => x.NativeName, rlySave);
-                Start<Languages>(x => x.Id, x => x.EnglishName, rlySave);
-                Start<Languages>(x => x.Id, x => x.CultureName, rlySave);
+                //Start<Languages>(x => x.Id, x => x.Code, null, rlySave);
+                //Start<Languages>(x => x.Id, x => x.NativeName, null, rlySave);
+                //Start<Languages>(x => x.Id, x => x.EnglishName, null, rlySave);
+                //Start<Languages>(x => x.Id, x => x.CultureName, null, rlySave);
 
-                //Start<Characters>(x => x.Id, x => x.Name, rlySave);
-                //Start<Characters>(x => x.Id, x => x.Tolerant, rlySave);
+                ////Start<Characters>(x => x.Id, x => x.Name, null, rlySave);
+                ////Start<Characters>(x => x.Id, x => x.Tolerant, null, rlySave);
 
                 Start<Words>(x => x.Id, x => x.Word, rlySave);
 
@@ -85,9 +86,9 @@ namespace xLingua.Inspector
             }
         }
 
-        private static List<T> Start<T>(Expression<Func<T, long>> idProp, Expression<Func<T, string>> columnProp, bool rlySave) where T : class, IEntity
+        private static List<T> Start<T>(Expression<Func<T, long>> idProp, Expression<Func<T, string>> columnProp, bool rlySave = false) where T : class, IEntity
         {
-            return new Parser<T>(idProp, columnProp, searchChars, new Utf8Resolver<T>(columnProp, searchChars, blackChars, logPath), rlySave).Parse();
+            return new Parser<T>(idProp, columnProp, searchChars, new Utf8Resolver<T>(columnProp, searchChars, blackChars, logPath),  rlySave).Parse();
         }
     }
 }

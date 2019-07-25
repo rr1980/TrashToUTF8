@@ -108,6 +108,8 @@ namespace Cleaner.Services.Replace
 
             var ids = results.Select(x => x.Id);
 
+            var tmp = string.Join(",", ids);
+
             var olds = await _dataOldDbContext.Set<T>().Where(x => ids.Contains(idGetter(x))).ToListAsync();
 
             using (StreamWriter outputFile = new StreamWriter(path))
