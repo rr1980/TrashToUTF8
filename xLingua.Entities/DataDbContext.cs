@@ -7,7 +7,8 @@ namespace xLingua.Entities
 {
     public class DataDbContext : DbContext
     {
-        string conn = "Server=192.168.254.202;port=3306;Database=xLingua;Uid=root;Pwd=gmbh123;CharSet=utf8;";
+        //string conn = "Server=192.168.254.202;port=3306;Database=xLingua;Uid=root;Pwd=gmbh123;CharSet=utf8;";
+        string conn = "Server=78.46.209.243;port=3306;Database=xLingua;Uid=root;Pwd=D6,h2?R4-v;CharSet=utf8;";
         //string conn = "server=172.20.20.21;port=3306;database=xLinguaCheck;uid=root;password=gmbh123!;CharSet=utf8;";
         //string conn = "server=172.20.20.21;port=3306;database=xLingua;uid=root;password=gmbh123!;CharSet=utf8;";
 
@@ -109,6 +110,7 @@ namespace xLingua.Entities
 
                 entity.HasOne(x => x.BaseWord).WithMany(x => x.WordLinks).HasForeignKey(x => x.BaseWordId);
                 entity.HasOne(x => x.Word).WithMany(x => x.BaseWordLinks).HasForeignKey(x => x.WordId);
+                entity.HasOne(x => x.Function).WithMany(x => x.Connections).HasForeignKey(x => x.FunctionId);
 
             });
 

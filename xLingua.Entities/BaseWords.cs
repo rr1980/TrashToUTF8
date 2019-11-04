@@ -61,6 +61,8 @@ namespace xLingua.Entities
 
         [Column("function")]
         public string Function { get; set; }
+
+        public virtual ICollection<Connections> Connections { get; set; }
     }
 
     public class Grammar : IEntity
@@ -78,6 +80,10 @@ namespace xLingua.Entities
         [Column("basicwordid")]
         public long BaseWordId { get; set; }
         public virtual BaseWords BaseWord { get; set; }
+
+        [Column("functionid")]
+        public long FunctionId { get; set; }
+        public virtual Functions Function { get; set; }
 
         [Column("wordid")]
         public long WordId { get; set; }
